@@ -18,6 +18,7 @@ package com.teamcanjica.settings.device.fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
@@ -33,8 +34,9 @@ import com.teamcanjica.settings.device.Utils;
 public class ScreenFragmentActivity extends PreferenceFragment {
 
 	private static final String TAG = "GalaxyAce2_Settings_Screen";
-	
-	private static final String FILE_SWEEP2WAKE = "/sys/kernel/bt404/sweep2wake";
+
+	private static final String FILE_SWEEP2WAKE_CODINA = "/sys/kernel/bt404/sweep2wake";
+	private static final String FILE_SWEEP2WAKE_JANICE = "/sys/kernel/mxt224e/sweep2wake";
 
 
 	@Override
@@ -55,8 +57,14 @@ public class ScreenFragmentActivity extends PreferenceFragment {
 		Log.w(TAG, "key: " + key);
 
 		if (key.equals(DeviceSettings.KEY_USE_SWEEP2WAKE)) {
-			Utils.writeValue(FILE_SWEEP2WAKE, (((CheckBoxPreference) preference).
-					isChecked() ? "on" : "off"));
+			if (Build.DEVICE == "janice" || Build.DEVICE == "janicep" || Build.MODEL == "GT-I9070"
+					|| Build.MODEL == "GT-I9070P" || Build.PRODUCT == "GT-I9070" || Build.PRODUCT == "GT-I9070P") {
+				Utils.writeValue(FILE_SWEEP2WAKE_JANICE, (((CheckBoxPreference) preference).
+						isChecked() ? "on" : "off"));
+			} else {
+				Utils.writeValue(FILE_SWEEP2WAKE_CODINA, (((CheckBoxPreference) preference).
+						isChecked() ? "on" : "off"));
+			}
 		}
 
 		return true;
@@ -66,8 +74,14 @@ public class ScreenFragmentActivity extends PreferenceFragment {
 		SharedPreferences sharedPrefs = PreferenceManager
 				.getDefaultSharedPreferences(context);
 
-		Utils.writeValue(FILE_SWEEP2WAKE, sharedPrefs.getBoolean(
-				DeviceSettings.KEY_USE_SWEEP2WAKE, false) ? "on" : "off");
+		if (Build.DEVICE == "janice" || Build.DEVICE == "janicep" || Build.MODEL == "GT-I9070"
+				|| Build.MODEL == "GT-I9070P" || Build.PRODUCT == "GT-I9070" || Build.PRODUCT == "GT-I9070P") {
+			Utils.writeValue(FILE_SWEEP2WAKE_JANICE, sharedPrefs.getBoolean(
+					DeviceSettings.KEY_USE_SWEEP2WAKE, false) ? "on" : "off");
+		} else {
+			Utils.writeValue(FILE_SWEEP2WAKE_CODINA, sharedPrefs.getBoolean(
+					DeviceSettings.KEY_USE_SWEEP2WAKE, false) ? "on" : "off");
+		}
 
 	}
 

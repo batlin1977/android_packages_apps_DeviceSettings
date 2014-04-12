@@ -8,8 +8,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.test.settings.device.R;
-
 public class AboutActivity extends Activity {
 	
 	@Override

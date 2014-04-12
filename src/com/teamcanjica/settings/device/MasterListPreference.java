@@ -1,7 +1,5 @@
 package com.teamcanjica.settings.device;
 
-import java.io.IOException;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,6 +19,7 @@ OnPreferenceChangeListener {
 	private static final String FILE_MALIL2_MAX_READS = "/sys/module/mali/parameters/mali_l2_max_reads";
 	private static final String FILE_MALI_PREALLOC_MEM = "/sys/module/mali/parameters/pre_allocated_memory_size_max";
 	private static final String FILE_SCHED_MC = "/sys/devices/system/cpu/sched_mc_power_savings";
+	private static final String FILE_TCP_CONTROL = "/proc/sys/net/ipv4/tcp_congestion_control";
 
 	private Context mCtx;
 
@@ -52,15 +51,7 @@ OnPreferenceChangeListener {
 		} else if (key.equals(DeviceSettings.KEY_SCHED_MC)) {
 			Utils.writeValue(FILE_SCHED_MC, (String) newValue);
 		} else if (key.equals(DeviceSettings.KEY_TCP_CONTROL)) {
-			try {
-				Process tcp = Runtime.getRuntime().exec(new String[]{
-						"su", "-c", "sysctl -w net.ipv4.tcp_congestion_control=" + (String) newValue});
-				tcp.waitFor();
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			Utils.writeValue(FILE_TCP_CONTROL, (String) newValue);
 		}
 
 		return true;
@@ -94,16 +85,8 @@ OnPreferenceChangeListener {
 		Utils.writeValue(FILE_SCHED_MC, sharedPrefs.getString(
 				DeviceSettings.KEY_SCHED_MC, "0"));
 		
-		try {
-			Process tcp = Runtime.getRuntime().exec(new String[]{
-					"su", "-c", "sysctl -w net.ipv4.tcp_congestion_control=" +
-							sharedPrefs.getString(DeviceSettings.KEY_TCP_CONTROL, "cubic")});
-			tcp.waitFor();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		Utils.writeValue(FILE_TCP_CONTROL, sharedPrefs.getString(
+				DeviceSettings.KEY_TCP_CONTROL, "cubic"));
 	}
 	
 	private static void sendIntent(Context context, String value) {

@@ -1,6 +1,6 @@
 DeviceSettings for Galaxy Ace 2
 ====================================
-ToDO:
+- ToDO:
 
   Add janice support
   Add More GPU OC settings
@@ -9,3 +9,4 @@ ToDO:
   Implement Boot time checking
   Reboot dialog when swapping storages
   Make mcde freq tweakable
+

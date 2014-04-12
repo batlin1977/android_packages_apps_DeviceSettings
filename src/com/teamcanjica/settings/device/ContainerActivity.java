@@ -2,8 +2,6 @@ package com.teamcanjica.settings.device;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -31,8 +29,6 @@ public class ContainerActivity extends Activity {
 		frameLayout = (FrameLayout) findViewById(R.id.frameLayout);
 		
 		Fragment fragment = new SettingsFragmentActivity();
-		FragmentManager fm = getFragmentManager();
-		FragmentTransaction transaction = fm.beginTransaction();
 		try {
 		switch (getIntent().getExtras().getInt(DeviceSettings.SELECTION)) {
 			case 0:
@@ -67,11 +63,12 @@ public class ContainerActivity extends Activity {
 				break;
 		}
 		} catch (NullPointerException e) {
-
+			getFragmentManager().beginTransaction().
+				replace(R.id.frameLayout, fragment, "SETTINGS_FRAGMENT").commit();
 		}
 
-		transaction.replace(R.id.frameLayout, fragment);
-		transaction.commit();
+		getFragmentManager().beginTransaction().
+			replace(R.id.frameLayout, fragment).commit();
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -95,7 +92,7 @@ public class ContainerActivity extends Activity {
 	            return true;
 	        case R.id.action_settings:
 	        	getFragmentManager().beginTransaction().
-	        		replace(R.id.frameLayout, new SettingsFragmentActivity()).commit();
+	        		replace(R.id.frameLayout, new SettingsFragmentActivity(), "SETTINGS_FRAGMENT").commit();
 	        	return true;
 	        case android.R.id.home:
 	        	NavUtils.navigateUpFromSameTask(this);
@@ -105,4 +102,16 @@ public class ContainerActivity extends Activity {
 	    }
 	}
 
+	@Override
+	public boolean onPrepareOptionsMenu (Menu menu) {
+		try {
+			if (getFragmentManager().
+					findFragmentByTag("SETTINGS_FRAGMENT").isVisible()) {
+				menu.removeItem(R.id.action_settings);
+			}
+		} catch (NullPointerException e) {
+
+		}
+		return true;
+	}
 }

@@ -2,8 +2,8 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
     <PreferenceCategory android:title="@string/reboot_subcat_title" >
         <CheckBoxPreference
-            android:key="enable_restore"
-            android:summary="@string/enable_restore_summary_head"
-            android:title="@string/enable_restore_title_head" />
+            android:key="disable_restore"
+            android:summary="@string/disable_restore_summary_head"
+            android:title="@string/disable_restore_title_head" />
     </PreferenceCategory>
 </PreferenceScreen>

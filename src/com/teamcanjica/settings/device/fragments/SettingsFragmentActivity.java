@@ -35,8 +35,8 @@ public class SettingsFragmentActivity extends PreferenceFragment {
 
 		Log.w(TAG, "key: " + key);
 
-		if (key.equals(DeviceSettings.KEY_ENABLE_RESTORE)) {
-			DeviceSettings.enableRestore = (((CheckBoxPreference) preference).
+		if (key.equals(DeviceSettings.KEY_DISABLE_RESTORE)) {
+			DeviceSettings.disableRestore = (((CheckBoxPreference) preference).
 					isChecked() ? true : false);
 		}
 
@@ -47,8 +47,8 @@ public class SettingsFragmentActivity extends PreferenceFragment {
 		SharedPreferences sharedPrefs = PreferenceManager
 				.getDefaultSharedPreferences(context);
 
-		DeviceSettings.enableRestore = sharedPrefs.getBoolean(
-				DeviceSettings.KEY_ENABLE_RESTORE, false) ? true : false;
+		DeviceSettings.disableRestore = sharedPrefs.getBoolean(
+				DeviceSettings.KEY_DISABLE_RESTORE, false) ? true : false;
 
 	}
 }

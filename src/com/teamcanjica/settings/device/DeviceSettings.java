@@ -57,12 +57,12 @@ public class DeviceSettings extends Activity implements OnItemClickListener{
 	public static final String KEY_SET_GPU_CLOCK = "set_gpu_clock";
 	public static final String KEY_DISABLE_FULLSPEED = "disable_fullspeed";
 	public static final String KEY_CPU_VOLTAGE = "cpu_voltage";
-	public static final String KEY_ENABLE_RESTORE = "enable_restore";
+	public static final String KEY_DISABLE_RESTORE = "disable_restore";
 	
 	public static final String SELECTION = "selection";
 	public static final String SETTINGS = "settings";
 	
-	public static boolean enableRestore;
+	public static boolean disableRestore;
 
 	public static final String[] titles = new String[] { "Network",
         "USB", "Audio", "Screen", "GPU", "I/O", "Advanced" };

@@ -24,8 +24,8 @@
     <string name="reboot_subcat_title">Reboot</string>
 
     <!-- SUBCATEGORY: Reboot-->
-    <string name="enable_restore_title_head">Enable Restore on Reboot</string>
-    <string name="enable_restore_summary_head">Enable restoring of settings on reboot.</string>
+    <string name="disable_restore_title_head">Disable Restore on Reboot</string>
+    <string name="disable_restore_summary_head">Disable restoring of settings on reboot. Useful if you aren\'t sure whether the settings are stable.</string>
 
     <!-- CATEGORY: Network -->
     <string name="network_name">Network</string>

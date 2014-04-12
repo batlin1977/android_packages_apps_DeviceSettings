@@ -37,7 +37,7 @@ public class Startup extends BroadcastReceiver {
 	@Override
 	public void onReceive(final Context context, final Intent bootintent) {
 		SettingsFragmentActivity.restore(context);
-		if (DeviceSettings.enableRestore) {
+		if (!DeviceSettings.disableRestore) {
 			USBFragmentActivity.restore(context);
 			AudioFragmentActivity.restore(context);
 			ScreenFragmentActivity.restore(context);
@@ -47,7 +47,7 @@ public class Startup extends BroadcastReceiver {
 			MasterListPreference.restore(context);
 			MasterSeekBarDialogPreference.restore(context);
 			IOFragmentActivity.restore(context);
-		} else if (!DeviceSettings.enableRestore) {
+		} else if (DeviceSettings.disableRestore) {
 			PreferenceManager.getDefaultSharedPreferences(context).
 				edit().clear().commit();
 		}

@@ -45,7 +45,7 @@ public class MasterSeekBarDialogPreference extends
 
 	private int value = 0;
 
-	private static final String TAG = "GalaxyAce2_Settings_Seekbar";
+	private static final String TAG = "NovaThor_Settings_Seekbar";
 
 	private static final String FILE_READAHEADKB = "/sys/block/mmcblk0/queue/read_ahead_kb";
 	private static final String FILE_CPU_VOLTAGE = "/sys/kernel/liveopp/arm_step";

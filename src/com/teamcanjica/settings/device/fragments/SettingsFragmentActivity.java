@@ -32,7 +32,7 @@ import com.teamcanjica.settings.device.R;
 
 public class SettingsFragmentActivity extends PreferenceFragment {
 	
-	private static final String TAG = "GalaxyAce2_Settings_Settings";
+	private static final String TAG = "NovaThor_Settings_Settings";
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class SettingsFragmentActivity extends PreferenceFragment {
 		addPreferencesFromResource(R.xml.settings_preferences);
 
 		getActivity().getActionBar().setTitle(getResources().getString(R.string.settings_name));
-//		getActivity().getActionBar().setIcon(getResources().getDrawable(R.drawable.settings_icon));
+		getActivity().getActionBar().setIcon(getResources().getDrawable(R.drawable.advanced_icon));
 	}
 	
 	@Override

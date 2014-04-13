@@ -30,10 +30,10 @@ import android.util.Log;
 
 public class Utils {
 
-	private static final String TAG = "GalaxyAce2_Settings_Utils";
+	private static final String TAG = "NovaThor_Settings_Utils";
 	// private static final String TAG_READ =
-	// "GalaxySAdvance_Settings_Utils_Read";
-	private static final String TAG_WRITE = "GalaxyAce2_Settings_Utils_Write";
+	// "NovaThor_Settings_Utils_Read";
+	private static final String TAG_WRITE = "NovaThor_Settings_Utils_Write";
 
 	/**
 	 * Write a string value to the specified file.

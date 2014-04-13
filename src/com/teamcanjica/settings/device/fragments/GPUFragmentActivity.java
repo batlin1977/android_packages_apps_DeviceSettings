@@ -33,7 +33,7 @@ import com.teamcanjica.settings.device.Utils;
 
 public class GPUFragmentActivity extends PreferenceFragment {
 
-	private static final String TAG = "GalaxyAce2_Settings_GPU";
+	private static final String TAG = "NovaThor_Settings_GPU";
 	
 	public static final String FILE_AUTOBOOST = "/sys/kernel/mali/mali_auto_boost";
 	public static final String FILE_FULLSPEED = "/sys/kernel/mali/mali_gpu_fullspeed";

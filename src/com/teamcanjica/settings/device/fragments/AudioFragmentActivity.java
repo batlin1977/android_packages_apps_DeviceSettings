@@ -33,7 +33,7 @@ import com.teamcanjica.settings.device.Utils;
 
 public class AudioFragmentActivity extends PreferenceFragment {
 
-	private static final String TAG = "GalaxyAce2_Settings_Audio";
+	private static final String TAG = "NovaThor_Settings_Audio";
 	
 	public static final String FILE_ANAGAIN3 = "/sys/kernel/abb-codec/anagain3";
 	

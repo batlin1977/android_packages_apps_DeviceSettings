@@ -35,7 +35,7 @@ import com.teamcanjica.settings.device.Utils;
 
 public class ScreenFragmentActivity extends PreferenceFragment {
 
-	private static final String TAG = "GalaxyAce2_Settings_Screen";
+	private static final String TAG = "NovaThor_Settings_Screen";
 
 	private static final String FILE_SWEEP2WAKE_CODINA = "/sys/kernel/bt404/sweep2wake";
 	private static final String FILE_SWEEP2WAKE_JANICE = "/sys/kernel/mxt224e/sweep2wake";

@@ -1,4 +1,4 @@
-DeviceSettings for TeamCanjica
+TeamCanjica NovaThor Settings for U8500 Devices
 ====================================
 ToDO:
 =======
@@ -13,5 +13,11 @@ ToDO:
 
   - Make mcde freq tweakable
 
+Devices supported :
+===================
+
+	GT-I8160(P) - codina(p)
+
+	GT-I9070(P) - janice(p)
 
 Commit History : https://github.com/TeamCanjica/android_device_samsung_codina/tree/DeviceSettings-history

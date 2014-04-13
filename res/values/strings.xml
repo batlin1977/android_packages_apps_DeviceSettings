@@ -2,7 +2,7 @@
 <resources>
 
     <!-- App name -->
-    <string name="app_name">DeviceSettings</string>
+    <string name="app_name">NovaThor Settings</string>
     <string name="image">Thumbnail</string>
 
     <!-- Action Bar -->
@@ -10,7 +10,7 @@
     <string name="action_settings">Settings</string>
 
     <!-- ACTIONBAR: About -->
-    <string name="about_title">TeamCanjica\nDeviceSettings</string>
+    <string name="about_title">TeamCanjica\nNovaThor Settings</string>
     <string name="about_developers_title">Developers</string>
     <string name="about_developers_summary">Rox\nzwliew\nfrapeti</string>
     <string name="about_translators_title">Translators</string>

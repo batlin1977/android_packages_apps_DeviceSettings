@@ -33,7 +33,7 @@ import com.teamcanjica.settings.device.Utils;
 
 public class IOFragmentActivity extends PreferenceFragment {
 
-	private static final String TAG = "GalaxyAce2_Settings_IO";
+	private static final String TAG = "NovaThor_Settings_IO";
 
 	private static final String FILE_SPI_CRC = "/sys/module/mmc_core/parameters/use_spi_crc";
 

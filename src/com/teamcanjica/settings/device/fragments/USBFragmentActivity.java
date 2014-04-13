@@ -108,9 +108,10 @@ public class USBFragmentActivity extends PreferenceFragment {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			Utils.showDialog((Context) getActivity(),
+			Utils.showDialog(getActivity(),
 					getString(R.string.eoc_title),
-					(String) eoc);
+					(String) eoc,
+					1);
 			// Reset EOC status when Real EOC is reached
 			if (((String) eoc) == "Real EOC reached") {
 				Utils.writeValue(FILE_EOC_REAL, "0");

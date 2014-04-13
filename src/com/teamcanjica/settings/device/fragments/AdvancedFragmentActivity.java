@@ -79,6 +79,10 @@ public class AdvancedFragmentActivity extends PreferenceFragment {
 			} catch (InterruptedException e) {
 			    e.printStackTrace();
 			}
+			Utils.showDialog(getActivity(),
+					"Reboot Required",
+					"A reboot is required for the setting to take effect, reboot now?",
+					2);
 		} else if (key.compareTo(DeviceSettings.KEY_USE_ACCELEROMETER_CALIBRATION) == 0) {
 			Utils.writeValue(FILE_ACCELEROMETER_CALIB, (((CheckBoxPreference) preference).
 					isChecked() ? "1" : "0"));
@@ -87,9 +91,10 @@ public class AdvancedFragmentActivity extends PreferenceFragment {
 			// calibration is done at the same time by driver
 			Utils.writeValue(FILE_ACCELEROMETER_CALIB, "0");
 			Utils.writeValue(FILE_ACCELEROMETER_CALIB, "1");
-			Utils.showDialog((Context) getActivity(),
+			Utils.showDialog(getActivity(),
 					getString(R.string.accelerometer_dialog_head),
-					getString(R.string.accelerometer_dialog_message));
+					getString(R.string.accelerometer_dialog_message),
+					1);
 		} else if (key.equals(DeviceSettings.KEY_DISABLE_BLN)) {
 			Utils.writeValue(FILE_BLN, (((CheckBoxPreference) preference).
 					isChecked() ? "0" : "1"));

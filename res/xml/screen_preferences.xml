@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <PreferenceCategory android:title="@string/touchscreen_subcat_title" >
+    <PreferenceCategory android:title="@string/touchscreen_subcat_title"
+        android:key="touchscreen" >
         <CheckBoxPreference
             android:key="use_sweep2wake"
             android:summary="@string/use_sweep2wake_summary_head"
@@ -20,6 +21,24 @@
             android:digits="0123456789"
             android:inputType="number"
             android:defaultValue="240" />
+        <com.teamcanjica.settings.device.MasterListPreference
+            android:defaultValue="val=17"
+            android:entries="@array/touchscreen_sensitivity_entries"
+            android:entryValues="@array/touchscreen_sensitivity_entries_values"
+            android:key="touchscreen_sensitivity"
+            android:summary="@string/touchscreen_sensitivity_summary_head"
+            android:title="@string/touchscreen_sensitivity_title_head" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/screen_colours_subcat_title"
+        android:key="screen_colours" >
+        <com.teamcanjica.settings.device.MasterListPreference
+            android:defaultValue="0"
+            android:entries="@array/panel_gamma_entries"
+            android:entryValues="@array/panel_gamma_entries_values"
+            android:key="panel_gamma"
+            android:summary="@string/panel_gamma_summary_head"
+            android:title="@string/panel_gamma_title_head" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/fsync_subcat_title" >

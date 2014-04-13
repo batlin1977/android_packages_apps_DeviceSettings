@@ -22,6 +22,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
@@ -47,6 +48,15 @@ public class ScreenFragmentActivity extends PreferenceFragment {
 
 		getActivity().getActionBar().setTitle(getResources().getString(R.string.screen_name));
 		getActivity().getActionBar().setIcon(getResources().getDrawable(R.drawable.screen_icon));
+
+		// Compatibility check for codina (Panel Gamma & Touchscreen Sensitivity)
+		if (Build.DEVICE == "codina" || Build.DEVICE == "codinap" || Build.MODEL == "GT-I8160"
+				|| Build.MODEL == "GT-I8160P" || Build.PRODUCT == "GT-I8160" || Build.PRODUCT == "GT-I8160P") {
+			getPreferenceScreen().removePreference(findPreference(DeviceSettings.KEY_SCREEN_COLOURS));
+
+			PreferenceCategory touchscreenCategory = (PreferenceCategory) findPreference(DeviceSettings.KEY_TOUCHSCREEN);
+			touchscreenCategory.removePreference(getPreferenceScreen().findPreference(DeviceSettings.KEY_TOUCHSCREEN_SENSITIVITY));
+		}
 	}
 
 	@Override

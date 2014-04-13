@@ -9,7 +9,8 @@
             android:title="@string/switch_storage_title_head" />
     </PreferenceCategory>
 
-   <PreferenceCategory android:title="@string/backlight_subcat_title" >
+   <PreferenceCategory android:title="@string/backlight_subcat_title"
+       android:key="backlight" >
         <CheckBoxPreference
             android:key="disable_bln"
             android:summary="@string/disable_bln_summary_head"

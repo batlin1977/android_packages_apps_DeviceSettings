@@ -51,10 +51,10 @@ public class AdvancedFragmentActivity extends PreferenceFragment {
 		getActivity().getActionBar().setTitle(getResources().getString(R.string.advanced_name));
 		getActivity().getActionBar().setIcon(getResources().getDrawable(R.drawable.ace2settings_icon));
 
-		// Compatibility check
+		// Compatibility check for janice (BLN)
 		if (Build.DEVICE == "janice" || Build.DEVICE == "janicep" || Build.MODEL == "GT-I9070"
 				|| Build.MODEL == "GT-I9070P" || Build.PRODUCT == "GT-I9070" || Build.PRODUCT == "GT-I9070P") {
-			getPreferenceScreen().removePreference(findPreference(DeviceSettings.KEY_DISABLE_BLN));
+			getPreferenceScreen().removePreference(findPreference(DeviceSettings.KEY_BACKLIGHT));
 		}
 
 	}

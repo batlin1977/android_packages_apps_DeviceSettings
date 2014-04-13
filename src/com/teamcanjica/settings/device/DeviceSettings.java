@@ -58,6 +58,11 @@ public class DeviceSettings extends Activity implements OnItemClickListener{
 	public static final String KEY_DISABLE_FULLSPEED = "disable_fullspeed";
 	public static final String KEY_CPU_VOLTAGE = "cpu_voltage";
 	public static final String KEY_DISABLE_RESTORE = "disable_restore";
+	public static final String KEY_PANEL_GAMMA = "panel_gamma";
+	public static final String KEY_TOUCHSCREEN_SENSITIVITY = "touchscreen_sensitivity";
+	public static final String KEY_SCREEN_COLOURS = "screen_colours";
+	public static final String KEY_BACKLIGHT = "backlight";
+	public static final String KEY_TOUCHSCREEN = "touchscreen";
 	
 	public static final String SELECTION = "selection";
 	public static final String SETTINGS = "settings";

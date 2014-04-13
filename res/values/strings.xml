@@ -135,6 +135,13 @@
     <string name="x_sweep2wake_summary_head">Tweak the x-axis threshold value of swiping.</string>
     <string name="y_sweep2wake_title_head">S2W Threshold Y</string>
     <string name="y_sweep2wake_summary_head">Tweak the y-axis threshold value of swiping.</string>
+    <string name="touchscreen_sensitivity_title_head">Touch sensitivity</string>
+    <string name="touchscreen_sensitivity_summary_head">Set touch panel sensitivity</string>
+
+    <!-- SUBCATEGORY: Screen Colours -->
+    <string name="screen_colours_subcat_title">Colors</string>
+    <string name="panel_gamma_title_head">Screen Gamma</string>
+    <string name="panel_gamma_summary_head">Set screen gamma value</string>
 
     <!-- SUBCATEGORY: FSync -->
     <string name="fsync_subcat_title">FSync</string>

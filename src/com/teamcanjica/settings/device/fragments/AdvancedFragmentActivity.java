@@ -54,7 +54,7 @@ public class AdvancedFragmentActivity extends PreferenceFragment {
 		// Compatibility check
 		if (Build.DEVICE == "janice" || Build.DEVICE == "janicep" || Build.MODEL == "GT-I9070"
 				|| Build.MODEL == "GT-I9070P" || Build.PRODUCT == "GT-I9070" || Build.PRODUCT == "GT-I9070P") {
-			getPreferenceScreen().findPreference(DeviceSettings.KEY_DISABLE_BLN).setEnabled(false);
+			getPreferenceScreen().removePreference(findPreference(DeviceSettings.KEY_DISABLE_BLN));
 		}
 
 	}

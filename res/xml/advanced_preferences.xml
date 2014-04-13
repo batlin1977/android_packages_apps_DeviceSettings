@@ -18,6 +18,10 @@
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/voltages_subcat_title" >
+        <CheckBoxPreference
+            android:key="enable_voltage"
+            android:summary="@string/enable_voltage_summary_head"
+            android:title="@string/enable_voltage_title_head" />
         <com.teamcanjica.settings.device.MasterSeekBarDialogPreference
             android:key="cpu_voltage"
             android:title="@string/cpu_voltage_title_head"

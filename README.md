@@ -11,8 +11,6 @@ ToDO:
 
   - Implement Boot time checking
 
-  - Reboot dialog when swapping storages
-
   - Make mcde freq tweakable
 
 

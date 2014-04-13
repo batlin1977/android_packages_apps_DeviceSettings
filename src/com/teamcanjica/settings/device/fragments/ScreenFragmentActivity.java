@@ -19,7 +19,6 @@ package com.teamcanjica.settings.device.fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
@@ -51,10 +50,8 @@ public class ScreenFragmentActivity extends PreferenceFragment {
 		getActivity().getActionBar().setIcon(getResources().getDrawable(R.drawable.screen_icon));
 
 		// Compatibility check for codina (Panel Gamma & Touchscreen Sensitivity)
-		if (Build.DEVICE == "codina" || Build.DEVICE == "codinap" || Build.MODEL == "GT-I8160"
-				|| Build.MODEL == "GT-I8160P" || Build.PRODUCT == "GT-I8160" || Build.PRODUCT == "GT-I8160P") {
+		if(Utils.isCodina()) {
 			getPreferenceScreen().removePreference(findPreference(DeviceSettings.KEY_SCREEN_COLOURS));
-
 			PreferenceCategory touchscreenCategory = (PreferenceCategory) findPreference(DeviceSettings.KEY_TOUCHSCREEN);
 			touchscreenCategory.removePreference(getPreferenceScreen().findPreference(DeviceSettings.KEY_TOUCHSCREEN_SENSITIVITY));
 		}
@@ -68,11 +65,10 @@ public class ScreenFragmentActivity extends PreferenceFragment {
 		Log.w(TAG, "key: " + key);
 
 		if (key.equals(DeviceSettings.KEY_USE_SWEEP2WAKE)) {
-			if (Build.DEVICE == "janice" || Build.DEVICE == "janicep" || Build.MODEL == "GT-I9070"
-					|| Build.MODEL == "GT-I9070P" || Build.PRODUCT == "GT-I9070" || Build.PRODUCT == "GT-I9070P") {
+			if (Utils.isJanice()) {
 				Utils.writeValue(FILE_SWEEP2WAKE_JANICE, (((CheckBoxPreference) preference).
 						isChecked() ? "on" : "off"));
-			} else {
+			} else if (Utils.isCodina()) {
 				Utils.writeValue(FILE_SWEEP2WAKE_CODINA, (((CheckBoxPreference) preference).
 						isChecked() ? "on" : "off"));
 			}
@@ -85,11 +81,10 @@ public class ScreenFragmentActivity extends PreferenceFragment {
 		SharedPreferences sharedPrefs = PreferenceManager
 				.getDefaultSharedPreferences(context);
 
-		if (Build.DEVICE == "janice" || Build.DEVICE == "janicep" || Build.MODEL == "GT-I9070"
-				|| Build.MODEL == "GT-I9070P" || Build.PRODUCT == "GT-I9070" || Build.PRODUCT == "GT-I9070P") {
+		if (Utils.isJanice()) {
 			Utils.writeValue(FILE_SWEEP2WAKE_JANICE, sharedPrefs.getBoolean(
 					DeviceSettings.KEY_USE_SWEEP2WAKE, false) ? "on" : "off");
-		} else {
+		} else if (Utils.isCodina()) {
 			Utils.writeValue(FILE_SWEEP2WAKE_CODINA, sharedPrefs.getBoolean(
 					DeviceSettings.KEY_USE_SWEEP2WAKE, false) ? "on" : "off");
 		}

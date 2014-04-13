@@ -37,7 +37,7 @@ import com.teamcanjica.settings.device.Utils;
 
 public class AdvancedFragmentActivity extends PreferenceFragment {
 
-	private static final String TAG = "GalaxyAce2_Settings_Advanced";
+	private static final String TAG = "NovaThor_Settings_Advanced";
 
 	private static final String FILE_ACCELEROMETER_CALIB = "/sys/class/sensors/accelerometer_sensor/calibration";
 	private static final String FILE_BLN = "/sys/class/misc/backlightnotification/enabled";
@@ -54,8 +54,7 @@ public class AdvancedFragmentActivity extends PreferenceFragment {
 		getActivity().getActionBar().setIcon(getResources().getDrawable(R.drawable.advanced_icon));
 
 		// Compatibility check for janice (BLN)
-		if (Build.DEVICE == "janice" || Build.DEVICE == "janicep" || Build.MODEL == "GT-I9070"
-				|| Build.MODEL == "GT-I9070P" || Build.PRODUCT == "GT-I9070" || Build.PRODUCT == "GT-I9070P") {
+		if (Utils.isJanice()) {
 			getPreferenceScreen().removePreference(findPreference(DeviceSettings.KEY_BACKLIGHT));
 		}
 
@@ -103,8 +102,7 @@ public class AdvancedFragmentActivity extends PreferenceFragment {
 		} else if (key.equals(DeviceSettings.KEY_ENABLE_VOLTAGE)) {
 			Utils.writeValue(FILE_VOLTAGE1, "set_volt=" + (((CheckBoxPreference) preference).
 					isChecked() ? "1" : "0"));
-			if (Build.DEVICE == "janice" || Build.DEVICE == "janicep" || Build.MODEL == "GT-I9070"
-					|| Build.MODEL == "GT-I9070P" || Build.PRODUCT == "GT-I9070" || Build.PRODUCT == "GT-I9070P") {
+			if (Utils.isJanice()) {
 				Utils.writeValue(FILE_VOLTAGE2, "set_volt=" + (((CheckBoxPreference) preference).
 						isChecked() ? "1" : "0"));
 			}

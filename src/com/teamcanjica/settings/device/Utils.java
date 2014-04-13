@@ -26,6 +26,7 @@ import java.io.SyncFailedException;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.util.Log;
 
 public class Utils {
@@ -182,5 +183,21 @@ public class Utils {
 
 	public static boolean isSupported(String FILE) {
 		return Utils.fileExists(FILE);
+	}
+
+	public static boolean isCodina() {
+		if (Build.HARDWARE.equals("samsungcodina") && (Build.DEVICE.equals("codina") || Build.DEVICE.equals("codinap") || Build.MODEL.equals("GT-I8160")
+				|| Build.MODEL.equals("GT-I8160P") || Build.PRODUCT.equals("GT-I8160") || Build.PRODUCT.equals("GT-I8160P"))) {
+		return true;
+		}
+		return false;
+	}
+
+	public static boolean isJanice() {
+		if (Build.HARDWARE.equals("samsungjanice") && (Build.DEVICE.equals("janice") || Build.DEVICE.equals("janicep") || Build.MODEL.equals("GT-I9070") 
+				|| Build.MODEL.equals("GT-I9070P") || Build.PRODUCT.equals("GT-I9070") || Build.PRODUCT.equals("GT-I9070P"))) {
+		return true;
+		}
+		return false;
 	}
 }

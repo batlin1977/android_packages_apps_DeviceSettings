@@ -196,10 +196,10 @@
     <!-- SUBCATEGORY: Voltages -->
     <string name="voltages_subcat_title">Voltages</string>
     <string name="cpu_voltage_title_head">CPU Voltages</string>
-    <string name="cpu_voltage_summary_head">Adjust the universal CPU voltages. <b>BEWARE! Too HIGH or too LOW voltages may cause reboots!</b></string>
+    <string name="cpu_voltage_summary_head">Adjust the universal CPU voltages. <b>BEWARE! Too LOW voltages may cause reboots!</b></string>
 	<string name="cpu_voltage_dialog_message">Adjust the voltage change.</string>
-	<string name="enable_voltage_title_head">Enable Forbidden Voltages</string>
-	<string name="enable_voltage_summary_head">Enable voltage settings for step3 and step4 of janice and step3 for codina. BEWARE! These steps may be unstable.</string>
+	<string name="enable_voltage_title_head">Enable setting voltage on more freq. steps</string>
+	<string name="enable_voltage_summary_head">Enable setting voltage for step3 and step4 on janice and step3 on codina. BEWARE! These steps may be unstable.</string>
 
     <!-- CATEGORY: GPU -->
     <string name="gpu_name">GPU</string>

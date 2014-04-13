@@ -51,7 +51,7 @@ public class MasterSeekBarDialogPreference extends
 	private static final String FILE_CPU_VOLTAGE = "/sys/kernel/liveopp/arm_step";
 	private static final String FILE_CYCLE_CHARGING = "/sys/kernel/abb-fg/fg_cyc";
 	private static final int defaultVoltValues[] = {0x18, 0x1a, 0x20, 0x24, 0x2f, 0x32, 0x3f, 0x3f, 0x3f, 0x3f};
-	private static final int steps[] = {50, 37, 25, 12, 0};
+	private static final int voltSteps[] = {100, 87, 75, 62, 50, 37, 25, 12, 0};
 
 	/**
 	 * The SeekBarDialogPreference constructor.
@@ -163,7 +163,7 @@ public class MasterSeekBarDialogPreference extends
 			Utils.writeValue(FILE_READAHEADKB, String.valueOf((Integer) newValue + 128));
 		} else if (key.equals(DeviceSettings.KEY_CPU_VOLTAGE)) {
 			int i = 0;
-			while (steps[i] != (Integer) newValue) {
+			while (voltSteps[i] != (Integer) newValue) {
 			    i++;
 			}
 			for (int j = 0; j <= defaultVoltValues.length-1; j++) {
@@ -191,8 +191,9 @@ public class MasterSeekBarDialogPreference extends
 		Utils.writeValue(FILE_READAHEADKB,
 				String.valueOf(sharedPrefs.getString(DeviceSettings.KEY_READAHEADKB, "512")));
 
+		String defaultVoltStep = String.valueOf(voltSteps[0]);
 		int i = 0;
-		while (steps[i] != Integer.parseInt(sharedPrefs.getString(DeviceSettings.KEY_CPU_VOLTAGE, "50"))) {
+		while (voltSteps[i] != Integer.parseInt(sharedPrefs.getString(DeviceSettings.KEY_CPU_VOLTAGE, defaultVoltStep))) {
 		    i++;
 		}
 		for (int j = 0; j <= defaultVoltValues.length-1; j++) {

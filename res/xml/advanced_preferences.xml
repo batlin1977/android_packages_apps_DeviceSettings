@@ -29,7 +29,7 @@
             android:dialogMessage="@string/cpu_voltage_dialog_message"
             android:defaultValue="0.0"
             teamcanjica:maximumValue="0"
-            teamcanjica:minimumValue="-50"
+            teamcanjica:minimumValue="-100"
             teamcanjica:units="mV"
             teamcanjica:stepSize="12.5" />
     </PreferenceCategory>

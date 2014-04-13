@@ -11,13 +11,13 @@
 
     <!-- ACTIONBAR: About -->
     <string name="about_title">TeamCanjica\nDeviceSettings</string>
-    <string name="about_maintainers_title">Maintainer</string>
-    <string name="about_maintainers_summary">TeamCanjica</string>
-    <string name="about_thanks_title">Thanks</string>
-    <string name="about_thanks_summary">CyanogenMod</string>
+    <string name="about_developers_title">Developers</string>
+    <string name="about_developers_summary">Rox\nzwliew\nfrapeti</string>
+    <string name="about_translators_title">Translators</string>
+    <string name="about_translators_summary">/</string>
     <string name="about_version_title">Version Number</string>
     <string name="about_version_summary">1.0</string>
-    <string name="about_copyright">Copyright © 2014 TeamCanjica</string>
+    <string name="about_copyright">Copyright © 2013 Cyanogenmod\nCopyright © 2014 Team Canjica</string>
 
     <!-- CATEGORY: Settings -->
     <string name="settings_name">Settings</string>

@@ -49,7 +49,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/about_thanks_title"
         android:layout_centerHorizontal="true"
-        android:gravity="center"
         android:text="@string/about_thanks_summary"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -59,7 +58,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/about_maintainers_title"
         android:layout_centerHorizontal="true"
-        android:gravity="center"
         android:text="@string/about_maintainers_summary"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 

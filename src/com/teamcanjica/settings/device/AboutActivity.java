@@ -39,7 +39,7 @@ public class AboutActivity extends Activity {
 	            return super.onOptionsItemSelected(item);
 	    }
 	}
-	
+
 	@Override
 	public boolean onPrepareOptionsMenu (Menu menu) {
 		menu.removeItem(R.id.action_about);

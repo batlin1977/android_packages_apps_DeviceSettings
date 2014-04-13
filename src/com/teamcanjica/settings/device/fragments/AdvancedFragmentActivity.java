@@ -49,7 +49,7 @@ public class AdvancedFragmentActivity extends PreferenceFragment {
 		addPreferencesFromResource(R.xml.advanced_preferences);
 
 		getActivity().getActionBar().setTitle(getResources().getString(R.string.advanced_name));
-		getActivity().getActionBar().setIcon(getResources().getDrawable(R.drawable.ace2settings_icon));
+		getActivity().getActionBar().setIcon(getResources().getDrawable(R.drawable.devicesettings_icon));
 
 		// Compatibility check for janice (BLN)
 		if (Build.DEVICE == "janice" || Build.DEVICE == "janicep" || Build.MODEL == "GT-I9070"

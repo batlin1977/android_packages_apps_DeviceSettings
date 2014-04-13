@@ -1,8 +1,7 @@
-DeviceSettings for Galaxy Ace 2
+DeviceSettings for TeamCanjica
 ====================================
 ToDO:
 =======
-  - Add janice support
 
   - Add More GPU OC settings
 

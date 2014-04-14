@@ -64,37 +64,38 @@ public class PowerFragmentActivity extends PreferenceFragment {
 	public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
 			Preference preference) {
 
-		// String boxValue;
 		String key = preference.getKey();
 
 		Log.w(TAG, "key: " + key);
 
-		if (key.equals(DeviceSettings.KEY_USB_OTG_POWER)) {
-				Utils.writeValue(FILE_VOTG,
-						((CheckBoxPreference) preference).isChecked() ? "1" : "0");
-		}
+		switch (key) {
+		case DeviceSettings.KEY_USB_OTG_POWER:
+			Utils.writeValue(FILE_VOTG,
+					((CheckBoxPreference) preference).isChecked() ? "1" : "0");
+			break;
 
-		if (key.equals(DeviceSettings.KEY_USE_CHARGER_CONTROL)) {
-				Utils.writeValue(FILE_CHARGER_CONTROL,
-						((CheckBoxPreference) preference).isChecked() ? "on" : "off");
-				getPreferenceScreen().findPreference(DeviceSettings.KEY_CHARGER_CURRENCY).setEnabled(
-						((CheckBoxPreference) preference).isChecked());
-		}
+		case DeviceSettings.KEY_USE_CHARGER_CONTROL:
+			Utils.writeValue(FILE_CHARGER_CONTROL,
+					((CheckBoxPreference) preference).isChecked() ? "on" : "off");
+			getPreferenceScreen().findPreference(DeviceSettings.KEY_CHARGER_CURRENCY).setEnabled(
+					((CheckBoxPreference) preference).isChecked());
+			break;
 
-		if (key.equals(DeviceSettings.KEY_USE_CYCLE_CHARGING)) {
+		case DeviceSettings.KEY_USE_CYCLE_CHARGING:
 			Utils.writeValue(FILE_CYCLE_CHARGING_CONTROL,
 					((CheckBoxPreference) preference).isChecked() ? "on" : "off");
 			getPreferenceScreen().findPreference(DeviceSettings.KEY_DISCHARGING_THRESHOLD).setEnabled(
 					((CheckBoxPreference) preference).isChecked());
 			getPreferenceScreen().findPreference(DeviceSettings.KEY_RECHARGING_THRESHOLD).setEnabled(
 					((CheckBoxPreference) preference).isChecked());
-		}
+			break;
 
-		if (key.compareTo(DeviceSettings.KEY_EOC) == 0) {
+		case DeviceSettings.KEY_EOC:
 			Utils.showDialog(getActivity(),
 					getString(R.string.eoc_subcat_title),
-					Utils.readFile(FILE_EOC),
+					"EOC Status: " + Utils.readFile(FILE_EOC),
 					false);
+			break;
 		}
 
 		return true;

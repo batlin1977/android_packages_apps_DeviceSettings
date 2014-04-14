@@ -55,9 +55,11 @@ public class NetworkFragmentActivity extends PreferenceFragment {
 
 		Log.w(TAG, "key: " + key);
 
-		if (key.equals(DeviceSettings.KEY_USE_WIFIPM_MAX)) {
+		switch (key) {
+		case DeviceSettings.KEY_USE_WIFIPM_MAX:
 			Utils.writeValue(FILE_WIFI_PM, (((CheckBoxPreference) preference).
 					isChecked() ? "0" : "1"));
+			break;
 		}
 
 		return true;

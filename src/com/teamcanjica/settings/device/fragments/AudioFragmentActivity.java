@@ -74,37 +74,57 @@ public class AudioFragmentActivity extends PreferenceFragment {
 
 		Log.w(TAG, "key: " + key);
 
-		if (key.equals(DeviceSettings.KEY_ENABLE_ANAGAIN3)) {
-
+		switch (key) {
+		case DeviceSettings.KEY_ENABLE_ANAGAIN3:
 			Utils.writeValue(FILE_ANAGAIN3, (((CheckBoxPreference) preference).
 					isChecked() ? "on" : "off"));
-		} else if (key.equals(DeviceSettings.KEY_ENABLE_HSLDIGGAIN)) {
+			break;
+
+		case DeviceSettings.KEY_ENABLE_HSLDIGGAIN:
 			Utils.writeValue(FILE_HSLDIGGAIN, (((CheckBoxPreference) preference).
 					isChecked() ? "on" : "off"));
-		} else if (key.equals(DeviceSettings.KEY_ENABLE_HSRDIGGAIN)) {
+			break;
+
+		case DeviceSettings.KEY_ENABLE_HSRDIGGAIN:
 			Utils.writeValue(FILE_HSRDIGGAIN, (((CheckBoxPreference) preference).
 					isChecked() ? "on" : "off"));
-		} else if (key.equals(DeviceSettings.KEY_ENABLE_HSLOWPOW)) {
+			break;
+
+		case DeviceSettings.KEY_ENABLE_HSLOWPOW:
 			Utils.writeValue(FILE_HSLOWPOW, (((CheckBoxPreference) preference).
 					isChecked() ? "on" : "off"));
-		} else if (key.equals(DeviceSettings.KEY_ENABLE_HSDACLOWPOW)) {
+			break;
+
+		case DeviceSettings.KEY_ENABLE_HSDACLOWPOW:
 			Utils.writeValue(FILE_HSDACLOWPOW, (((CheckBoxPreference) preference).
 					isChecked() ? "on" : "off"));
-		} else if (key.equals(DeviceSettings.KEY_ENABLE_HSHPEN)) {
+			break;
+
+		case DeviceSettings.KEY_ENABLE_HSHPEN:
 			Utils.writeValue(FILE_HSHPEN, (((CheckBoxPreference) preference).
 					isChecked() ? "on" : "off"));
-		} else if (key.equals(DeviceSettings.KEY_ENABLE_CLASSDHPG)) {
+			break;
+
+		case DeviceSettings.KEY_ENABLE_CLASSDHPG:
 			Utils.writeValue(FILE_CLASSDHPG, (((CheckBoxPreference) preference).
 					isChecked() ? "on" : "off"));
-		} else if (key.equals(DeviceSettings.KEY_ENABLE_CLASSDWG)) {
+			break;
+
+		case DeviceSettings.KEY_ENABLE_CLASSDWG:
 			Utils.writeValue(FILE_CLASSDWG, (((CheckBoxPreference) preference).
 					isChecked() ? "on" : "off"));
-		} else if (key.equals(DeviceSettings.KEY_ENABLE_ADDIGGAIN2)) {
+			break;
+
+		case DeviceSettings.KEY_ENABLE_ADDIGGAIN2:
 			Utils.writeValue(FILE_ADDIGGAIN2, (((CheckBoxPreference) preference).
 					isChecked() ? "on" : "off"));
-		} else if (key.equals(DeviceSettings.KEY_ENABLE_EARDIGGAIN)) {
+			break;
+
+		case DeviceSettings.KEY_ENABLE_EARDIGGAIN:
 			Utils.writeValue(FILE_EARDIGGAIN, (((CheckBoxPreference) preference).
 					isChecked() ? "on" : "off"));
+			break;
+			
 		}
 
 		return true;

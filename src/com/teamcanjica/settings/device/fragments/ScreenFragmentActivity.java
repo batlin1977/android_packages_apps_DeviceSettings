@@ -60,11 +60,13 @@ public class ScreenFragmentActivity extends PreferenceFragment {
 	@Override
 	public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
 			Preference preference) {
+
 		String key = preference.getKey();
 
 		Log.w(TAG, "key: " + key);
 
-		if (key.equals(DeviceSettings.KEY_USE_SWEEP2WAKE)) {
+		switch (key) {
+		case DeviceSettings.KEY_USE_SWEEP2WAKE:
 			if (Utils.isJanice()) {
 				Utils.writeValue(FILE_SWEEP2WAKE_JANICE, (((CheckBoxPreference) preference).
 						isChecked() ? "on" : "off"));
@@ -72,6 +74,8 @@ public class ScreenFragmentActivity extends PreferenceFragment {
 				Utils.writeValue(FILE_SWEEP2WAKE_CODINA, (((CheckBoxPreference) preference).
 						isChecked() ? "on" : "off"));
 			}
+			break;
+
 		}
 
 		return true;

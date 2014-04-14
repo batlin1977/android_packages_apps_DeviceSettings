@@ -52,9 +52,12 @@ public class SettingsFragmentActivity extends PreferenceFragment {
 
 		Log.w(TAG, "key: " + key);
 
-		if (key.equals(DeviceSettings.KEY_DISABLE_RESTORE)) {
+		switch (key) {
+		case DeviceSettings.KEY_DISABLE_RESTORE:
 			DeviceSettings.disableRestore = (((CheckBoxPreference) preference).
 					isChecked() ? true : false);
+			break;
+
 		}
 
 		return true;

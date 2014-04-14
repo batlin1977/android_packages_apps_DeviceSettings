@@ -3,7 +3,7 @@
     <!-- Settings list entries-->
     <string-array name="settings_entries">
         <item>Network</item>
-        <item>USB</item>
+        <item>Power</item>
         <item>Audio</item>
         <item>Screen</item>
         <item>GPU</item>

@@ -87,11 +87,11 @@ public class DeviceSettings extends Activity implements OnItemClickListener{
 	public static boolean disableRestore;
 
 	public static final String[] titles = new String[] { "Network",
-        "USB", "Audio", "Screen", "GPU", "I/O", "Advanced" };
+        "Power", "Audio", "Screen", "GPU", "I/O", "Advanced" };
 
 	public static final Integer[] images = { R.drawable.network,
-        R.drawable.usb, R.drawable.audio, R.drawable.screen,
-		R.drawable.screen, R.drawable.io, R.drawable.advanced };
+        R.drawable.power, R.drawable.audio, R.drawable.screen,
+		R.drawable.gpu, R.drawable.io, R.drawable.advanced };
 
 	ListView listView;
 	List<RowItem> rowItems;

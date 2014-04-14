@@ -29,7 +29,7 @@ import com.teamcanjica.settings.device.fragments.IOFragmentActivity;
 import com.teamcanjica.settings.device.fragments.NetworkFragmentActivity;
 import com.teamcanjica.settings.device.fragments.ScreenFragmentActivity;
 import com.teamcanjica.settings.device.fragments.SettingsFragmentActivity;
-import com.teamcanjica.settings.device.fragments.USBFragmentActivity;
+import com.teamcanjica.settings.device.fragments.PowerFragmentActivity;
 
 public class Startup extends BroadcastReceiver {
 
@@ -39,7 +39,7 @@ public class Startup extends BroadcastReceiver {
 	public void onReceive(final Context context, final Intent bootintent) {
 		SettingsFragmentActivity.restore(context);
 		if (!DeviceSettings.disableRestore) {
-			USBFragmentActivity.restore(context);
+			PowerFragmentActivity.restore(context);
 			AudioFragmentActivity.restore(context);
 			ScreenFragmentActivity.restore(context);
 			NetworkFragmentActivity.restore(context);

@@ -17,11 +17,6 @@
 
 package com.teamcanjica.settings.device.fragments;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -36,22 +31,20 @@ import com.teamcanjica.settings.device.DeviceSettings;
 import com.teamcanjica.settings.device.R;
 import com.teamcanjica.settings.device.Utils;
 
-public class USBFragmentActivity extends PreferenceFragment {
+public class PowerFragmentActivity extends PreferenceFragment {
 
-	private static final String TAG = "NovaThor_Settings_USB";
+	private static final String TAG = "NovaThor_Settings_Power";
 	private static final String FILE_VOTG = "/sys/kernel/abb-regu/VOTG";
 	private static final String FILE_CHARGER_CONTROL = "/sys/kernel/abb-charger/charger_curr";
 	private static final String FILE_CYCLE_CHARGING_CONTROL = "/sys/kernel/abb-fg/fg_cyc";
 	private static final String FILE_EOC = "/sys/kernel/abb-chargalg/eoc_status";
-	private static final String FILE_EOC_FIRST = "/sys/kernel/abb-chargalg/eoc_first";
-	private static final String FILE_EOC_REAL = "/sys/kernel/abb-chargalg/eoc_real";
 
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		addPreferencesFromResource(R.xml.usb_preferences);
+		addPreferencesFromResource(R.xml.power_preferences);
 
 		getPreferenceScreen().findPreference(DeviceSettings.KEY_CHARGER_CURRENCY).setEnabled(
 				((CheckBoxPreference) findPreference("use_charger_control")).isChecked());
@@ -62,8 +55,8 @@ public class USBFragmentActivity extends PreferenceFragment {
 		getPreferenceScreen().findPreference(DeviceSettings.KEY_RECHARGING_THRESHOLD).setEnabled(
 				((CheckBoxPreference) findPreference("use_cycle_charging")).isChecked());
 
-		getActivity().getActionBar().setTitle(getResources().getString(R.string.usb_name));
-		getActivity().getActionBar().setIcon(getResources().getDrawable(R.drawable.usb_icon));
+		getActivity().getActionBar().setTitle(getResources().getString(R.string.power_name));
+		getActivity().getActionBar().setIcon(getResources().getDrawable(R.drawable.power_icon));
 
 	}
 
@@ -98,27 +91,10 @@ public class USBFragmentActivity extends PreferenceFragment {
 		}
 
 		if (key.compareTo(DeviceSettings.KEY_EOC) == 0) {
-			String eoc = null;
-			BufferedReader buffread;
-			try {
-				buffread = new BufferedReader(new FileReader(FILE_EOC));
-				eoc = buffread.readLine();
-				buffread.close();
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 			Utils.showDialog(getActivity(),
 					getString(R.string.eoc_title),
-					(String) eoc,
+					Utils.readFile(FILE_EOC),
 					1);
-			// Reset EOC status when Real EOC is reached
-			if (((String) eoc) == "Real EOC reached") {
-				Utils.writeValue(FILE_EOC_REAL, "0");
-				Utils.writeValue(FILE_EOC_FIRST, "0");
-			}
-
 		}
 
 		return true;

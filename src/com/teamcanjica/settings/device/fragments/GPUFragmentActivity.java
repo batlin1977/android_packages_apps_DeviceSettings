@@ -45,7 +45,7 @@ public class GPUFragmentActivity extends PreferenceFragment {
 		addPreferencesFromResource(R.xml.gpu_preferences);
 		// Will add a GPU icon soon 
 		getActivity().getActionBar().setTitle(getResources().getString(R.string.gpu_name));
-		getActivity().getActionBar().setIcon(getResources().getDrawable(R.drawable.screen_icon));
+		getActivity().getActionBar().setIcon(getResources().getDrawable(R.drawable.gpu_icon));
 
 		getPreferenceScreen().findPreference(DeviceSettings.KEY_SET_GPU_CLOCK).setEnabled(
 				((CheckBoxPreference) findPreference("disable_autoboost")).isChecked());

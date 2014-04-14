@@ -17,9 +17,11 @@
 
 package com.teamcanjica.settings.device;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.SyncFailedException;
 
@@ -129,17 +131,6 @@ public class Utils {
 		writeValue(filename, String.valueOf((long) value * 2));
 	}
 
-	/**
-	 * Check if the specified file exists.
-	 * 
-	 * @param filename
-	 *            The filename
-	 * @return Whether the file exists or not
-	 */
-	public static boolean fileExists(String filename) {
-		return new File(filename).exists();
-	}
-
 	public static void showDialog(Context ctx, String title, String message, int pref) {
 		final AlertDialog alertDialog = new AlertDialog.Builder(ctx).create();
 		alertDialog.setTitle(title);
@@ -179,7 +170,32 @@ public class Utils {
 		}
 		alertDialog.show();
 	}
-	
+
+	public static String readFile(String filename) {
+		String value = null;
+		BufferedReader buffread;
+		try {
+			buffread = new BufferedReader(new FileReader(filename));
+			value = buffread.readLine();
+			buffread.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return value;
+	}
+
+	/**
+	 * Check if the specified file exists.
+	 * 
+	 * @param filename
+	 *            The filename
+	 * @return Whether the file exists or not
+	 */
+	public static boolean fileExists(String filename) {
+		return new File(filename).exists();
+	}
 
 	public static boolean isSupported(String FILE) {
 		return Utils.fileExists(FILE);

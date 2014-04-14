@@ -33,7 +33,7 @@ import com.teamcanjica.settings.device.fragments.IOFragmentActivity;
 import com.teamcanjica.settings.device.fragments.NetworkFragmentActivity;
 import com.teamcanjica.settings.device.fragments.ScreenFragmentActivity;
 import com.teamcanjica.settings.device.fragments.SettingsFragmentActivity;
-import com.teamcanjica.settings.device.fragments.USBFragmentActivity;
+import com.teamcanjica.settings.device.fragments.PowerFragmentActivity;
 
 public class ContainerActivity extends Activity {
 
@@ -52,8 +52,8 @@ public class ContainerActivity extends Activity {
 				fragment = new NetworkFragmentActivity();
 				break;
 			case 1:
-				// USB
-				fragment = new USBFragmentActivity();
+				// Power
+				fragment = new PowerFragmentActivity();
 				break;
 			case 2:
 				// Audio

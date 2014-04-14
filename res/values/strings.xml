@@ -46,8 +46,8 @@
     <string name="use_wifipm_max_title_head">Use Wi-Fi PM_MAX mode</string>
     <string name="use_wifipm_max_summary_head">Using PM_MAX saves power, but internet speed is reduced.</string>
 
-    <!-- CATEGORY: USB -->
-    <string name="usb_name">USB</string>
+    <!-- CATEGORY: Power -->
+    <string name="power_name">Power</string>
 
     <!-- SUBCATEGORY: USB OTG Settings -->
     <string name="otg_subcat_title">USB OTG Settings</string>

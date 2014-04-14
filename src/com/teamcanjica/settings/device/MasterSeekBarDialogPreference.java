@@ -17,154 +17,263 @@
 package com.teamcanjica.settings.device;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.preference.DialogPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
-public class MasterSeekBarDialogPreference extends
-		DialogPreference implements SeekBar.OnSeekBarChangeListener, OnPreferenceChangeListener {
-	// Layout widgets.
-	private SeekBar seekBar = null;
-	private TextView valueText = null;
+public class MasterSeekBarDialogPreference extends DialogPreference implements OnPreferenceChangeListener
+{
+    private static final int DEFAULT_MIN_PROGRESS = 0;
+    private static final int DEFAULT_MAX_PROGRESS = 100;
+    private static final int DEFAULT_PROGRESS = 0;
 
-	// Custom xml attributes.
-	private int maximumValue = 0;
-	private int minimumValue = 0;
-	private float stepSize = 0;
-	private String units = null;
+    private int mMinProgress;
+    private int mMaxProgress;
+    private int mProgress;
+    private int stepSize = 0;
+    private CharSequence mProgressTextSuffix;
+    private TextView mProgressText;
+    private SeekBar mSeekBar;
+    private boolean isFloat = false;
 
-	private int value = 0;
+    private static final String FILE_READAHEADKB = "/sys/block/mmcblk0/queue/read_ahead_kb";
+    private static final String FILE_CPU_VOLTAGE = "/sys/kernel/liveopp/arm_step";
+    private static final String FILE_CYCLE_CHARGING = "/sys/kernel/abb-fg/fg_cyc";
+    private static final int defaultVoltValues[] = {0x18, 0x1a, 0x20, 0x24, 0x2f, 0x32, 0x3f, 0x3f, 0x3f, 0x3f};
+    private static final int voltSteps[] = {0, -12, -24, -36, -48, -72, -60, -84, -96};
 
-	private static final String TAG = "NovaThor_Settings_Seekbar";
+    public MasterSeekBarDialogPreference(Context context) {
+        this(context, null);
+    }
 
-	private static final String FILE_READAHEADKB = "/sys/block/mmcblk0/queue/read_ahead_kb";
-	private static final String FILE_CPU_VOLTAGE = "/sys/kernel/liveopp/arm_step";
-	private static final String FILE_CYCLE_CHARGING = "/sys/kernel/abb-fg/fg_cyc";
-	private static final int defaultVoltValues[] = {0x18, 0x1a, 0x20, 0x24, 0x2f, 0x32, 0x3f, 0x3f, 0x3f, 0x3f};
-	private static final int voltSteps[] = {100, 87, 75, 62, 50, 37, 25, 12, 0};
+    public MasterSeekBarDialogPreference(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        this.setOnPreferenceChangeListener(this);
 
-	/**
-	 * The SeekBarDialogPreference constructor.
-	 * @param context of this preference.
-	 * @param attrs custom xml attributes.
-	 */
-	public MasterSeekBarDialogPreference(Context context, AttributeSet attrs) {
-		super(context, attrs);
+        // Get attributes specified in XML
+        TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.MasterSeekBarDialogPreference, 0, 0);
+        try {
+            setMinProgress(a.getInteger(R.styleable.MasterSeekBarDialogPreference_min, DEFAULT_MIN_PROGRESS));
+            setMaxProgress(a.getInteger(R.styleable.MasterSeekBarDialogPreference_android_max, DEFAULT_MAX_PROGRESS));
+            setProgressTextSuffix(a.getString(R.styleable.MasterSeekBarDialogPreference_progressTextSuffix));
+            stepSize = a.getInteger(R.styleable.MasterSeekBarDialogPreference_stepSize, 1);
+            isFloat = a.getBoolean(R.styleable.MasterSeekBarDialogPreference_isFloat, false);
+        }
+        finally {
+            a.recycle();
+        }
 
-		this.setOnPreferenceChangeListener(this);
+        // Set layout
+        setDialogLayoutResource(R.layout.preference_seek_bar_dialog);
+        setPositiveButtonText(android.R.string.ok);
+        setNegativeButtonText(android.R.string.cancel);
+        setDialogIcon(null);
+    }
 
-		TypedArray typedArray = context.obtainStyledAttributes(attrs,
-			R.styleable.MasterSeekBarDialogPreference);
+    @Override
+    protected void onSetInitialValue(boolean restore, Object defaultValue) {
+        setProgress(restore ? getPersistedInt(DEFAULT_PROGRESS) : (Integer) defaultValue);
+    }
 
-		maximumValue = typedArray.getInteger(
-			R.styleable.MasterSeekBarDialogPreference_maximumValue, 0);
-		minimumValue = typedArray.getInteger(
-			R.styleable.MasterSeekBarDialogPreference_minimumValue, 0);
-		stepSize = typedArray.getFloat(
-			R.styleable.MasterSeekBarDialogPreference_stepSize, 1);
-		units = typedArray.getString(
-			R.styleable.MasterSeekBarDialogPreference_units);
+    @Override
+    protected Object onGetDefaultValue(TypedArray a, int index) {
+        return a.getInt(index, DEFAULT_PROGRESS);
+    }
 
-		typedArray.recycle();
-	}
+    @Override
+    protected void onBindDialogView(View view) {
+        super.onBindDialogView(view);
 
-	/**
-	 * {@inheritDoc}
-	 */
-	protected View onCreateDialogView() {
-		LayoutInflater layoutInflater = LayoutInflater.from(getContext());
+        TextView dialogMessageText = (TextView) view.findViewById(R.id.text_dialog_message);
+        dialogMessageText.setText(getDialogMessage());
 
-		View view = layoutInflater.inflate(
-			R.layout.preference_seek_bar_dialog, null);
+        mProgressText = (TextView) view.findViewById(R.id.text_progress);
 
-		seekBar = (SeekBar)view.findViewById(R.id.seekbar);
-		valueText = (TextView)view.findViewById(R.id.valueText);
+        mSeekBar = (SeekBar) view.findViewById(R.id.seek_bar);
+        mSeekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
 
-		// Get the persistent value and correct it for the minimum value.
-		value = getPersistedInt(minimumValue) - minimumValue;
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
 
-		// You're never know...
-		if (value < 0) {
-			value = 0;
-		}
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                // Update text that displays the current SeekBar progress value
+                // Note: This does not persist the progress value. that is only ever done in setProgress()
+            	String progressStr;
+            	int mStepSize = stepSize;
+            	if (isFloat) {
+            		mStepSize = stepSize / 10;
+            	}
+            	if (mStepSize >= 1) {
+            		progressStr = String.valueOf(Math.round((progress + mMinProgress) / mStepSize) * mStepSize);
+        		} else {
+        			progressStr = String.valueOf(progress + mMinProgress);
+        		}
+            	mProgressText.setText(mProgressTextSuffix == null ? progressStr : progressStr.concat(mProgressTextSuffix.toString()));
+            }
+        });
+        mSeekBar.setMax(mMaxProgress - mMinProgress);
+        mSeekBar.setProgress(mProgress - mMinProgress);
+       // mSeekBar.setKeyProgressIncrement(stepSize);
+    }
 
-		seekBar.setOnSeekBarChangeListener(this);
-		seekBar.setKeyProgressIncrement((int) stepSize);
-		seekBar.setMax(maximumValue - minimumValue);
-		SharedPreferences prefs = getContext().getSharedPreferences(DeviceSettings.KEY_SEEKBARVAL, Context.MODE_PRIVATE);
-		value = prefs.getInt("seekBarValue", 512);
-		seekBar.setProgress(value);
+    public int getMinProgress() {
+        return mMinProgress;
+    }
 
-		return view;
-	}
-	/**
-	 * {@inheritDoc}
-	 */
-	public void onProgressChanged(SeekBar seek, int newValue,
-			boolean fromTouch) {
-		// Round the value to the closest integer value.
-		if (stepSize >= 1) {
-			value = (int) (Math.round(newValue/stepSize)*stepSize);
-		}
-		else {
-			value = newValue;
-		}
+    public void setMinProgress(int minProgress) {
+        mMinProgress = minProgress;
+        setProgress(Math.max(mProgress, mMinProgress));
+    }
 
-		// Set the valueText text.
-		valueText.setText(String.valueOf(value + minimumValue) +
-			(units == null ? "" : units));
+    public int getMaxProgress() {
+        return mMaxProgress;
+    }
 
-		callChangeListener(value);
-	}
-	/**
-	 * {@inheritDoc}
-	 */
-	public void onStartTrackingTouch(SeekBar seek) {
-	}
-	/**
-	 * {@inheritDoc}
-	 */
-	public void onStopTrackingTouch(SeekBar seek) {
-	}
-	/**
-	 * {@inheritDoc}
-	 */
-	public void onClick(DialogInterface dialog, int which) {
-		// if the positive button is clicked, we persist the value.
-		if (which == DialogInterface.BUTTON_POSITIVE) {
-			SharedPreferences prefs = getContext().getSharedPreferences(DeviceSettings.KEY_SEEKBARVAL, Context.MODE_PRIVATE);
-			prefs.edit().putInt("seekBarValue", seekBar.getProgress()).commit();
-			if (shouldPersist()) {
-				persistInt(value + minimumValue);
-			}
-		}
+    public void setMaxProgress(int maxProgress) {
+        mMaxProgress = maxProgress;
+        setProgress(Math.min(mProgress, mMaxProgress));
+    }
 
-		super.onClick(dialog, which);
-	}
+    public int getProgress() {
+        return mProgress;
+    }
+
+    public void setProgress(int progress) {
+        progress = Math.max(Math.min(progress, mMaxProgress), mMinProgress);
+        int mStepSize = stepSize;
+        if (isFloat) {
+        	mStepSize = stepSize / 10;
+        }
+        if (progress != mProgress) {
+        	if (mStepSize >= 1) {
+        		progress = Math.round(progress / mStepSize) * mStepSize;
+        	}
+        		mProgress = progress;
+        		persistInt(progress);
+        		notifyChanged();
+        }
+    }
+
+    public CharSequence getProgressTextSuffix() {
+        return mProgressTextSuffix;
+    }
+
+    public void setProgressTextSuffix(CharSequence progressTextSuffix) {
+        mProgressTextSuffix = progressTextSuffix;
+    }
+
+    @Override
+    protected void onDialogClosed(boolean positiveResult) {
+        super.onDialogClosed(positiveResult);
+ 
+        // When the user selects "OK", persist the new value
+        if (positiveResult) {
+            int seekBarProgress = mSeekBar.getProgress() + mMinProgress;
+            if (callChangeListener(seekBarProgress)) {
+                setProgress(seekBarProgress);
+            }
+        }
+    }
+
+    @Override
+    protected Parcelable onSaveInstanceState() {
+        // Save the instance state so that it will survive screen orientation changes and other events that may temporarily destroy it
+        final Parcelable superState = super.onSaveInstanceState();
+ 
+        // Set the state's value with the class member that holds current setting value
+        final SavedState myState = new SavedState(superState);
+        myState.minProgress = getMinProgress();
+        myState.maxProgress = getMaxProgress();
+        myState.progress = getProgress();
+
+        return myState;
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Parcelable state) {
+        // Check whether we saved the state in onSaveInstanceState()
+        if (state == null || !state.getClass().equals(SavedState.class)) {
+            // Didn't save the state, so call superclass
+            super.onRestoreInstanceState(state);
+            return;
+        }
+
+        // Restore the state
+        SavedState myState = (SavedState) state;
+        setMinProgress(myState.minProgress);
+        setMaxProgress(myState.maxProgress);
+        setProgress(myState.progress);
+
+        super.onRestoreInstanceState(myState.getSuperState());
+    }
+
+    private static class SavedState extends BaseSavedState {
+        int minProgress;
+        int maxProgress;
+        int progress;
+ 
+        public SavedState(Parcelable superState) {
+            super(superState);
+        }
+
+        public SavedState(Parcel source) {
+            super(source);
+ 
+            minProgress = source.readInt();
+            maxProgress = source.readInt();
+            progress = source.readInt();
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            super.writeToParcel(dest, flags);
+ 
+            dest.writeInt(minProgress);
+            dest.writeInt(maxProgress);
+            dest.writeInt(progress);
+        }
+
+        @SuppressWarnings("unused")
+        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() {
+            @Override
+            public SavedState createFromParcel(Parcel in) {
+                return new SavedState(in);
+            }
+
+            @Override
+            public SavedState[] newArray(int size) {
+                return new SavedState[size];
+            }
+        };
+    }
 
 	@Override
 	public boolean onPreferenceChange(Preference preference, Object newValue) {
 
 		String key = preference.getKey();
-		Log.w(TAG, "key: " + key);
-
 
 		if (key.equals(DeviceSettings.KEY_READAHEADKB)) {
-			Utils.writeValue(FILE_READAHEADKB, String.valueOf((Integer) newValue + 128));
+			Utils.writeValue(FILE_READAHEADKB, String.valueOf((Integer) newValue));
 		} else if (key.equals(DeviceSettings.KEY_CPU_VOLTAGE)) {
-			int i = 0;
-			while (voltSteps[i] != (Integer) newValue) {
-			    i++;
+			int i;
+			for (i = 0; voltSteps[i] != (Integer) (Math.round((Integer) newValue / 12) * 12); ++i) {
+				Log.w("VOLTSTEP.EQUALS", String.valueOf(voltSteps[i]));
 			}
 			for (int j = 0; j <= defaultVoltValues.length-1; j++) {
 			    Utils.writeValue(FILE_CPU_VOLTAGE + String.valueOf(j), "varm=0x" + Integer.toHexString(defaultVoltValues[j] - i));
@@ -191,9 +300,8 @@ public class MasterSeekBarDialogPreference extends
 		Utils.writeValue(FILE_READAHEADKB,
 				String.valueOf(sharedPrefs.getString(DeviceSettings.KEY_READAHEADKB, "512")));
 
-		String defaultVoltStep = String.valueOf(voltSteps[0]);
 		int i = 0;
-		while (voltSteps[i] != Integer.parseInt(sharedPrefs.getString(DeviceSettings.KEY_CPU_VOLTAGE, defaultVoltStep))) {
+		while (voltSteps[i] != Integer.parseInt(sharedPrefs.getString(DeviceSettings.KEY_CPU_VOLTAGE, String.valueOf(voltSteps[0])))) {
 		    i++;
 		}
 		for (int j = 0; j <= defaultVoltValues.length-1; j++) {

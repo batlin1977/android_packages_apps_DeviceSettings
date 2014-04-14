@@ -27,11 +27,12 @@
             android:title="@string/cpu_voltage_title_head"
             android:summary="@string/cpu_voltage_summary_head"
             android:dialogMessage="@string/cpu_voltage_dialog_message"
-            android:defaultValue="0.0"
-            teamcanjica:maximumValue="0"
-            teamcanjica:minimumValue="-100"
-            teamcanjica:units="mV"
-            teamcanjica:stepSize="12.5" />
+            android:defaultValue="0"
+            android:max="0"
+            teamcanjica:min="-100"
+            teamcanjica:isFloat="true"
+            teamcanjica:stepSize="125"
+            teamcanjica:progressTextSuffix="uV" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/accelerometer_subcat_title" >

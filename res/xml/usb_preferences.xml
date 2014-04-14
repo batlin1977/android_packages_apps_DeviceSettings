@@ -37,10 +37,10 @@
         <com.teamcanjica.settings.device.MasterSeekBarDialogPreference
            android:defaultValue="100"
            android:dialogMessage="@string/dt_dialog_message"
-           teamcanjica:maximumValue="100"
-           teamcanjica:minimumValue="5"
-           teamcanjica:units="%"
-           teamcanjica:stepSize="5"
+           android:max="100"
+           teamcanjica:min="5"
+           teamcanjica:progressTextSuffix="%"
+           teamcanjica:stepSize="1"
            android:key="discharging_threshold"
            android:title="@string/dt_title_head"
            android:summary="@string/dt_summary_head" />
@@ -48,10 +48,10 @@
         <com.teamcanjica.settings.device.MasterSeekBarDialogPreference
            android:defaultValue="100"
            android:dialogMessage="@string/rt_dialog_message"
-           teamcanjica:maximumValue="100"
-           teamcanjica:minimumValue="5"
-           teamcanjica:units="%"
-           teamcanjica:stepSize="5"
+           android:max="100"
+           teamcanjica:min="5"
+           teamcanjica:progressTextSuffix="%"
+           teamcanjica:stepSize="1"
            android:key="recharging_threshold"
            android:title="@string/rt_title_head"
            android:summary="@string/rt_summary_head" />

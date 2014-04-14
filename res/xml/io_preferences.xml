@@ -23,9 +23,9 @@
        <com.teamcanjica.settings.device.MasterSeekBarDialogPreference
            android:defaultValue="512"
            android:dialogMessage="@string/readaheadkb_dialog_message"
-           teamcanjica:maximumValue="4096"
-           teamcanjica:minimumValue="128"
-           teamcanjica:units="kB"
+           android:max="4096"
+           teamcanjica:min="128"
+           teamcanjica:progressTextSuffix="kB"
            teamcanjica:stepSize="128"
            android:key="readaheadkb"
            android:title="@string/readaheadkb_title_head"

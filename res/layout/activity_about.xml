@@ -88,7 +88,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:toRightOf="about_maintainers_title"
         android:layout_marginRight="9dp"
         android:text="@string/about_copyright2"
         android:textAppearance="?android:attr/textAppearanceSmall" />

@@ -3,6 +3,7 @@
     xmlns:teamcanjica="http://schemas.android.com/apk/res/com.teamcanjica.settings.device">
 
     <PreferenceCategory android:title="@string/mmc_subcat_title" >
+        <!-- SPI CRC -->
         <CheckBoxPreference
             android:key="use_spi_crc"
             android:summary="@string/use_spi_crc_summary_head"
@@ -10,6 +11,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/scheduler_subcat_title" >
+        <!-- Sched MC -->
         <com.teamcanjica.settings.device.MasterListPreference
             android:defaultValue="0"
             android:entries="@array/sched_mc_entries"
@@ -17,6 +19,7 @@
             android:key="sched_mc"
             android:summary="@string/sched_mc_summary_head"
             android:title="@string/sched_mc_title_head" />
+        <!-- Readahead kB -->
         <com.teamcanjica.settings.device.MasterSeekBarDialogPreference
            android:defaultValue="512"
            android:dialogMessage="@string/readaheadkb_dialog_message"
@@ -29,14 +32,11 @@
            android:summary="@string/readaheadkb_summary_head" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/deepsleep_subcat_title" >
-        <com.teamcanjica.settings.device.MasterListPreference
-            android:defaultValue="3"	
-            android:entries="@array/deepest_sleep_states_entries"
-            android:entryValues="@array/deepest_sleep_states_entries_values"
-            android:key="deepest_sleep_state"
-            android:summary="@string/deepest_sleep_summary_head"
-            android:title="@string/deepest_sleep_title_head" />
+    <PreferenceCategory android:title="@string/boottime_subcat_title" >
+        <!-- Boottime -->
+        <Preference
+            android:key="boottime"
+            android:summary="@string/boottime_summary_head"
+            android:title="@string/boottime_title_head" />
     </PreferenceCategory>
-
 </PreferenceScreen>

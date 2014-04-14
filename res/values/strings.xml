@@ -73,9 +73,14 @@
 	<string name="rt_dialog_message">Select recherging battery level</string>
 
     <!-- SUBCATEGORY: End of charge -->
-    <string name="eoc_title">Charge status</string>
+    <string name="eoc_subcat_title">Charge status</string>
     <string name="eoc_title_head">End of charge</string>
     <string name="eoc_summary_head">Check real charge status</string>
+
+    <!-- SUBCATEGORY: Deep Sleep -->
+    <string name="deepsleep_subcat_title">Deep Sleep</string>
+    <string name="deepest_sleep_title_head">Deepest sleep state</string>
+    <string name="deepest_sleep_summary_head">Specify the highest deep sleep level</string>
 
     <!-- CATEGORY: AUDIO -->
     <string name="audio_name">Audio</string>
@@ -157,11 +162,6 @@
     <string name="sched_mc_title_head">Multicore Power Saving</string>
     <string name="sched_mc_summary_head">Try to group tasks into the least cores possible to have hotplug-like powersavings. Not recommended on hotplug governors.</string>
 
-    <!-- SUBCATEGORY: Deep Sleep -->
-    <string name="deepsleep_subcat_title">Deep Sleep</string>
-    <string name="deepest_sleep_title_head">Deepest sleep state</string>
-    <string name="deepest_sleep_summary_head">Specify the highest deep sleep level</string>
-
     <!-- SUBCATEGORY: Scheduler -->
     <string name="readaheadkb_dialog_message">Select the readahead buffer size.</string>
     <string name="readaheadkb_title_head">Readahead buffer size</string>
@@ -171,6 +171,11 @@
     <string name="mmc_subcat_title">MMC</string>
     <string name="use_spi_crc_title_head">Disable SPI CRC</string>
     <string name="use_spi_crc_summary_head">Disabling SPI CRC can improve mmc performance (10% - 30%) but phone may freeze randomly</string>
+
+    <!-- SUBCATEGORY: Boottime -->
+    <string name="boottime_subcat_title">Boot time</string>
+    <string name="boottime_summary_head">Check your total boot time.</string>
+    <string name="boottime_title_head">Boot Time Check</string>
 
     <!-- CATEGORY: ADVANCED -->
     <string name="advanced_name">Advanced</string>
@@ -199,7 +204,7 @@
     <string name="cpu_voltage_title_head">CPU Voltages</string>
     <string name="cpu_voltage_summary_head">Adjust the universal CPU voltages. <b>BEWARE! Too LOW voltages may cause reboots!</b></string>
 	<string name="cpu_voltage_dialog_message">Adjust the voltage change.</string>
-	<string name="enable_voltage_title_head">Enable setting voltage on more freq. steps</string>
+	<string name="enable_voltage_title_head">Enable volt. on more steps</string>
 	<string name="enable_voltage_summary_head">Enable setting voltage for step3 and step4 on janice and step3 on codina. BEWARE! These steps may be unstable.</string>
 
     <!-- CATEGORY: GPU -->
@@ -211,7 +216,7 @@
     <string name="disable_autoboost_summary_head">Disabling autoboosting GPU governor will allow you to manually set static GPU clock speeds.</string>
 	<string name="set_gpu_clock_title_head">Clock Speed</string>
     <string name="set_gpu_clock_summary_head">Set static GPU clock speed</string>
-    <string name="disable_fullspeed_title_head">Disable GPU clock fullspeed</string>
+    <string name="disable_fullspeed_title_head">Disable GPU fullspeed</string>
     <string name="disable_fullspeed_summary_head">By default, GPU clock is working at fullspeed. Change it to halfspeed (399 kHz / 2 = 199 kHz, etc.)</string>
     
     <!-- SUBCATEGORY: GPU MISC -->

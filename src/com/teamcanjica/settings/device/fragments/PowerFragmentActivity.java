@@ -92,9 +92,9 @@ public class PowerFragmentActivity extends PreferenceFragment {
 
 		if (key.compareTo(DeviceSettings.KEY_EOC) == 0) {
 			Utils.showDialog(getActivity(),
-					getString(R.string.eoc_title),
+					getString(R.string.eoc_subcat_title),
 					Utils.readFile(FILE_EOC),
-					1);
+					false);
 		}
 
 		return true;

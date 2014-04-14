@@ -82,7 +82,7 @@ public class AdvancedFragmentActivity extends PreferenceFragment {
 			Utils.showDialog(getActivity(),
 					"Reboot Required",
 					"A reboot is required for the setting to take effect, reboot now?",
-					2);
+					true);
 		} else if (key.compareTo(DeviceSettings.KEY_USE_ACCELEROMETER_CALIBRATION) == 0) {
 			Utils.writeValue(FILE_ACCELEROMETER_CALIB, (((CheckBoxPreference) preference).
 					isChecked() ? "1" : "0"));
@@ -94,7 +94,7 @@ public class AdvancedFragmentActivity extends PreferenceFragment {
 			Utils.showDialog(getActivity(),
 					getString(R.string.accelerometer_dialog_head),
 					getString(R.string.accelerometer_dialog_message),
-					1);
+					false);
 		} else if (key.equals(DeviceSettings.KEY_DISABLE_BLN)) {
 			Utils.writeValue(FILE_BLN, (((CheckBoxPreference) preference).
 					isChecked() ? "0" : "1"));

@@ -80,6 +80,7 @@ public class DeviceSettings extends Activity implements OnItemClickListener{
 	public static final String KEY_BACKLIGHT = "backlight";
 	public static final String KEY_TOUCHSCREEN = "touchscreen";
 	public static final String KEY_ENABLE_VOLTAGE = "enable_voltage";
+	public static final String KEY_BOOTTIME = "boottime";
 	
 	public static final String SELECTION = "selection";
 	public static final String SETTINGS = "settings";

@@ -131,42 +131,39 @@ public class Utils {
 		writeValue(filename, String.valueOf((long) value * 2));
 	}
 
-	public static void showDialog(Context ctx, String title, String message, int pref) {
+	public static void showDialog(Context ctx, String title, String message, boolean choice) {
 		final AlertDialog alertDialog = new AlertDialog.Builder(ctx).create();
 		alertDialog.setTitle(title);
 		alertDialog.setMessage(message);
-		switch (pref) {
-			case 1:
-				alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-						new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int which) {
-							alertDialog.dismiss();
-						}
-					});
-				break;
-			case 2:
-				alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
-						new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-						Process reboot;
-						try {
-							reboot = Runtime.getRuntime().exec(new String[] {
-									"su", "-c", "reboot"});
-							reboot.waitFor();
-						} catch (IOException e) {
-							e.printStackTrace();
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					}
-				});
-				alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel",
-						new DialogInterface.OnClickListener() {
+		if (!choice) {
+			alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+					new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						alertDialog.dismiss();
 					}
 				});
-				break;
+		} else {
+			alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
+					new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					Process reboot;
+					try {
+						reboot = Runtime.getRuntime().exec(new String[] {
+								"su", "-c", "reboot"});
+						reboot.waitFor();
+					} catch (IOException e) {
+						e.printStackTrace();
+					} catch (InterruptedException e) {
+					e.printStackTrace();
+					}
+				}
+			});
+			alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel",
+					new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					alertDialog.dismiss();
+				}
+			});
 		}
 		alertDialog.show();
 	}

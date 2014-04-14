@@ -25,6 +25,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.SyncFailedException;
 
+import com.test.settings.device.R;
+
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -213,4 +216,27 @@ public class Utils {
 		}
 		return false;
 	}
+	
+	/**
+     * Change the theme of an activity
+     *
+     * The activity whose theme is to be changed
+     * @param activity
+     *
+     * The theme to change to
+     * @param theme
+     */
+    public static void changeTheme(Activity activity, String theme) {
+        switch (theme) {
+            case "Default":
+                activity.setTheme(R.style.BaseAppTheme);
+                break;
+            case "Holo Light":
+                activity.setTheme(R.style.HoloLightTheme);
+                break;
+            case "Holo Light w/ Dark Action Bar":
+                activity.setTheme(R.style.HoloLightDarkActionBarTheme);
+                break;
+        }
+    }
 }

@@ -19,7 +19,9 @@ package com.teamcanjica.settings.device;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -41,6 +43,12 @@ public class ContainerActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		// Change theme
+		SharedPreferences sharedPrefs = PreferenceManager
+				.getDefaultSharedPreferences(getBaseContext());
+		Utils.changeTheme(this, sharedPrefs.getString(
+				DeviceSettings.KEY_SWITCH_THEME, "Default"));
+		
 		setContentView(R.layout.container);
 		frameLayout = (FrameLayout) findViewById(R.id.frameLayout);
 		

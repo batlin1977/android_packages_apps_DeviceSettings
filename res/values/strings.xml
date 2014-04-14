@@ -22,11 +22,16 @@
 
     <!-- CATEGORY: Settings -->
     <string name="settings_name">Settings</string>
-    <string name="reboot_subcat_title">Reboot</string>
 
     <!-- SUBCATEGORY: Reboot-->
+    <string name="reboot_subcat_title">Reboot</string>
     <string name="disable_restore_title_head">Disable Restore on Reboot</string>
     <string name="disable_restore_summary_head">Disable restoring of settings on reboot. Useful if you aren\'t sure whether the settings are stable.</string>
+    
+    <!-- SUBCATEGORY: Themes -->
+    <string name="theme_subcat_title">Themes</string>
+    <string name="switch_theme_summary_head">Switch your App Theme. Choose between three different themes, suggestions accepted!</string>
+    <string name="switch_theme_title_head">Switch App Theme</string>
 
     <!-- CATEGORY: Network -->
     <string name="network_name">Network</string>

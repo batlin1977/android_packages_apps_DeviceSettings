@@ -6,4 +6,13 @@
             android:summary="@string/disable_restore_summary_head"
             android:title="@string/disable_restore_title_head" />
     </PreferenceCategory>
+    <PreferenceCategory android:title="@string/theme_subcat_title" >
+        <com.teamcanjica.settings.device.MasterListPreference
+            android:key="switch_theme"
+            android:summary="@string/switch_theme_summary_head"
+            android:title="@string/switch_theme_title_head"
+            android:defaultValue="Default"
+            android:entries="@array/switch_theme_entries"
+            android:entryValues="@array/switch_theme_entries_values" />
+    </PreferenceCategory>
 </PreferenceScreen>

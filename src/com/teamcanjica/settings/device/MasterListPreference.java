@@ -96,6 +96,11 @@ OnPreferenceChangeListener {
 		case DeviceSettings.KEY_TOUCHSCREEN_SENSITIVITY:
 			Utils.writeValue(FILE_TOUCHSCREEN_SENSITIVITY, (String) newValue);
 			break;
+			
+		case DeviceSettings.KEY_SWITCH_THEME:
+			mCtx.startActivity(new Intent(getContext().getPackageManager()
+	                .getLaunchIntentForPackage(getContext().getPackageName()))
+	                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 		}
 
 		return true;

@@ -21,7 +21,9 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -83,6 +85,7 @@ public class DeviceSettings extends Activity implements OnItemClickListener{
 	public static final String KEY_BOOTTIME = "boottime";
 	public static final String KEY_BOOST_DELAY = "boost_delay";
 	public static final String KEY_GPU_VOLTAGE = "gpu_voltage";
+	public static final String KEY_SWITCH_THEME = "switch_theme";
 	
 	public static final String SELECTION = "selection";
 	public static final String SETTINGS = "settings";
@@ -102,6 +105,12 @@ public class DeviceSettings extends Activity implements OnItemClickListener{
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		// Change theme
+		SharedPreferences sharedPrefs = PreferenceManager
+				.getDefaultSharedPreferences(getBaseContext());
+		Utils.changeTheme(this, sharedPrefs.getString(
+                DeviceSettings.KEY_SWITCH_THEME, "Default"));
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_device_settings);
 

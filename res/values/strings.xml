@@ -17,7 +17,8 @@
     <string name="about_translators_summary">/</string>
     <string name="about_version_title">Version Number</string>
     <string name="about_version_summary">1.0</string>
-    <string name="about_copyright">Copyright © 2013 Cyanogenmod\nCopyright © 2014 Team Canjica</string>
+    <string name="about_copyright1">Copyright © 2013 Cyanogenmod</string>
+    <string name="about_copyright2">2014 TeamCanjica</string>
 
     <!-- CATEGORY: Settings -->
     <string name="settings_name">Settings</string>

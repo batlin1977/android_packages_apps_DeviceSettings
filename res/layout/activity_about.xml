@@ -74,12 +74,23 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/about_copyright"
+        android:id="@+id/about_copyright1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/about_copyright2"
+        android:layout_alignParentRight="true"
+        android:text="@string/about_copyright1"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/about_copyright2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:text="@string/about_copyright"
+        android:toRightOf="about_maintainers_title"
+        android:layout_marginRight="9dp"
+        android:text="@string/about_copyright2"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </RelativeLayout>

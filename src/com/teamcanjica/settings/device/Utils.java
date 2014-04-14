@@ -25,7 +25,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.SyncFailedException;
 
-import com.test.settings.device.R;
+import com.teamcanjica.settings.device.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;

@@ -7,7 +7,6 @@ TODO:
 =======
 
 	- Add More GPU OC settings
-	- Add battery stats refresh option
 	- Make mcde freq tweakable
 
 Devices supported :

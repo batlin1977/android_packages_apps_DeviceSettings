@@ -47,6 +47,7 @@ public class DeviceSettings extends Activity implements OnItemClickListener{
 	public static final String KEY_DISCHARGING_THRESHOLD = "discharging_threshold";
 	public static final String KEY_RECHARGING_THRESHOLD = "recharging_threshold";
 	public static final String KEY_EOC = "eoc_status";
+	public static final String KEY_REFRESH_BATTERY_STATS = "refresh_battery_stats";
 	public static final String KEY_FSYNC_MODE = "fsync_mode";
 	public static final String KEY_TCP_CONTROL = "tcp_control";
 	public static final String KEY_MALI_L2MR = "mali_l2_mr";

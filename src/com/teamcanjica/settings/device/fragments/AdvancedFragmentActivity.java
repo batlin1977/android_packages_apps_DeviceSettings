@@ -22,7 +22,6 @@ import java.io.IOException;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.SystemProperties;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
@@ -123,11 +122,6 @@ public class AdvancedFragmentActivity extends PreferenceFragment {
 	public static void restore(Context context) {
 		SharedPreferences sharedPrefs = PreferenceManager
 				.getDefaultSharedPreferences(context);
-
-		int sstor = SystemProperties.getInt("persist.sys.vold.switchexternal", 0) ;
-		SharedPreferences.Editor editor = sharedPrefs.edit();
-		editor.putBoolean(DeviceSettings.KEY_SWITCH_STORAGE,sstor==1?true:false);
-		editor.commit();
 
 		Utils.writeValue(FILE_ACCELEROMETER_CALIB, sharedPrefs.getBoolean(
 				DeviceSettings.KEY_USE_ACCELEROMETER_CALIBRATION, true) ? "1" : "0");

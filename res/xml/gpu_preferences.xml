@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:teamcanjica="http://schemas.android.com/apk/res/com.test.settings.device" >
+    xmlns:teamcanjica="http://schemas.android.com/apk/res/com.teamcanjica.settings.device" >
     <PreferenceCategory android:title="@string/clock_speed_subcat_title" >
         <!-- Disable mali autoboost -->
         <CheckBoxPreference

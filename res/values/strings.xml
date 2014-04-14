@@ -87,6 +87,11 @@
     <string name="deepest_sleep_title_head">Deepest sleep state</string>
     <string name="deepest_sleep_summary_head">Specify the highest deep sleep level</string>
 
+    <!-- SUBCATEGORY: Battery Stats-->
+    <string name="refresh_bs_subcat_title">Battery stats</string>
+    <string name="refresh_bs_title_head">Refresh battery stats</string>
+    <string name="refresh_bs_dialog_message">Battery stats succesfuly refreshed!</string>
+
     <!-- CATEGORY: AUDIO -->
     <string name="audio_name">Audio</string>
 

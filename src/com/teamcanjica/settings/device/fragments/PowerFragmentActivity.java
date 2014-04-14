@@ -38,6 +38,7 @@ public class PowerFragmentActivity extends PreferenceFragment {
 	private static final String FILE_CHARGER_CONTROL = "/sys/kernel/abb-charger/charger_curr";
 	private static final String FILE_CYCLE_CHARGING_CONTROL = "/sys/kernel/abb-fg/fg_cyc";
 	private static final String FILE_EOC = "/sys/kernel/abb-chargalg/eoc_status";
+	private static final String FILE_REFRESH_BATTERY_STATS = "/sys/kernel/abb-fg/fg_refresh";
 
 
 	@Override
@@ -96,6 +97,15 @@ public class PowerFragmentActivity extends PreferenceFragment {
 					"EOC Status: " + Utils.readFile(FILE_EOC),
 					false);
 			break;
+		
+		case DeviceSettings.KEY_REFRESH_BATTERY_STATS:
+			Utils.writeValue(FILE_REFRESH_BATTERY_STATS, "0");
+			Utils.showDialog(getActivity(),
+					getString(R.string.refresh_bs_subcat_title),
+					getString(R.string.refresh_bs_dialog_message),
+					false);
+			break;
+			
 		}
 
 		return true;

@@ -64,7 +64,7 @@
             android:summary="@string/eoc_summary_head"
             android:title="@string/eoc_title_head" />
     </PreferenceCategory>
-
+        <!-- Deep Sleep Level -->
     <PreferenceCategory android:title="@string/deepsleep_subcat_title" >
         <com.teamcanjica.settings.device.MasterListPreference
             android:defaultValue="3"
@@ -73,6 +73,13 @@
             android:key="deepest_sleep_state"
             android:summary="@string/deepest_sleep_summary_head"
             android:title="@string/deepest_sleep_title_head" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/eoc_subcat_title" >
+        <!-- Refresh battery stats -->
+        <Preference
+            android:key="refresh_battery_stats"
+            android:title="@string/refresh_bs_title_head" />
     </PreferenceCategory>
 
 </PreferenceScreen>

@@ -52,28 +52,50 @@ OnPreferenceChangeListener {
 		
 		String key = preference.getKey();
 		
-		if (key.equals(DeviceSettings.KEY_SET_GPU_CLOCK)) {
+		switch (key) {
+		case DeviceSettings.KEY_SET_GPU_CLOCK:
 			Utils.writeValue(FILE_MALI_GPU_CLOCK, (String) newValue);
-		} else if (key.equals(DeviceSettings.KEY_FSYNC_MODE)) {
+			break;
+
+		case DeviceSettings.KEY_FSYNC_MODE:
 			Utils.writeValue(FILE_FSYNC_MODE, (String) newValue);
-		} else if (key.equals(DeviceSettings.KEY_CHARGER_CURRENCY)) {
+			break;
+
+		case DeviceSettings.KEY_CHARGER_CURRENCY:
 			Utils.writeValue(FILE_CHARGER_CURR, (String) newValue);
-		} else if (key.equals(DeviceSettings.KEY_DEEPEST_SLEEP_STATE)) {
+			break;
+
+		case DeviceSettings.KEY_DEEPEST_SLEEP_STATE:
 			Utils.writeValue(FILE_DEEPEST_SLEEP_STATE, (String) newValue);
-		} else if (key.equals(DeviceSettings.KEY_HSPA)) {
+			break;
+
+		case DeviceSettings.KEY_HSPA:
 			sendIntent(mCtx, (String) newValue);
-		} else if (key.equals(DeviceSettings.KEY_MALI_L2MR)) {
+			break;
+
+		case DeviceSettings.KEY_MALI_L2MR:
 			Utils.writeValue(FILE_MALIL2_MAX_READS, (String) newValue);
-		} else if (key.equals(DeviceSettings.KEY_MALI_PAM)) {
+			break;
+
+		case DeviceSettings.KEY_MALI_PAM:
 			Utils.writeValue(FILE_MALI_PREALLOC_MEM, (String) newValue);
-		} else if (key.equals(DeviceSettings.KEY_SCHED_MC)) {
+			break;
+
+		case DeviceSettings.KEY_SCHED_MC:
 			Utils.writeValue(FILE_SCHED_MC, (String) newValue);
-		} else if (key.equals(DeviceSettings.KEY_TCP_CONTROL)) {
+			break;
+
+		case DeviceSettings.KEY_TCP_CONTROL:
 			Utils.writeValue(FILE_TCP_CONTROL, (String) newValue);
-		} else if (key.equals(DeviceSettings.KEY_PANEL_GAMMA)) {
+			break;
+
+		case DeviceSettings.KEY_PANEL_GAMMA:
 			Utils.writeValue(FILE_PANEL_GAMMA, (String) newValue);
-		} else if (key.equals(DeviceSettings.KEY_TOUCHSCREEN_SENSITIVITY)) {
+			break;
+
+		case DeviceSettings.KEY_TOUCHSCREEN_SENSITIVITY:
 			Utils.writeValue(FILE_TOUCHSCREEN_SENSITIVITY, (String) newValue);
+			break;
 		}
 
 		return true;

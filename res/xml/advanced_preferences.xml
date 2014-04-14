@@ -32,7 +32,7 @@
             teamcanjica:min="-100"
             teamcanjica:isFloat="true"
             teamcanjica:stepSize="125"
-            teamcanjica:progressTextSuffix="uV" />
+            teamcanjica:progressTextSuffix="mV" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/accelerometer_subcat_title" >

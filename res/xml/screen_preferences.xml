@@ -3,24 +3,28 @@
 
     <PreferenceCategory android:title="@string/touchscreen_subcat_title"
         android:key="touchscreen" >
+        <!-- Enable Sweep2Wake -->
         <CheckBoxPreference
             android:key="use_sweep2wake"
             android:summary="@string/use_sweep2wake_summary_head"
             android:title="@string/use_sweep2wake_title_head" />
-        <com.teamcanjica.settings.device.S2WThreshold
+        <!-- Adjust Sweep2Wake x threshold -->
+        <com.teamcanjica.settings.device.MasterEditTextPreference
             android:key="x_sweep2wake"
             android:summary="@string/x_sweep2wake_summary_head"
             android:title="@string/x_sweep2wake_title_head"
             android:digits="0123456789"
             android:inputType="number"
             android:defaultValue="120" />
-        <com.teamcanjica.settings.device.S2WThreshold
+        <!-- Adjust Sweep2Wake y threshold -->
+        <com.teamcanjica.settings.device.MasterEditTextPreference
             android:key="y_sweep2wake"
             android:summary="@string/y_sweep2wake_summary_head"
             android:title="@string/y_sweep2wake_title_head"
             android:digits="0123456789"
             android:inputType="number"
             android:defaultValue="240" />
+        <!-- Adjust touchscreen sensitivity -->
         <com.teamcanjica.settings.device.MasterListPreference
             android:defaultValue="val=17"
             android:entries="@array/touchscreen_sensitivity_entries"
@@ -32,6 +36,7 @@
 
     <PreferenceCategory android:title="@string/screen_colours_subcat_title"
         android:key="screen_colours" >
+        <!-- Adjust panel gamma -->
         <com.teamcanjica.settings.device.MasterListPreference
             android:defaultValue="0"
             android:entries="@array/panel_gamma_entries"
@@ -42,6 +47,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/fsync_subcat_title" >
+        <!-- Switch fsync mode -->
         <com.teamcanjica.settings.device.MasterListPreference
             android:defaultValue="0"
             android:entries="@array/fsync_mode_entries"

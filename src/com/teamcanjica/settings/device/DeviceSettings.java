@@ -81,6 +81,8 @@ public class DeviceSettings extends Activity implements OnItemClickListener{
 	public static final String KEY_TOUCHSCREEN = "touchscreen";
 	public static final String KEY_ENABLE_VOLTAGE = "enable_voltage";
 	public static final String KEY_BOOTTIME = "boottime";
+	public static final String KEY_BOOST_DELAY = "boost_delay";
+	public static final String KEY_GPU_VOLTAGE = "gpu_voltage";
 	
 	public static final String SELECTION = "selection";
 	public static final String SETTINGS = "settings";

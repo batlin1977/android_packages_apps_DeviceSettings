@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
-    <PreferenceCategory android:title="@string/clock_speed_title" >
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:teamcanjica="http://schemas.android.com/apk/res/com.test.settings.device" >
+    <PreferenceCategory android:title="@string/clock_speed_subcat_title" >
+        <!-- Disable mali autoboost -->
         <CheckBoxPreference
             android:key="disable_autoboost"
             android:summary="@string/disable_autoboost_summary_head"
             android:title="@string/disable_autoboost_title_head" />
 
+        <!-- Manually set gpu clock -->
         <com.teamcanjica.settings.device.MasterListPreference
             android:key="set_gpu_clock"
             android:summary="@string/set_gpu_clock_summary_head"
@@ -13,13 +16,39 @@
             android:entries="@array/set_gpu_clock_entries"
             android:entryValues="@array/set_gpu_clock_entries_values" />
         
+        <!-- Disable mali gpu fullspeed -->
         <CheckBoxPreference
             android:key="disable_fullspeed"
             android:summary="@string/disable_fullspeed_summary_head"
             android:title="@string/disable_fullspeed_title_head" />
     </PreferenceCategory>
-    
-    <PreferenceCategory android:title="@string/gpu_misc_title">
+
+    <PreferenceCategory android:title="@string/mali_boost_subcat_title" >
+        <!-- Adjust mali boost delay -->
+        <com.teamcanjica.settings.device.MasterEditTextPreference
+            android:key="boost_delay"
+            android:summary="@string/mali_boost_delay_summary_head"
+            android:title="@string/mali_boost_delay_title_head"
+            android:digits="0123456789"
+            android:inputType="number"
+            android:defaultValue="500" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/gpu_misc_subcat_title">
+        <!-- GPU voltage -->
+        <com.teamcanjica.settings.device.MasterSeekBarDialogPreference
+            android:key="gpu_voltage"
+            android:title="@string/gpu_voltage_title_head"
+            android:summary="@string/gpu_voltage_summary_head"
+            android:dialogMessage="@string/gpu_voltage_dialog_message"
+            android:defaultValue="0"
+            android:max="0"
+            teamcanjica:min="-100"
+            teamcanjica:isFloat="true"
+            teamcanjica:stepSize="125"
+            teamcanjica:progressTextSuffix="mV" />
+
+        <!-- Adjust mali L2 mr -->
         <com.teamcanjica.settings.device.MasterListPreference
             android:defaultValue="48"
             android:entries="@array/mali_l2_mr_entries"
@@ -28,6 +57,7 @@
             android:summary="@string/mali_l2_mr_summary_head"
             android:title="@string/mali_l2_mr_title_head" />
 
+        <!-- Adjust Mali pam -->
 		<com.teamcanjica.settings.device.MasterListPreference
             android:defaultValue="50331648"
             android:entries="@array/mali_pam_entries"

@@ -271,36 +271,26 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 
 		String key = preference.getKey();
 
-		switch (key) {
-		case DeviceSettings.KEY_READAHEADKB:
+		if (key.equals(DeviceSettings.KEY_READAHEADKB)) {
 			Utils.writeValue(FILE_READAHEADKB, String.valueOf((Integer) newValue));
-			break;
-
-		case DeviceSettings.KEY_DISCHARGING_THRESHOLD:
+		} else if (key.equals(DeviceSettings.KEY_DISCHARGING_THRESHOLD)) {
 			Utils.writeValue(FILE_CYCLE_CHARGING, "dischar=" + String.valueOf((Integer) newValue));
-			break;
-
-		case DeviceSettings.KEY_RECHARGING_THRESHOLD:
+		} else if (key.equals(DeviceSettings.KEY_RECHARGING_THRESHOLD)) {
 			Utils.writeValue(FILE_CYCLE_CHARGING, "rechar=" + String.valueOf((Integer) newValue));
-			break;
-
-		case DeviceSettings.KEY_CPU_VOLTAGE:
+		} else if (key.equals(DeviceSettings.KEY_CPU_VOLTAGE)) {
 			int i;
 			for (i = 0; voltSteps[i] != (Integer) (Math.round((Integer) newValue / 12) * 12); ++i) {
 			}
 			for (int j = 0; j <= defaultCPUVoltValues.length - 1; ++j) {
 			    Utils.writeValue(FILE_CPU_VOLTAGE + String.valueOf(j), "varm=0x" + Integer.toHexString(defaultCPUVoltValues[j] - i));
 			}
-			break;
-
-		case DeviceSettings.KEY_GPU_VOLTAGE:
+		} else if (key.equals(DeviceSettings.KEY_GPU_VOLTAGE)) {
+			int i;
 			for (i = 0; voltSteps[i] != (Integer) (Math.round((Integer) newValue / 12) * 12); ++i) {
 			}
 			for (int j = 0; j <= defaultGPUVoltValues.length - 1; ++j) {
 			    Utils.writeValue(FILE_GPU_VOLTAGE, j + " vape=0x" + Integer.toHexString(defaultGPUVoltValues[j] - i));
 			}
-			break;
-
 		}
 
 		return true;

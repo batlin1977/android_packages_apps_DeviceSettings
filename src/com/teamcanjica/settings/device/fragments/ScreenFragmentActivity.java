@@ -39,7 +39,6 @@ public class ScreenFragmentActivity extends PreferenceFragment {
 	private static final String FILE_SWEEP2WAKE_CODINA = "/sys/kernel/bt404/sweep2wake";
 	private static final String FILE_SWEEP2WAKE_JANICE = "/sys/kernel/mxt224e/sweep2wake";
 
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -65,8 +64,7 @@ public class ScreenFragmentActivity extends PreferenceFragment {
 
 		Log.w(TAG, "key: " + key);
 
-		switch (key) {
-		case DeviceSettings.KEY_USE_SWEEP2WAKE:
+		if (key.equals(DeviceSettings.KEY_USE_SWEEP2WAKE));
 			if (Utils.isJanice()) {
 				Utils.writeValue(FILE_SWEEP2WAKE_JANICE, (((CheckBoxPreference) preference).
 						isChecked() ? "on" : "off"));
@@ -74,9 +72,6 @@ public class ScreenFragmentActivity extends PreferenceFragment {
 				Utils.writeValue(FILE_SWEEP2WAKE_CODINA, (((CheckBoxPreference) preference).
 						isChecked() ? "on" : "off"));
 			}
-			break;
-
-		}
 
 		return true;
 	}

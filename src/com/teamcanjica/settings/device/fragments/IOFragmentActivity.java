@@ -34,7 +34,6 @@ import com.teamcanjica.settings.device.Utils;
 public class IOFragmentActivity extends PreferenceFragment {
 
 	private static final String TAG = "NovaThor_Settings_IO";
-
 	private static final String FILE_SPI_CRC = "/sys/module/mmc_core/parameters/use_spi_crc";
 	private static final String FILE_BOOTTIME = "/sys/kernel/debug/boottime/summary";
 
@@ -56,18 +55,14 @@ public class IOFragmentActivity extends PreferenceFragment {
 
 		Log.w(TAG, "key: " + key);
 
-		switch (key) {
-		case DeviceSettings.KEY_USE_SPI_CRC:
+		if (key.equals(DeviceSettings.KEY_USE_SPI_CRC)) {
 			Utils.writeValue(FILE_SPI_CRC, (((CheckBoxPreference) preference).
 					isChecked() ? "0" : "1"));
-			break;
-
-		case DeviceSettings.KEY_BOOTTIME:
+		} else if (key.equals(DeviceSettings.KEY_BOOTTIME)) {
 			Utils.showDialog(getActivity(),
 					getString(R.string.boottime_subcat_title),
 					Utils.readFile(FILE_BOOTTIME).replace("kernel: ", "Your boot time is: "),
 					false);
-			break;
 		}
 
 		return true;

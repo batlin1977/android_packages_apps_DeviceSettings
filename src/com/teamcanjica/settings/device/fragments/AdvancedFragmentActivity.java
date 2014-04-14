@@ -66,8 +66,7 @@ public class AdvancedFragmentActivity extends PreferenceFragment {
 
 		Log.w(TAG, "key: " + key);
 
-		switch (key) {
-		case DeviceSettings.KEY_SWITCH_STORAGE:
+		if (key.equals(DeviceSettings.KEY_SWITCH_STORAGE)) {
 			boolean b = ((CheckBoxPreference) preference).isChecked();
 			String cmd = "SwapStorages.sh " + (b?"1":"0");
 
@@ -83,14 +82,10 @@ public class AdvancedFragmentActivity extends PreferenceFragment {
 					"Reboot Required",
 					"A reboot is required for the setting to take effect, reboot now?",
 					true);
-			break;
-
-		case DeviceSettings.KEY_USE_ACCELEROMETER_CALIBRATION:
+		} else if (key.equals(DeviceSettings.KEY_USE_ACCELEROMETER_CALIBRATION)) {
 			Utils.writeValue(FILE_ACCELEROMETER_CALIB, (((CheckBoxPreference) preference).
 						isChecked() ? "1" : "0"));
-			break;
-
-		case DeviceSettings.KEY_CALIBRATE_ACCELEROMETER:
+		} else if (key.equals(DeviceSettings.KEY_CALIBRATE_ACCELEROMETER)) {
 			// when calibration data utilization is disabled and enabled back,
 			// calibration is done at the same time by driver
 			Utils.writeValue(FILE_ACCELEROMETER_CALIB, "0");
@@ -99,21 +94,16 @@ public class AdvancedFragmentActivity extends PreferenceFragment {
 					getString(R.string.accelerometer_dialog_head),
 					getString(R.string.accelerometer_dialog_message),
 					false);
-			break;
-
-		case DeviceSettings.KEY_DISABLE_BLN:
+		} else if (key.equals(DeviceSettings.KEY_DISABLE_BLN)) {
 			Utils.writeValue(FILE_BLN, (((CheckBoxPreference) preference).
 					isChecked() ? "0" : "1"));
-			break;
-
-		case DeviceSettings.KEY_ENABLE_VOLTAGE:
+		} else if (key.equals(DeviceSettings.KEY_ENABLE_VOLTAGE)) {
 			Utils.writeValue(FILE_VOLTAGE1, "set_volt=" + (((CheckBoxPreference) preference).
 					isChecked() ? "1" : "0"));
 			if (Utils.isJanice()) {
 				Utils.writeValue(FILE_VOLTAGE2, "set_volt=" + (((CheckBoxPreference) preference).
 						isChecked() ? "1" : "0"));
 			}
-			break;
 		}
 
 		return true;

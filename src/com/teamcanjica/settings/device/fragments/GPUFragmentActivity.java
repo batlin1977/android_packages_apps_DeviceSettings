@@ -60,18 +60,14 @@ public class GPUFragmentActivity extends PreferenceFragment {
 
 		Log.w(TAG, "key: " + key);
 
-		switch (key) {
-		case DeviceSettings.KEY_DISABLE_AUTOBOOST:
+		if (key.equals(DeviceSettings.KEY_DISABLE_AUTOBOOST)) {
 			Utils.writeValue(FILE_AUTOBOOST, !((CheckBoxPreference) preference)
 					.isChecked());
 			getPreferenceScreen().findPreference(DeviceSettings.KEY_SET_GPU_CLOCK).setEnabled(
 					((CheckBoxPreference) preference).isChecked());
-			break;
-			
-		case DeviceSettings.KEY_DISABLE_FULLSPEED:
+		} else if (key.equals(DeviceSettings.KEY_DISABLE_FULLSPEED)) {
 			Utils.writeValue(FILE_FULLSPEED, !((CheckBoxPreference) preference)
 					.isChecked());
-			break;
 		}
 
 		return true;

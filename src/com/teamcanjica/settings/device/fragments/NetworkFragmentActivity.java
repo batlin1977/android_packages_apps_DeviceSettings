@@ -34,7 +34,6 @@ import com.teamcanjica.settings.device.Utils;
 public class NetworkFragmentActivity extends PreferenceFragment {
 
 	private static final String TAG = "NovaThor_Settings_Network";
-
 	private static final String FILE_WIFI_PM = "/sys/module/dhd/parameters/dhdpm_fast";
 
 	@Override
@@ -55,11 +54,9 @@ public class NetworkFragmentActivity extends PreferenceFragment {
 
 		Log.w(TAG, "key: " + key);
 
-		switch (key) {
-		case DeviceSettings.KEY_USE_WIFIPM_MAX:
-			Utils.writeValue(FILE_WIFI_PM, (((CheckBoxPreference) preference).
-					isChecked() ? "0" : "1"));
-			break;
+		if (key.equals(DeviceSettings.KEY_USE_WIFIPM_MAX)) {
+			Utils.writeValue(FILE_WIFI_PM, !((CheckBoxPreference) preference).
+					isChecked());
 		}
 
 		return true;

@@ -69,43 +69,32 @@ public class PowerFragmentActivity extends PreferenceFragment {
 
 		Log.w(TAG, "key: " + key);
 
-		switch (key) {
-		case DeviceSettings.KEY_USB_OTG_POWER:
-			Utils.writeValue(FILE_VOTG,
-					((CheckBoxPreference) preference).isChecked() ? "1" : "0");
-			break;
-
-		case DeviceSettings.KEY_USE_CHARGER_CONTROL:
+		if (key.equals(DeviceSettings.KEY_USB_OTG_POWER)) {
+			Utils.writeValue(FILE_VOTG, ((CheckBoxPreference) preference).
+					isChecked());
+		} else if (key.equals(DeviceSettings.KEY_USE_CHARGER_CONTROL)) {
 			Utils.writeValue(FILE_CHARGER_CONTROL,
 					((CheckBoxPreference) preference).isChecked() ? "on" : "off");
 			getPreferenceScreen().findPreference(DeviceSettings.KEY_CHARGER_CURRENCY).setEnabled(
 					((CheckBoxPreference) preference).isChecked());
-			break;
-
-		case DeviceSettings.KEY_USE_CYCLE_CHARGING:
+		} else if (key.equals(DeviceSettings.KEY_USE_CYCLE_CHARGING)) {
 			Utils.writeValue(FILE_CYCLE_CHARGING_CONTROL,
 					((CheckBoxPreference) preference).isChecked() ? "on" : "off");
 			getPreferenceScreen().findPreference(DeviceSettings.KEY_DISCHARGING_THRESHOLD).setEnabled(
 					((CheckBoxPreference) preference).isChecked());
 			getPreferenceScreen().findPreference(DeviceSettings.KEY_RECHARGING_THRESHOLD).setEnabled(
 					((CheckBoxPreference) preference).isChecked());
-			break;
-
-		case DeviceSettings.KEY_EOC:
+		} else if (key.equals(DeviceSettings.KEY_EOC)) {
 			Utils.showDialog(getActivity(),
 					getString(R.string.eoc_subcat_title),
 					"EOC Status: " + Utils.readFile(FILE_EOC),
 					false);
-			break;
-		
-		case DeviceSettings.KEY_REFRESH_BATTERY_STATS:
+		} else if (key.equals(DeviceSettings.KEY_REFRESH_BATTERY_STATS)) {
 			Utils.writeValue(FILE_REFRESH_BATTERY_STATS, "0");
 			Utils.showDialog(getActivity(),
 					getString(R.string.refresh_bs_subcat_title),
 					getString(R.string.refresh_bs_dialog_message),
 					false);
-			break;
-			
 		}
 
 		return true;

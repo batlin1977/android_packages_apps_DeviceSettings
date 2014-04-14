@@ -52,52 +52,29 @@ OnPreferenceChangeListener {
 		
 		String key = preference.getKey();
 		
-		switch (key) {
-		case DeviceSettings.KEY_SET_GPU_CLOCK:
+		if (key.equals(DeviceSettings.KEY_SET_GPU_CLOCK)) {
 			Utils.writeValue(FILE_MALI_GPU_CLOCK, (String) newValue);
-			break;
-
-		case DeviceSettings.KEY_FSYNC_MODE:
+		} else if (key.equals(DeviceSettings.KEY_FSYNC_MODE)) {
 			Utils.writeValue(FILE_FSYNC_MODE, (String) newValue);
-			break;
-
-		case DeviceSettings.KEY_CHARGER_CURRENCY:
+		} else if (key.equals(DeviceSettings.KEY_CHARGER_CURRENCY)) {
 			Utils.writeValue(FILE_CHARGER_CURR, (String) newValue);
-			break;
-
-		case DeviceSettings.KEY_DEEPEST_SLEEP_STATE:
+		} else if (key.equals(DeviceSettings.KEY_DEEPEST_SLEEP_STATE)) {
 			Utils.writeValue(FILE_DEEPEST_SLEEP_STATE, (String) newValue);
-			break;
-
-		case DeviceSettings.KEY_HSPA:
+		} else if (key.equals(DeviceSettings.KEY_HSPA)) {
 			sendIntent(mCtx, (String) newValue);
-			break;
-
-		case DeviceSettings.KEY_MALI_L2MR:
+		} else if (key.equals(DeviceSettings.KEY_MALI_L2MR)) {
 			Utils.writeValue(FILE_MALIL2_MAX_READS, (String) newValue);
-			break;
-
-		case DeviceSettings.KEY_MALI_PAM:
+		} else if (key.equals(DeviceSettings.KEY_MALI_PAM)) {
 			Utils.writeValue(FILE_MALI_PREALLOC_MEM, (String) newValue);
-			break;
-
-		case DeviceSettings.KEY_SCHED_MC:
+		} else if (key.equals(DeviceSettings.KEY_SCHED_MC)) {
 			Utils.writeValue(FILE_SCHED_MC, (String) newValue);
-			break;
-
-		case DeviceSettings.KEY_TCP_CONTROL:
+		} else if (key.equals(DeviceSettings.KEY_TCP_CONTROL)) {
 			Utils.writeValue(FILE_TCP_CONTROL, (String) newValue);
-			break;
-
-		case DeviceSettings.KEY_PANEL_GAMMA:
+		} else if (key.equals(DeviceSettings.KEY_PANEL_GAMMA)) {
 			Utils.writeValue(FILE_PANEL_GAMMA, (String) newValue);
-			break;
-
-		case DeviceSettings.KEY_TOUCHSCREEN_SENSITIVITY:
+		} else if (key.equals(DeviceSettings.KEY_TOUCHSCREEN_SENSITIVITY)) {
 			Utils.writeValue(FILE_TOUCHSCREEN_SENSITIVITY, (String) newValue);
-			break;
-			
-		case DeviceSettings.KEY_SWITCH_THEME:
+		} else if (key.equals(DeviceSettings.KEY_SWITCH_THEME)) {
 			mCtx.startActivity(new Intent(getContext().getPackageManager()
 	                .getLaunchIntentForPackage(getContext().getPackageName()))
 	                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));

@@ -226,17 +226,13 @@ public class Utils {
      * The theme to change to
      * @param theme
      */
-    public static void changeTheme(Activity activity, String theme) {
-        switch (theme) {
-            case "Default":
-                activity.setTheme(R.style.BaseAppTheme);
-                break;
-            case "Holo Light":
-                activity.setTheme(R.style.HoloLightTheme);
-                break;
-            case "Holo Light w/ Dark Action Bar":
-                activity.setTheme(R.style.HoloLightDarkActionBarTheme);
-                break;
-        }
-    }
+	public static void changeTheme(Activity activity, String theme) {
+		if (theme.equals("Default")) {
+			activity.setTheme(R.style.BaseAppTheme);
+		} else if (theme.equals("Holo Light")) {
+			activity.setTheme(R.style.HoloLightTheme);
+		} else if (theme.equals("Holo Light w/ Dark Action Bar")) {
+			activity.setTheme(R.style.HoloLightDarkActionBarTheme);
+		}
+	}
 }

@@ -34,27 +34,16 @@ import com.teamcanjica.settings.device.Utils;
 public class AudioFragmentActivity extends PreferenceFragment {
 
 	private static final String TAG = "NovaThor_Settings_Audio";
-	
 	public static final String FILE_ANAGAIN3 = "/sys/kernel/abb-codec/anagain3";
-	
 	public static final String FILE_HSLDIGGAIN = "/sys/kernel/abb-codec/hsldiggain";
-	
 	public static final String FILE_HSRDIGGAIN = "/sys/kernel/abb-codec/hsrdiggain";
-	
 	public static final String FILE_HSLOWPOW = "/sys/kernel/abb-codec/hslowpow";
-	
 	public static final String FILE_HSDACLOWPOW = "/sys/kernel/abb-codec/hsdaclowpow";
-	
 	public static final String FILE_HSHPEN = "/sys/kernel/abb-codec/hshpen";
-	
 	public static final String FILE_CLASSDHPG = "/sys/kernel/abb-codec/classdhpg";
-	
 	public static final String FILE_CLASSDWG = "/sys/kernel/abb-codec/classdwg";
-	
 	public static final String FILE_ADDIGGAIN2 = "/sys/kernel/abb-codec/addiggain2";
-	
 	public static final String FILE_EARDIGGAIN = "/sys/kernel/abb-codec/eardiggain";
-
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -74,57 +63,37 @@ public class AudioFragmentActivity extends PreferenceFragment {
 
 		Log.w(TAG, "key: " + key);
 
-		switch (key) {
-		case DeviceSettings.KEY_ENABLE_ANAGAIN3:
+		if (key.equals(DeviceSettings.KEY_ENABLE_ANAGAIN3)) {
+
 			Utils.writeValue(FILE_ANAGAIN3, (((CheckBoxPreference) preference).
 					isChecked() ? "on" : "off"));
-			break;
-
-		case DeviceSettings.KEY_ENABLE_HSLDIGGAIN:
+		} else if (key.equals(DeviceSettings.KEY_ENABLE_HSLDIGGAIN)) {
 			Utils.writeValue(FILE_HSLDIGGAIN, (((CheckBoxPreference) preference).
 					isChecked() ? "on" : "off"));
-			break;
-
-		case DeviceSettings.KEY_ENABLE_HSRDIGGAIN:
+		} else if (key.equals(DeviceSettings.KEY_ENABLE_HSRDIGGAIN)) {
 			Utils.writeValue(FILE_HSRDIGGAIN, (((CheckBoxPreference) preference).
 					isChecked() ? "on" : "off"));
-			break;
-
-		case DeviceSettings.KEY_ENABLE_HSLOWPOW:
+		} else if (key.equals(DeviceSettings.KEY_ENABLE_HSLOWPOW)) {
 			Utils.writeValue(FILE_HSLOWPOW, (((CheckBoxPreference) preference).
 					isChecked() ? "on" : "off"));
-			break;
-
-		case DeviceSettings.KEY_ENABLE_HSDACLOWPOW:
+		} else if (key.equals(DeviceSettings.KEY_ENABLE_HSDACLOWPOW)) {
 			Utils.writeValue(FILE_HSDACLOWPOW, (((CheckBoxPreference) preference).
 					isChecked() ? "on" : "off"));
-			break;
-
-		case DeviceSettings.KEY_ENABLE_HSHPEN:
+		} else if (key.equals(DeviceSettings.KEY_ENABLE_HSHPEN)) {
 			Utils.writeValue(FILE_HSHPEN, (((CheckBoxPreference) preference).
 					isChecked() ? "on" : "off"));
-			break;
-
-		case DeviceSettings.KEY_ENABLE_CLASSDHPG:
+		} else if (key.equals(DeviceSettings.KEY_ENABLE_CLASSDHPG)) {
 			Utils.writeValue(FILE_CLASSDHPG, (((CheckBoxPreference) preference).
 					isChecked() ? "on" : "off"));
-			break;
-
-		case DeviceSettings.KEY_ENABLE_CLASSDWG:
+		} else if (key.equals(DeviceSettings.KEY_ENABLE_CLASSDWG)) {
 			Utils.writeValue(FILE_CLASSDWG, (((CheckBoxPreference) preference).
 					isChecked() ? "on" : "off"));
-			break;
-
-		case DeviceSettings.KEY_ENABLE_ADDIGGAIN2:
+		} else if (key.equals(DeviceSettings.KEY_ENABLE_ADDIGGAIN2)) {
 			Utils.writeValue(FILE_ADDIGGAIN2, (((CheckBoxPreference) preference).
 					isChecked() ? "on" : "off"));
-			break;
-
-		case DeviceSettings.KEY_ENABLE_EARDIGGAIN:
+		} else if (key.equals(DeviceSettings.KEY_ENABLE_EARDIGGAIN)) {
 			Utils.writeValue(FILE_EARDIGGAIN, (((CheckBoxPreference) preference).
 					isChecked() ? "on" : "off"));
-			break;
-			
 		}
 
 		return true;
@@ -158,9 +127,8 @@ public class AudioFragmentActivity extends PreferenceFragment {
 		Utils.writeValue(FILE_CLASSDWG, sharedPrefs.getBoolean(
 				DeviceSettings.KEY_ENABLE_CLASSDWG, false) ? "on" : "off");
 		
-		String addiggain2value = sharedPrefs.getBoolean(
-				DeviceSettings.KEY_ENABLE_ADDIGGAIN2, false) ? "on" : "off";
-		Utils.writeValue(FILE_ADDIGGAIN2, addiggain2value);
+		Utils.writeValue(FILE_ADDIGGAIN2, sharedPrefs.getBoolean(
+				DeviceSettings.KEY_ENABLE_ADDIGGAIN2, false) ? "on" : "off");
 
 		Utils.writeValue(FILE_EARDIGGAIN, sharedPrefs.getBoolean(
 				DeviceSettings.KEY_ENABLE_EARDIGGAIN, false) ? "on" : "off");

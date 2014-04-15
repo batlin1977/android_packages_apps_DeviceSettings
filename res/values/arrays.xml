@@ -47,14 +47,26 @@
     
     <!-- USB -->
     <string-array name="charger_currency_entries">
+        <item>900 mA   *WARNING*</item>
         <item>800 mA   *WARNING*</item>
+        <item>700 mA</item>
         <item>600 mA (default)</item>
+        <item>500 mA</item>
         <item>400 mA</item>
+        <item>300 mA</item>
+        <item>200 mA</item>
+        <item>100 mA</item>
     </string-array>
     <string-array name="charger_currency_entries_values" translatable="false">
+        <item>900</item>
         <item>800</item>
+        <item>700</item>
         <item>600</item>
+        <item>500</item>
         <item>400</item>
+        <item>300</item>
+        <item>200</item>
+        <item>100</item>
     </string-array>
     
     <!-- Deep Sleep -->

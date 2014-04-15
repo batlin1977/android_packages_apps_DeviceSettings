@@ -302,29 +302,29 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 				.getDefaultSharedPreferences(context);
 
 		Utils.writeValue(FILE_CYCLE_CHARGING, 
-				"dischar=" + String.valueOf(sharedPrefs.
-						getString(DeviceSettings.KEY_DISCHARGING_THRESHOLD, "100")));
+				"dischar=" + sharedPrefs.
+						getInt(DeviceSettings.KEY_DISCHARGING_THRESHOLD, 100));
 
 		Utils.writeValue(FILE_CYCLE_CHARGING,
-				"rechar=" + String.valueOf(sharedPrefs.
-						getString(DeviceSettings.KEY_RECHARGING_THRESHOLD, "100")));
+				"rechar=" + sharedPrefs.
+						getInt(DeviceSettings.KEY_RECHARGING_THRESHOLD, 100));
 
 		Utils.writeValue(FILE_READAHEADKB,
 				String.valueOf(sharedPrefs.
-						getString(DeviceSettings.KEY_READAHEADKB, "512")));
+						getInt(DeviceSettings.KEY_READAHEADKB, 512)));
 
 		// CPU VOLTAGE
 		int i;
-		for (i = 0; voltSteps[i] != Integer.parseInt(sharedPrefs.
-				getString(DeviceSettings.KEY_CPU_VOLTAGE, String.valueOf(voltSteps[0]))); ++i) {
+		for (i = 0; voltSteps[i] != sharedPrefs.
+				getInt(DeviceSettings.KEY_CPU_VOLTAGE, voltSteps[0]); ++i) {
 		}
 		for (int j = 0; j <= defaultCPUVoltValues.length - 1; ++j) {
 		    Utils.writeValue(FILE_CPU_VOLTAGE + String.valueOf(j), "varm=0x" + Integer.toHexString(defaultCPUVoltValues[j] - i));
 		}
 
 		// GPU VOLTAGE
-		for (i = 0; voltSteps[i] != Integer.parseInt(sharedPrefs.
-				getString(DeviceSettings.KEY_GPU_VOLTAGE, String.valueOf(voltSteps[0]))); ++i) {
+		for (i = 0; voltSteps[i] != sharedPrefs.
+				getInt(DeviceSettings.KEY_GPU_VOLTAGE, voltSteps[0]); ++i) {
 		}
 		for (int j = 0; j <= defaultGPUVoltValues.length - 1; ++j) {
 		    Utils.writeValue(FILE_GPU_VOLTAGE, j + " vape=0x" + Integer.toHexString(defaultGPUVoltValues[j] - i));

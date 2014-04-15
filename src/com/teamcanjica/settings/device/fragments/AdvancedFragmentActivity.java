@@ -17,8 +17,6 @@
 
 package com.teamcanjica.settings.device.fragments;
 
-import java.io.IOException;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -68,17 +66,8 @@ public class AdvancedFragmentActivity extends PreferenceFragment {
 		Log.w(TAG, "key: " + key);
 
 		if (key.equals(DeviceSettings.KEY_SWITCH_STORAGE)) {
-			boolean b = ((CheckBoxPreference) preference).isChecked();
-			String cmd = "SwapStorages.sh " + (b?"1":"0");
-
-			try {
-			    Process proc = Runtime.getRuntime().exec(new String[]{"su","-c",cmd});
-			    proc.waitFor();
-			} catch (IOException e) {
-			    e.printStackTrace();
-			} catch (InterruptedException e) {
-			    e.printStackTrace();
-			}
+			SystemProperties.set("persist.sys.vold.switchexternal", (((CheckBoxPreference) preference).
+					isChecked() ? "1" : "0"));
 			Utils.showDialog(getActivity(),
 					"Reboot Required",
 					"A reboot is required for the setting to take effect, reboot now?",
@@ -114,15 +103,14 @@ public class AdvancedFragmentActivity extends PreferenceFragment {
 		SharedPreferences sharedPrefs = PreferenceManager
 				.getDefaultSharedPreferences(context);
 
-		int sstor = SystemProperties.getInt("persist.sys.vold.switchexternal", 0) ;
-		sharedPrefs.edit().putBoolean(
-				DeviceSettings.KEY_SWITCH_STORAGE, sstor==1 ? true : false).commit();
-
-		Utils.writeValue(FILE_ACCELEROMETER_CALIB, sharedPrefs.getBoolean(
-				DeviceSettings.KEY_USE_ACCELEROMETER_CALIBRATION, true) ? "1" : "0");
+		SystemProperties.set("persist.sys.vold.switchexternal", sharedPrefs.getBoolean(
+				DeviceSettings.KEY_SWITCH_STORAGE, false) ? "1" : "0");
 
 		Utils.writeValue(FILE_BLN, sharedPrefs.getBoolean(
 				DeviceSettings.KEY_DISABLE_BLN, false) ? "0" : "1");
+
+		Utils.writeValue(FILE_ACCELEROMETER_CALIB, sharedPrefs.getBoolean(
+				DeviceSettings.KEY_USE_ACCELEROMETER_CALIBRATION, true) ? "1" : "0");
 
 	}
 

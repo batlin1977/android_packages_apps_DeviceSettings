@@ -34,29 +34,34 @@ import android.widget.ListView;
 
 public class DeviceSettings extends Activity implements OnItemClickListener{
 
+	// General
 	public static final String SHARED_PREFERENCES_BASENAME = "com.teamcanjica.settings.device";
 	public static final String ACTION_UPDATE_PREFERENCES = "com.teamcanjica.settings.device.UPDATE";
+	public static final String KEY_SWITCH_THEME = "switch_theme";
+	public static final String KEY_SEEKBARVAL = "seekbarvalue";
+	public static final String KEY_DISABLE_RESTORE = "disable_restore";
+
+	public static final String SELECTION = "selection";
+	public static boolean disableRestore;
+	public static final String SETTINGS = "settings";
+
+	// Network
 	public static final String KEY_HSPA = "hspa";
-	public static final String KEY_USE_ACCELEROMETER_CALIBRATION = "use_accelerometer_calibration";
-	public static final String KEY_CALIBRATE_ACCELEROMETER = "calibrate_accelerometer";
+	public static final String KEY_TCP_CONTROL = "tcp_control";
+	public static final String KEY_USE_WIFIPM_MAX = "use_wifipm_max";
+
+	// Power
 	public static final String KEY_USB_OTG_POWER = "usb_otg_power";
-	public static final String KEY_DEEPEST_SLEEP_STATE = "deepest_sleep_state";
 	public static final String KEY_USE_CHARGER_CONTROL = "use_charger_control";
 	public static final String KEY_CHARGER_CURRENCY = "charger_currency";
 	public static final String KEY_USE_CYCLE_CHARGING = "use_cycle_charging";
 	public static final String KEY_DISCHARGING_THRESHOLD = "discharging_threshold";
 	public static final String KEY_RECHARGING_THRESHOLD = "recharging_threshold";
 	public static final String KEY_EOC = "eoc_status";
+	public static final String KEY_DEEPEST_SLEEP_STATE = "deepest_sleep_state";
 	public static final String KEY_REFRESH_BATTERY_STATS = "refresh_battery_stats";
-	public static final String KEY_FSYNC_MODE = "fsync_mode";
-	public static final String KEY_TCP_CONTROL = "tcp_control";
-	public static final String KEY_MALI_L2MR = "mali_l2_mr";
-	public static final String KEY_MALI_PAM = "mali_pam";
-	public static final String KEY_USE_SWEEP2WAKE = "use_sweep2wake";
-	public static final String KEY_X_SWEEP2WAKE = "x_sweep2wake";
-	public static final String KEY_Y_SWEEP2WAKE = "y_sweep2wake";
-	public static final String KEY_USE_SPI_CRC = "use_spi_crc";
-	public static final String KEY_SWITCH_STORAGE = "switch_storage";
+
+	// Audio
 	public static final String KEY_ENABLE_ANAGAIN3 = "enable_anagain3";
 	public static final String KEY_ENABLE_HSLDIGGAIN = "enable_hsldiggain";
 	public static final String KEY_ENABLE_HSRDIGGAIN = "enable_hsrdiggain";
@@ -67,32 +72,42 @@ public class DeviceSettings extends Activity implements OnItemClickListener{
 	public static final String KEY_ENABLE_CLASSDWG = "enable_classdwg";
 	public static final String KEY_ENABLE_ADDIGGAIN2 = "enable_addiggain2";
 	public static final String KEY_ENABLE_EARDIGGAIN = "enable_eardiggain";
-	public static final String KEY_USE_WIFIPM_MAX = "use_wifipm_max";
-	public static final String KEY_SCHED_MC = "sched_mc";
-	public static final String KEY_DISABLE_BLN = "disable_bln";
-	public static final String KEY_READAHEADKB = "readaheadkb";
-	public static final String KEY_SEEKBARVAL = "seekbarvalue";
+
+	// Screen
+	public static final String KEY_USE_SWEEP2WAKE = "use_sweep2wake";
+	public static final String KEY_X_SWEEP2WAKE = "x_sweep2wake";
+	public static final String KEY_Y_SWEEP2WAKE = "y_sweep2wake";
+	public static final String KEY_TOUCHSCREEN = "touchscreen";
+	public static final String KEY_TOUCHSCREEN_SENSITIVITY = "touchscreen_sensitivity";
+	public static final String KEY_SCREEN_COLOURS = "screen_colours";
+	public static final String KEY_PANEL_GAMMA = "panel_gamma";
+	public static final String KEY_FSYNC_MODE = "fsync_mode";
+
+	// GPU
 	public static final String KEY_DISABLE_AUTOBOOST = "disable_autoboost";
 	public static final String KEY_SET_GPU_CLOCK = "set_gpu_clock";
 	public static final String KEY_DISABLE_FULLSPEED = "disable_fullspeed";
-	public static final String KEY_CPU_VOLTAGE = "cpu_voltage";
-	public static final String KEY_DISABLE_RESTORE = "disable_restore";
-	public static final String KEY_PANEL_GAMMA = "panel_gamma";
-	public static final String KEY_TOUCHSCREEN_SENSITIVITY = "touchscreen_sensitivity";
-	public static final String KEY_SCREEN_COLOURS = "screen_colours";
-	public static final String KEY_BACKLIGHT = "backlight";
-	public static final String KEY_TOUCHSCREEN = "touchscreen";
-	public static final String KEY_ENABLE_VOLTAGE = "enable_voltage";
-	public static final String KEY_BOOTTIME = "boottime";
 	public static final String KEY_BOOST_DELAY = "boost_delay";
 	public static final String KEY_GPU_VOLTAGE = "gpu_voltage";
-	public static final String KEY_SWITCH_THEME = "switch_theme";
-	
-	public static final String SELECTION = "selection";
-	public static final String SETTINGS = "settings";
-	
-	public static boolean disableRestore;
+	public static final String KEY_MALI_L2MR = "mali_l2_mr";
+	public static final String KEY_MALI_PAM = "mali_pam";
 
+	// I/O
+	public static final String KEY_USE_SPI_CRC = "use_spi_crc";
+	public static final String KEY_SCHED_MC = "sched_mc";
+	public static final String KEY_READAHEADKB = "readaheadkb";
+	public static final String KEY_BOOTTIME = "boottime";
+
+	// Advanced
+	public static final String KEY_SWITCH_STORAGE = "switch_storage";
+	public static final String KEY_BACKLIGHT = "backlight";
+	public static final String KEY_DISABLE_BLN = "disable_bln";
+	public static final String KEY_ENABLE_VOLTAGE = "enable_voltage";
+	public static final String KEY_CPU_VOLTAGE = "cpu_voltage";
+	public static final String KEY_USE_ACCELEROMETER_CALIBRATION = "use_accelerometer_calibration";
+	public static final String KEY_CALIBRATE_ACCELEROMETER = "calibrate_accelerometer";
+
+	// ListView
 	public static final String[] titles = new String[] { "Network",
         "Power", "Audio", "Screen", "GPU", "I/O", "Advanced" };
 

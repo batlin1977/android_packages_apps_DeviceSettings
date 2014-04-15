@@ -50,6 +50,7 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
     private static final String FILE_CPU_VOLTAGE = "/sys/kernel/liveopp/arm_step";
     private static final String FILE_CYCLE_CHARGING = "/sys/kernel/abb-fg/fg_cyc";
     private static final String FILE_GPU_VOLTAGE = "/sys/kernel/mali/mali_dvfs_config";
+    private static final String FILE_ANAGAIN3_CONTROL = "/sys/kernel/abb-codec/anagain3";
     private static final int defaultGPUVoltValues[] = {0x26, 0x26, 0x26, 0x26, 0x26, 0x26, 0x26, 0x29, 0x2a, 0x2b, 
     	0x2c, 0x2d, 0x2f, 0x30, 0x32, 0x33, 0x34, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f};
     private static final int defaultCPUVoltValues[] = {0x18, 0x1a, 0x20, 0x24, 0x2f, 0x32, 0x3f, 0x3f, 0x3f, 0x3f};
@@ -273,6 +274,8 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 
 		if (key.equals(DeviceSettings.KEY_READAHEADKB)) {
 			Utils.writeValue(FILE_READAHEADKB, String.valueOf((Integer) newValue));
+		} else if (key.equals(DeviceSettings.KEY_ANAGAIN3_CONTROL)) {
+			Utils.writeValue(FILE_ANAGAIN3_CONTROL, "gain=" + String.valueOf((Integer) newValue));
 		} else if (key.equals(DeviceSettings.KEY_DISCHARGING_THRESHOLD)) {
 			Utils.writeValue(FILE_CYCLE_CHARGING, "dischar=" + String.valueOf((Integer) newValue));
 		} else if (key.equals(DeviceSettings.KEY_RECHARGING_THRESHOLD)) {
@@ -301,6 +304,14 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 		SharedPreferences sharedPrefs = PreferenceManager
 				.getDefaultSharedPreferences(context);
 
+		Utils.writeValue(FILE_READAHEADKB,
+				String.valueOf(sharedPrefs.
+						getInt(DeviceSettings.KEY_READAHEADKB, 512)));
+
+		Utils.writeValue(FILE_ANAGAIN3_CONTROL,
+				"gain=" + sharedPrefs.
+						getInt(DeviceSettings.KEY_ANAGAIN3_CONTROL, 0 ));
+
 		Utils.writeValue(FILE_CYCLE_CHARGING, 
 				"dischar=" + sharedPrefs.
 						getInt(DeviceSettings.KEY_DISCHARGING_THRESHOLD, 100));
@@ -308,10 +319,6 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 		Utils.writeValue(FILE_CYCLE_CHARGING,
 				"rechar=" + sharedPrefs.
 						getInt(DeviceSettings.KEY_RECHARGING_THRESHOLD, 100));
-
-		Utils.writeValue(FILE_READAHEADKB,
-				String.valueOf(sharedPrefs.
-						getInt(DeviceSettings.KEY_READAHEADKB, 512)));
 
 		// CPU VOLTAGE
 		int i;

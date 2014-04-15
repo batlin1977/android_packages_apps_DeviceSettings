@@ -8,7 +8,16 @@
             android:key="enable_anagain3"
             android:summary="@string/enable_anagain3_summary_head"
             android:title="@string/enable_anagain3_title_head" />
-        
+        <!-- AnaGain3 Control -->
+        <com.teamcanjica.settings.device.MasterSeekBarDialogPreference
+           android:defaultValue="0"
+           android:dialogMessage="@string/anagain3_control_dialog_message"
+           android:max="15"
+           teamcanjica:min="0"
+           teamcanjica:progressTextSuffix=""
+           teamcanjica:stepSize="1"
+           android:key="anagain3_control"
+           android:title="@string/anagain3_control_title_head" />
         <!-- HsLDigGain -->
         <CheckBoxPreference
             android:key="enable_hsldiggain"

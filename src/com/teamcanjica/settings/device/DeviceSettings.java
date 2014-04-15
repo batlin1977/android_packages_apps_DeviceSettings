@@ -63,6 +63,7 @@ public class DeviceSettings extends Activity implements OnItemClickListener{
 
 	// Audio
 	public static final String KEY_ENABLE_ANAGAIN3 = "enable_anagain3";
+	public static final String KEY_ANAGAIN3_CONTROL = "anagain3_control";
 	public static final String KEY_ENABLE_HSLDIGGAIN = "enable_hsldiggain";
 	public static final String KEY_ENABLE_HSRDIGGAIN = "enable_hsrdiggain";
 	public static final String KEY_ENABLE_HSLOWPOW = "enable_hslowpow";

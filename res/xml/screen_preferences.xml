@@ -56,5 +56,19 @@
             android:summary="@string/fsync_summary_head"
             android:title="@string/fsync_title_head" />
     </PreferenceCategory>
+    
+    <PreferenceCategory android:title="@string/emulator_subcat_title">
+        <!-- Turn Screen Off -->
+        <Preference
+            android:title="@string/screenoff_title_head"
+            android:summary="@string/screenoff_summary_head"
+            android:key="screen_off" />
+        
+        <!-- Activate Power Menu -->
+        <Preference
+            android:title="@string/powermenu_title_head"
+            android:summary="@string/powermenu_summary_head"
+            android:key="power_menu" />
+    </PreferenceCategory>
 
 </PreferenceScreen>

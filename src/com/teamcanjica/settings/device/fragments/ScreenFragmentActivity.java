@@ -38,6 +38,7 @@ public class ScreenFragmentActivity extends PreferenceFragment {
 
 	private static final String FILE_SWEEP2WAKE_CODINA = "/sys/kernel/bt404/sweep2wake";
 	private static final String FILE_SWEEP2WAKE_JANICE = "/sys/kernel/mxt224e/sweep2wake";
+	private static final String FILE_EMULATOR = "/sys/kernel/abb-ponkey/emulator";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -64,7 +65,7 @@ public class ScreenFragmentActivity extends PreferenceFragment {
 
 		Log.w(TAG, "key: " + key);
 
-		if (key.equals(DeviceSettings.KEY_USE_SWEEP2WAKE));
+		if (key.equals(DeviceSettings.KEY_USE_SWEEP2WAKE)) {
 			if (Utils.isJanice()) {
 				Utils.writeValue(FILE_SWEEP2WAKE_JANICE, (((CheckBoxPreference) preference).
 						isChecked() ? "on" : "off"));
@@ -72,6 +73,13 @@ public class ScreenFragmentActivity extends PreferenceFragment {
 				Utils.writeValue(FILE_SWEEP2WAKE_CODINA, (((CheckBoxPreference) preference).
 						isChecked() ? "on" : "off"));
 			}
+		} else if (key.equals(DeviceSettings.KEY_SCREEN_OFF)) {
+			// 0 ensures least lag between press and screen off
+			Utils.writeValue(FILE_EMULATOR, "0");
+		} else if (key.equals(DeviceSettings.KEY_POWER_MENU)) {
+			// 494 is minimum threshold to activate power menu in codina testing
+			Utils.writeValue(FILE_EMULATOR, "494");
+		}
 
 		return true;
 	}

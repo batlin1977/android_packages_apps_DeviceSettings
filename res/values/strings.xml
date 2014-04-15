@@ -161,8 +161,15 @@
 
     <!-- SUBCATEGORY: FSync -->
     <string name="fsync_subcat_title">FSync</string>
-    <string name="fsync_title_head">FSync mode</string>
+    <string name="fsync_title_head">FSync Mode</string>
     <string name="fsync_summary_head">Disabling fsync can improve IO performance, but it may cause data corruption. Dynamic fsync will sync all buffers when screen turns off.</string>
+
+    <!-- SUBCATEGORY: EMULATOR -->
+    <string name="emulator_subcat_title">Emulator</string>
+    <string name="screenoff_title_head">Turn Screen Off</string>
+    <string name="screenoff_summary_head">Turn your screen off using an emulated button press.</string>
+    <string name="powermenu_title_head">Activate Power Menu</string>
+    <string name="powermenu_summary_head">Activate the power menu using an emulated button press.</string>
 
     <!-- CATEGORY: I/O -->
     <string name="io_name">I/O</string>

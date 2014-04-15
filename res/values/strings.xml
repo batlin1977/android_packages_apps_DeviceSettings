@@ -90,7 +90,7 @@
     <!-- SUBCATEGORY: Battery Stats-->
     <string name="refresh_bs_subcat_title">Battery stats</string>
     <string name="refresh_bs_title_head">Refresh battery stats</string>
-    <string name="refresh_bs_dialog_message">Battery stats succesfuly refreshed!</string>
+    <string name="refresh_bs_dialog_message">Battery stats successfully refreshed!</string>
 
     <!-- CATEGORY: AUDIO -->
     <string name="audio_name">Audio</string>

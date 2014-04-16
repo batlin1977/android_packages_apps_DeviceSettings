@@ -47,6 +47,9 @@ public class AdvancedFragmentActivity extends PreferenceFragment {
 
 		addPreferencesFromResource(R.xml.advanced_preferences);
 
+		getPreferenceScreen().findPreference(DeviceSettings.KEY_CALIBRATE_ACCELEROMETER).setEnabled(
+				((CheckBoxPreference) findPreference("use_accelerometer_calibration")).isChecked());
+
 		getActivity().getActionBar().setTitle(getResources().getString(R.string.advanced_name));
 		getActivity().getActionBar().setIcon(getResources().getDrawable(R.drawable.advanced_icon));
 
@@ -66,15 +69,17 @@ public class AdvancedFragmentActivity extends PreferenceFragment {
 		Log.w(TAG, "key: " + key);
 
 		if (key.equals(DeviceSettings.KEY_SWITCH_STORAGE)) {
-			SystemProperties.set("persist.sys.vold.switchexternal", (((CheckBoxPreference) preference).
-					isChecked() ? "1" : "0"));
+			SystemProperties.set("persist.sys.vold.switchexternal", (((CheckBoxPreference) preference)
+					.isChecked() ? "1" : "0"));
 			Utils.showDialog(getActivity(),
-					"Reboot Required",
-					"A reboot is required for the setting to take effect, reboot now?",
+					getString(R.string.reboot_dialog_head),
+					getString(R.string.reboot_dialog_message),
 					true);
 		} else if (key.equals(DeviceSettings.KEY_USE_ACCELEROMETER_CALIBRATION)) {
-			Utils.writeValue(FILE_ACCELEROMETER_CALIB, (((CheckBoxPreference) preference).
-						isChecked() ? "1" : "0"));
+			Utils.writeValue(FILE_ACCELEROMETER_CALIB, ((CheckBoxPreference) preference)
+					.isChecked());
+			getPreferenceScreen().findPreference(DeviceSettings.KEY_CALIBRATE_ACCELEROMETER).setEnabled(
+					((CheckBoxPreference) preference).isChecked());
 		} else if (key.equals(DeviceSettings.KEY_CALIBRATE_ACCELEROMETER)) {
 			// when calibration data utilization is disabled and enabled back,
 			// calibration is done at the same time by driver
@@ -85,14 +90,14 @@ public class AdvancedFragmentActivity extends PreferenceFragment {
 					getString(R.string.accelerometer_dialog_message),
 					false);
 		} else if (key.equals(DeviceSettings.KEY_DISABLE_BLN)) {
-			Utils.writeValue(FILE_BLN, (((CheckBoxPreference) preference).
-					isChecked() ? "0" : "1"));
+			Utils.writeValue(FILE_BLN, !((CheckBoxPreference) preference)
+					.isChecked());
 		} else if (key.equals(DeviceSettings.KEY_ENABLE_VOLTAGE)) {
-			Utils.writeValue(FILE_VOLTAGE1, "set_volt=" + (((CheckBoxPreference) preference).
-					isChecked() ? "1" : "0"));
+			Utils.writeValue(FILE_VOLTAGE1, "set_volt=" + (((CheckBoxPreference) preference)
+					.isChecked() ? "1" : "0 "));
 			if (Utils.isJanice()) {
-				Utils.writeValue(FILE_VOLTAGE2, "set_volt=" + (((CheckBoxPreference) preference).
-						isChecked() ? "1" : "0"));
+				Utils.writeValue(FILE_VOLTAGE2, "set_volt=" + (((CheckBoxPreference) preference)
+					.isChecked() ? "1" : "0 "));
 			}
 		}
 

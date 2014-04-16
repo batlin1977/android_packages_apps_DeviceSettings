@@ -77,8 +77,7 @@ public class ScreenFragmentActivity extends PreferenceFragment {
 			// 0 ensures least lag between press and screen off
 			Utils.writeValue(FILE_EMULATOR, "0");
 		} else if (key.equals(DeviceSettings.KEY_POWER_MENU)) {
-			// 494 is minimum threshold to activate power menu in codina testing
-			Utils.writeValue(FILE_EMULATOR, "494");
+			Utils.writeValue(FILE_EMULATOR, "525");
 		}
 
 		return true;

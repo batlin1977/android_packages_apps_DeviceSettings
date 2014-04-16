@@ -51,6 +51,9 @@ public class AudioFragmentActivity extends PreferenceFragment {
 
 		addPreferencesFromResource(R.xml.audio_preferences);
 
+		getPreferenceScreen().findPreference(DeviceSettings.KEY_ANAGAIN3_CONTROL).setEnabled(
+				((CheckBoxPreference) findPreference("enable_anagain3")).isChecked());
+
 		getActivity().getActionBar().setTitle(getResources().getString(R.string.audio_name));
 		getActivity().getActionBar().setIcon(getResources().getDrawable(R.drawable.audio_icon));
 	}
@@ -64,9 +67,10 @@ public class AudioFragmentActivity extends PreferenceFragment {
 		Log.w(TAG, "key: " + key);
 
 		if (key.equals(DeviceSettings.KEY_ENABLE_ANAGAIN3)) {
-
 			Utils.writeValue(FILE_ANAGAIN3, (((CheckBoxPreference) preference).
 					isChecked() ? "on" : "off"));
+			getPreferenceScreen().findPreference(DeviceSettings.KEY_ANAGAIN3_CONTROL).setEnabled(
+					((CheckBoxPreference) preference).isChecked());
 		} else if (key.equals(DeviceSettings.KEY_ENABLE_HSLDIGGAIN)) {
 			Utils.writeValue(FILE_HSLDIGGAIN, (((CheckBoxPreference) preference).
 					isChecked() ? "on" : "off"));

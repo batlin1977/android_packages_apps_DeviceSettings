@@ -34,12 +34,12 @@ import com.teamcanjica.settings.device.Utils;
 public class PowerFragmentActivity extends PreferenceFragment {
 
 	private static final String TAG = "NovaThor_Settings_Power";
+
 	private static final String FILE_VOTG = "/sys/kernel/abb-regu/VOTG";
 	private static final String FILE_CHARGER_CONTROL = "/sys/kernel/abb-charger/charger_curr";
 	private static final String FILE_CYCLE_CHARGING_CONTROL = "/sys/kernel/abb-fg/fg_cyc";
 	private static final String FILE_EOC = "/sys/kernel/abb-chargalg/eoc_status";
 	private static final String FILE_REFRESH_BATTERY_STATS = "/sys/kernel/abb-fg/fg_refresh";
-
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -87,7 +87,7 @@ public class PowerFragmentActivity extends PreferenceFragment {
 		} else if (key.equals(DeviceSettings.KEY_EOC)) {
 			Utils.showDialog(getActivity(),
 					getString(R.string.eoc_subcat_title),
-					"EOC Status: " + Utils.readFile(FILE_EOC),
+					getString(R.string.eoc_dialog_message) + Utils.readFile(FILE_EOC),
 					false);
 		} else if (key.equals(DeviceSettings.KEY_REFRESH_BATTERY_STATS)) {
 			Utils.writeValue(FILE_REFRESH_BATTERY_STATS, "0");
@@ -114,4 +114,5 @@ public class PowerFragmentActivity extends PreferenceFragment {
 				DeviceSettings.KEY_USE_CYCLE_CHARGING, false) ? "on" : "off");
 
 	}
+
 }

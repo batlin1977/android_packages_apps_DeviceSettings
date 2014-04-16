@@ -34,16 +34,16 @@ import com.teamcanjica.settings.device.Utils;
 public class GPUFragmentActivity extends PreferenceFragment {
 
 	private static final String TAG = "NovaThor_Settings_GPU";
-	
+
 	public static final String FILE_AUTOBOOST = "/sys/kernel/mali/mali_auto_boost";
 	public static final String FILE_FULLSPEED = "/sys/kernel/mali/mali_gpu_fullspeed";
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		addPreferencesFromResource(R.xml.gpu_preferences);
-		// Will add a GPU icon soon 
+
 		getActivity().getActionBar().setTitle(getResources().getString(R.string.gpu_name));
 		getActivity().getActionBar().setIcon(getResources().getDrawable(R.drawable.gpu_icon));
 
@@ -72,15 +72,16 @@ public class GPUFragmentActivity extends PreferenceFragment {
 
 		return true;
 	}
-	
+
 	public static void restore(Context context) {
 		SharedPreferences sharedPrefs = PreferenceManager
 				.getDefaultSharedPreferences(context);
 
 		Utils.writeValue(FILE_AUTOBOOST, sharedPrefs.getBoolean(
 				DeviceSettings.KEY_DISABLE_AUTOBOOST, false) ? "0" : "1");
-		
+
 		Utils.writeValue(FILE_FULLSPEED, sharedPrefs.getBoolean(
 				DeviceSettings.KEY_DISABLE_FULLSPEED, false) ? "0" : "1");
 	}
+
 }

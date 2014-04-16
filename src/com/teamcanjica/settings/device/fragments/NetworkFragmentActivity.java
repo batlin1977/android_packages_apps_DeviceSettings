@@ -34,6 +34,7 @@ import com.teamcanjica.settings.device.Utils;
 public class NetworkFragmentActivity extends PreferenceFragment {
 
 	private static final String TAG = "NovaThor_Settings_Network";
+
 	private static final String FILE_WIFI_PM = "/sys/module/dhd/parameters/dhdpm_fast";
 
 	@Override

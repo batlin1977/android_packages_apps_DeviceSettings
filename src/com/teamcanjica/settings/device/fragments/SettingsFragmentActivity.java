@@ -31,9 +31,9 @@ import com.teamcanjica.settings.device.DeviceSettings;
 import com.teamcanjica.settings.device.R;
 
 public class SettingsFragmentActivity extends PreferenceFragment {
-	
+
 	private static final String TAG = "NovaThor_Settings_Settings";
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,7 +43,7 @@ public class SettingsFragmentActivity extends PreferenceFragment {
 		getActivity().getActionBar().setTitle(getResources().getString(R.string.settings_name));
 		getActivity().getActionBar().setIcon(getResources().getDrawable(R.drawable.advanced_icon));
 	}
-	
+
 	@Override
 	public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
 			Preference preference) {
@@ -68,4 +68,5 @@ public class SettingsFragmentActivity extends PreferenceFragment {
 				DeviceSettings.KEY_DISABLE_RESTORE, false) ? true : false;
 
 	}
+
 }

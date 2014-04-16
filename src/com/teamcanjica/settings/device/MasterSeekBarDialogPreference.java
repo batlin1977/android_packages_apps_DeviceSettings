@@ -28,6 +28,7 @@ import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.SeekBar;
+import android.widget.Toast;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
@@ -45,6 +46,7 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
     private TextView mProgressText;
     private SeekBar mSeekBar;
     private boolean isFloat = false;
+	private static Context mCtx;
 
     private static final String FILE_READAHEADKB = "/sys/block/mmcblk0/queue/read_ahead_kb";
     private static final String FILE_CPU_VOLTAGE = "/sys/kernel/liveopp/arm_step";
@@ -82,6 +84,8 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
         setPositiveButtonText(android.R.string.ok);
         setNegativeButtonText(android.R.string.cancel);
         setDialogIcon(null);
+        
+        mCtx = context;
     }
 
     @Override
@@ -167,9 +171,9 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
         	if (mStepSize >= 1) {
         		progress = Math.round(progress / mStepSize) * mStepSize;
         	}
-        		mProgress = progress;
-        		persistInt(progress);
-        		notifyChanged();
+        	mProgress = progress;
+        	persistInt(progress);
+        	notifyChanged();
         }
     }
 
@@ -277,8 +281,20 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 		} else if (key.equals(DeviceSettings.KEY_ANAGAIN3_CONTROL)) {
 			Utils.writeValue(FILE_ANAGAIN3_CONTROL, "gain=" + String.valueOf((Integer) newValue));
 		} else if (key.equals(DeviceSettings.KEY_DISCHARGING_THRESHOLD)) {
+			// Check if discharging threshold value is less than or equal to recharging threshold
+			if ((Integer) newValue <= PreferenceManager.getDefaultSharedPreferences(mCtx).
+					getInt(DeviceSettings.KEY_RECHARGING_THRESHOLD, 5)) {
+				Toast.makeText(mCtx, R.string.invalid_value, Toast.LENGTH_SHORT).show();
+				return true;
+			}
 			Utils.writeValue(FILE_CYCLE_CHARGING, "dischar=" + String.valueOf((Integer) newValue));
 		} else if (key.equals(DeviceSettings.KEY_RECHARGING_THRESHOLD)) {
+			// Check if recharging threshold value is greater than or equal to discharging threshold
+			if ((Integer) newValue >= PreferenceManager.getDefaultSharedPreferences(mCtx).
+					getInt(DeviceSettings.KEY_DISCHARGING_THRESHOLD, 100)) {
+				Toast.makeText(mCtx, R.string.invalid_value, Toast.LENGTH_SHORT).show();
+				return true;
+			}
 			Utils.writeValue(FILE_CYCLE_CHARGING, "rechar=" + String.valueOf((Integer) newValue));
 		} else if (key.equals(DeviceSettings.KEY_CPU_VOLTAGE)) {
 			int i;
@@ -304,23 +320,27 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 		SharedPreferences sharedPrefs = PreferenceManager
 				.getDefaultSharedPreferences(context);
 
+		// Readahead kB control
 		Utils.writeValue(FILE_READAHEADKB,
 				String.valueOf(sharedPrefs.
 						getInt(DeviceSettings.KEY_READAHEADKB, 512)));
 
+		// ABBamp Audio - Anagain3 Control
 		Utils.writeValue(FILE_ANAGAIN3_CONTROL,
 				"gain=" + sharedPrefs.
 						getInt(DeviceSettings.KEY_ANAGAIN3_CONTROL, 0 ));
 
+		// Cycle Charging - Discharging threshold
 		Utils.writeValue(FILE_CYCLE_CHARGING, 
 				"dischar=" + sharedPrefs.
 						getInt(DeviceSettings.KEY_DISCHARGING_THRESHOLD, 100));
 
+		// Cycle Charging - Recharging threshold
 		Utils.writeValue(FILE_CYCLE_CHARGING,
 				"rechar=" + sharedPrefs.
-						getInt(DeviceSettings.KEY_RECHARGING_THRESHOLD, 100));
+						getInt(DeviceSettings.KEY_RECHARGING_THRESHOLD, 5));
 
-		// CPU VOLTAGE
+		// CPU Voltage
 		int i;
 		for (i = 0; voltSteps[i] != sharedPrefs.
 				getInt(DeviceSettings.KEY_CPU_VOLTAGE, voltSteps[0]); ++i) {
@@ -329,7 +349,7 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 		    Utils.writeValue(FILE_CPU_VOLTAGE + String.valueOf(j), "varm=0x" + Integer.toHexString(defaultCPUVoltValues[j] - i));
 		}
 
-		// GPU VOLTAGE
+		// GPU Voltage
 		for (i = 0; voltSteps[i] != sharedPrefs.
 				getInt(DeviceSettings.KEY_GPU_VOLTAGE, voltSteps[0]); ++i) {
 		}

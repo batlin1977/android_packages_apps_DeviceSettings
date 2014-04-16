@@ -8,6 +8,9 @@
     <!-- Action Bar -->
     <string name="action_about">About</string>
     <string name="action_settings">Settings</string>
+    
+    <!-- Errors/Warnings -->
+    <string name="invalid_value">Invalid value entered! Please re-enter a value</string>
 
     <!-- ACTIONBAR: About -->
     <string name="about_title">TeamCanjica\nNovaThor Settings</string>

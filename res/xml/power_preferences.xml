@@ -46,7 +46,7 @@
            android:summary="@string/dt_summary_head" />
         <!-- Recharging threshold -->
         <com.teamcanjica.settings.device.MasterSeekBarDialogPreference
-           android:defaultValue="100"
+           android:defaultValue="5"
            android:dialogMessage="@string/rt_dialog_message"
            android:max="100"
            teamcanjica:min="5"

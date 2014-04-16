@@ -32,6 +32,8 @@
             android:digits="0123456789"
             android:inputType="number"
             android:defaultValue="500" />
+        
+        <!-- Adjust mali boost high clock -->
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/gpu_misc_subcat_title">

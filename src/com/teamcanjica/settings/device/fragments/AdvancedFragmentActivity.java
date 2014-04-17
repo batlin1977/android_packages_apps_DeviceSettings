@@ -38,6 +38,7 @@ public class AdvancedFragmentActivity extends PreferenceFragment {
 
 	private static final String FILE_ACCELEROMETER_CALIB = "/sys/class/sensors/accelerometer_sensor/calibration";
 	private static final String FILE_BLN = "/sys/class/misc/backlightnotification/enabled";
+	private static final String FILE_BURNING_LED = "/sys/class/camera/flash/burning_led";
 	private static final String FILE_VOLTAGE1 = "/sys/kernel/liveopp/arm_step3";
 	private static final String FILE_VOLTAGE2 = "/sys/kernel/liveopp/arm_step4";
 
@@ -92,6 +93,9 @@ public class AdvancedFragmentActivity extends PreferenceFragment {
 		} else if (key.equals(DeviceSettings.KEY_DISABLE_BLN)) {
 			Utils.writeValue(FILE_BLN, !((CheckBoxPreference) preference)
 					.isChecked());
+		} else if (key.equals(DeviceSettings.KEY_BURNING_LED)) {
+			Utils.writeValue(FILE_BURNING_LED, ((CheckBoxPreference) preference)
+					.isChecked());
 		} else if (key.equals(DeviceSettings.KEY_ENABLE_VOLTAGE)) {
 			Utils.writeValue(FILE_VOLTAGE1, "set_volt=" + (((CheckBoxPreference) preference)
 					.isChecked() ? "1" : "0 "));
@@ -110,6 +114,9 @@ public class AdvancedFragmentActivity extends PreferenceFragment {
 
 		SystemProperties.set("persist.sys.vold.switchexternal", sharedPrefs.getBoolean(
 				DeviceSettings.KEY_SWITCH_STORAGE, false) ? "1" : "0");
+
+		Utils.writeValue(FILE_BURNING_LED, sharedPrefs.getBoolean(
+				DeviceSettings.KEY_BURNING_LED, false) ? "1" : "0");
 
 		Utils.writeValue(FILE_BLN, sharedPrefs.getBoolean(
 				DeviceSettings.KEY_DISABLE_BLN, false) ? "0" : "1");

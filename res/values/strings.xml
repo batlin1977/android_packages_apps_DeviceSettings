@@ -19,7 +19,7 @@
     <string name="about_translators_title">Translators</string>
     <string name="about_translators_summary">/</string>
     <string name="about_version_title">Version Number</string>
-    <string name="about_version_summary">1.0</string>
+    <string name="about_version_summary">1.1</string>
     <string name="about_copyright1">Copyright © 2013 Cyanogenmod</string>
     <string name="about_copyright2">2014 TeamCanjica</string>
 
@@ -238,6 +238,11 @@
     <string name="backlight_subcat_title">Backlight</string>
     <string name="disable_bln_title_head">Disable BLN</string>
     <string name="disable_bln_summary_head">You won\'t be able to be notified of notifications through your backlight if BLN is disabled.</string>
+
+    <!-- SUBCATEGORY: Torch-->
+    <string name="torch_subcat_title">Torch</string>
+    <string name="burning_led_title_head">Burning LED</string>
+    <string name="burning_led_summary_head">Burning LED mode for assistive light.\nWARNING: Turning this on for a long time will heat up your device, be careful!</string>
 
     <!-- SUBCATEGORY: Voltages -->
     <string name="voltages_subcat_title">Voltages</string>

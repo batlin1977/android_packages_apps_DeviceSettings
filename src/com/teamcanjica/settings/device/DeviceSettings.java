@@ -112,12 +112,11 @@ public class DeviceSettings extends Activity implements OnItemClickListener{
 	public static final String KEY_CALIBRATE_ACCELEROMETER = "calibrate_accelerometer";
 
 	// ListView
-	public static final String[] titles = new String[] { "Network",
-        "Power", "Audio", "Screen", "GPU", "I/O", "Advanced" };
-
 	public static final Integer[] images = { R.drawable.network,
         R.drawable.power, R.drawable.audio, R.drawable.screen,
 		R.drawable.gpu, R.drawable.io, R.drawable.advanced };
+
+	public String[] titles;
 
 	ListView listView;
 	List<RowItem> rowItems;
@@ -125,6 +124,9 @@ public class DeviceSettings extends Activity implements OnItemClickListener{
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+
+		titles = getResources().getStringArray(R.array.settings_entries);
+
 		// Change theme
 		SharedPreferences sharedPrefs = PreferenceManager
 				.getDefaultSharedPreferences(getBaseContext());

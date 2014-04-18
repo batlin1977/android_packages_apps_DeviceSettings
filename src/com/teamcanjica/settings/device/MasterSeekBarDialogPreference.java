@@ -32,6 +32,8 @@ import android.widget.Toast;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
+import com.teamcanjica.settings.device.fragments.AudioFragmentActivity;
+
 public class MasterSeekBarDialogPreference extends DialogPreference implements OnPreferenceChangeListener
 {
     private static final int DEFAULT_MIN_PROGRESS = 0;
@@ -52,7 +54,6 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
     private static final String FILE_CPU_VOLTAGE = "/sys/kernel/liveopp/arm_step";
     private static final String FILE_CYCLE_CHARGING = "/sys/kernel/abb-fg/fg_cyc";
     private static final String FILE_GPU_VOLTAGE = "/sys/kernel/mali/mali_dvfs_config";
-    private static final String FILE_ANAGAIN3_CONTROL = "/sys/kernel/abb-codec/anagain3";
     private static final int defaultGPUVoltValues[] = {0x26, 0x26, 0x26, 0x26, 0x26, 0x26, 0x26, 0x29, 0x2a, 0x2b, 
     	0x2c, 0x2d, 0x2f, 0x30, 0x32, 0x33, 0x34, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f};
     private static final int defaultCPUVoltValues[] = {0x18, 0x1a, 0x20, 0x24, 0x2f, 0x32, 0x3f, 0x3f, 0x3f, 0x3f};
@@ -279,7 +280,7 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 		if (key.equals(DeviceSettings.KEY_READAHEADKB)) {
 			Utils.writeValue(FILE_READAHEADKB, String.valueOf((Integer) newValue));
 		} else if (key.equals(DeviceSettings.KEY_ANAGAIN3_CONTROL)) {
-			Utils.writeValue(FILE_ANAGAIN3_CONTROL, "gain=" + String.valueOf((Integer) newValue));
+			Utils.writeValue(AudioFragmentActivity.FILE_ANAGAIN3, "gain=" + String.valueOf((Integer) newValue));
 		} else if (key.equals(DeviceSettings.KEY_DISCHARGING_THRESHOLD)) {
 			// Check if discharging threshold value is less than or equal to recharging threshold
 			if ((Integer) newValue <= PreferenceManager.getDefaultSharedPreferences(mCtx).
@@ -310,6 +311,14 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 			for (int j = 0; j <= defaultGPUVoltValues.length - 1; ++j) {
 			    Utils.writeValue(FILE_GPU_VOLTAGE, j + " vape=0x" + Integer.toHexString(defaultGPUVoltValues[j] - i));
 			}
+		} else if (key.equals(DeviceSettings.KEY_HSLDIGGAIN_CONTROL)) {
+			Utils.writeValue(AudioFragmentActivity.FILE_HSLDIGGAIN, "gain=" + String.valueOf((Integer) newValue));
+		} else if (key.equals(DeviceSettings.KEY_HSRDIGGAIN_CONTROL)) {
+			Utils.writeValue(AudioFragmentActivity.FILE_HSRDIGGAIN, "gain=" + String.valueOf((Integer) newValue));
+		} else if (key.equals(DeviceSettings.KEY_CLASSDHPG_CONTROL)) {
+			Utils.writeValue(AudioFragmentActivity.FILE_CLASSDHPG, "gain=" + String.valueOf((Integer) newValue));
+		} else if (key.equals(DeviceSettings.KEY_CLASSDWG_CONTROL)) {
+			Utils.writeValue(AudioFragmentActivity.FILE_CLASSDWG, "gain=" + String.valueOf((Integer) newValue));
 		}
 
 		return true;
@@ -326,9 +335,39 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 						getInt(DeviceSettings.KEY_READAHEADKB, 512)));
 
 		// ABBamp Audio - Anagain3 Control
-		Utils.writeValue(FILE_ANAGAIN3_CONTROL,
+		Utils.writeValue(AudioFragmentActivity.FILE_ANAGAIN3,
 				"gain=" + sharedPrefs.
-						getInt(DeviceSettings.KEY_ANAGAIN3_CONTROL, 0 ));
+						getInt(DeviceSettings.KEY_ANAGAIN3_CONTROL, 0));
+		
+		// ABBamp Audio - HsLDigGain Control
+		Utils.writeValue(AudioFragmentActivity.FILE_HSLDIGGAIN,
+				"gain=" + sharedPrefs.
+						getInt(DeviceSettings.KEY_HSRDIGGAIN_CONTROL, 4));
+				
+		// ABBamp Audio - HsRDigGain Control
+		Utils.writeValue(AudioFragmentActivity.FILE_HSRDIGGAIN,
+				"gain=" + sharedPrefs.
+						getInt(DeviceSettings.KEY_HSRDIGGAIN_CONTROL, 4));
+		
+		// ABBamp Audio - ClassDHPG Control
+		Utils.writeValue(AudioFragmentActivity.FILE_CLASSDHPG,
+				"gain=" + sharedPrefs.
+						getInt(DeviceSettings.KEY_CLASSDHPG_CONTROL, 10));
+		
+		// ABBamp Audio - ClassDWG Control
+		Utils.writeValue(AudioFragmentActivity.FILE_CLASSDWG,
+			"gain=" + sharedPrefs.
+					getInt(DeviceSettings.KEY_CLASSDWG_CONTROL, 10));
+		
+		// ABBamp Audio - ADDigGain2 Control
+		Utils.writeValue(AudioFragmentActivity.FILE_ADDIGGAIN2,
+			"gain=" + sharedPrefs.
+					getInt(DeviceSettings.KEY_ADDIGGAIN2_CONTROL, 25));
+		
+		// ABBamp Audio - EarDigGain Control
+		Utils.writeValue(AudioFragmentActivity.FILE_EARDIGGAIN,
+			"gain=" + sharedPrefs.
+					getInt(DeviceSettings.KEY_EARDIGGAIN_CONTROL, 4));
 
 		// Cycle Charging - Discharging threshold
 		Utils.writeValue(FILE_CYCLE_CHARGING, 

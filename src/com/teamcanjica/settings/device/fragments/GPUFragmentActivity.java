@@ -35,8 +35,8 @@ public class GPUFragmentActivity extends PreferenceFragment {
 
 	private static final String TAG = "NovaThor_Settings_GPU";
 
-	public static final String FILE_AUTOBOOST = "/sys/kernel/mali/mali_auto_boost";
-	public static final String FILE_FULLSPEED = "/sys/kernel/mali/mali_gpu_fullspeed";
+	private static final String FILE_AUTOBOOST = "/sys/kernel/mali/mali_auto_boost";
+	private static final String FILE_FULLSPEED = "/sys/kernel/mali/mali_gpu_fullspeed";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

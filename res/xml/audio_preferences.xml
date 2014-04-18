@@ -14,21 +14,39 @@
            android:dialogMessage="@string/anagain3_control_dialog_message"
            android:max="15"
            teamcanjica:min="0"
-           teamcanjica:progressTextSuffix=""
-           teamcanjica:stepSize="1"
            android:key="anagain3_control"
-           android:title="@string/anagain3_control_title_head" />
+           android:title="@string/anagain3_control_title_head"
+           android:summary="@string/gain_control_summary_head" />
+
         <!-- HsLDigGain -->
         <CheckBoxPreference
             android:key="enable_hsldiggain"
             android:summary="@string/enable_hsldiggain_summary_head"
             android:title="@string/enable_hsldiggain_title_head" />
+        <!-- HsLDigGain Control -->
+        <com.teamcanjica.settings.device.MasterSeekBarDialogPreference
+           android:defaultValue="0"
+           android:dialogMessage="@string/hsldiggain_control_dialog_message"
+           android:max="15"
+           teamcanjica:min="0"
+           android:key="hsldiggain_control"
+           android:title="@string/hsldiggain_control_title_head"
+           android:summary="@string/gain_control_summary_head" />
         
         <!-- HsRDigGain -->
         <CheckBoxPreference
             android:key="enable_hsrdiggain"
             android:summary="@string/enable_hsrdiggain_summary_head"
             android:title="@string/enable_hsrdiggain_title_head" />
+        <!-- HsRDigGain Control -->
+        <com.teamcanjica.settings.device.MasterSeekBarDialogPreference
+           android:defaultValue="0"
+           android:dialogMessage="@string/hsrdiggain_control_dialog_message"
+           android:max="15"
+           teamcanjica:min="0"
+           android:key="hsrdiggain_control"
+           android:title="@string/hsrdiggain_control_title_head"
+           android:summary="@string/gain_control_summary_head" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/miscgain_subcat_title" >
@@ -37,18 +55,45 @@
             android:key="enable_addiggain2"
             android:summary="@string/enable_addiggain2_summary_head"
             android:title="@string/enable_addiggain2_title_head" />
+        <!-- ADDigGain2 Control -->
+        <com.teamcanjica.settings.device.MasterSeekBarDialogPreference
+           android:defaultValue="25"
+           android:dialogMessage="@string/addiggain2_control_dialog_message"
+           android:max="63"
+           teamcanjica:min="0"
+           android:key="addiggain2_control"
+           android:title="@string/addiggain2_control_title_head"
+           android:summary="@string/gain_control_summary_head" />
         
         <!-- EarDigGain -->
         <CheckBoxPreference
             android:key="enable_eardiggain"
             android:summary="@string/enable_eardiggain_summary_head"
             android:title="@string/enable_eardiggain_title_head" />
+        <!-- EarDigGain Control -->
+        <com.teamcanjica.settings.device.MasterSeekBarDialogPreference
+           android:defaultValue="4"
+           android:dialogMessage="@string/eardiggain_control_dialog_message"
+           android:max="15"
+           teamcanjica:min="0"
+           android:key="eardiggain_control"
+           android:title="@string/eardiggain_control_title_head"
+           android:summary="@string/gain_control_summary_head" />
                 
         <!-- ClassDHPG -->
         <CheckBoxPreference
             android:key="enable_classdhpg"
             android:summary="@string/enable_classdhpg_summary_head"
             android:title="@string/enable_classdhpg_title_head" />
+        <!-- ClassDHPG Control -->
+        <com.teamcanjica.settings.device.MasterSeekBarDialogPreference
+           android:defaultValue="10"
+           android:dialogMessage="@string/classdhpg_control_dialog_message"
+           android:max="10"
+           teamcanjica:min="0"
+           android:key="classdhpg_control"
+           android:title="@string/classdhpg_control_title_head"
+           android:summary="@string/gain1_control_summary_head" />
     </PreferenceCategory>
         
     <PreferenceCategory android:title="@string/powermodes_subcat_title" >
@@ -57,12 +102,22 @@
             android:key="enable_hslowpow"
             android:summary="@string/enable_hslowpow_summary_head"
             android:title="@string/enable_hslowpow_title_head" />
+        <!-- HsLowPow Mode -->
+        <CheckBoxPreference
+            android:key="enable_hslpmode"
+            android:summary="@string/enable_hslpmode_summary_head"
+            android:title="@string/enable_hslpmode_title_head" />
         
         <!-- HsDacLowPow -->
         <CheckBoxPreference
             android:key="enable_hsdaclowpow"
             android:summary="@string/enable_hsdaclowpow_summary_head"
             android:title="@string/enable_hsdaclowpow_title_head" />
+        <!-- HsDacLowPow Mode -->
+        <CheckBoxPreference
+            android:key="enable_hsdaclpmode"
+            android:summary="@string/enable_hsdaclpmode_summary_head"
+            android:title="@string/enable_hsdaclpmode_title_head" />
     </PreferenceCategory>
         
     <PreferenceCategory android:title="@string/miscellaneous_subcat_title" >
@@ -71,12 +126,26 @@
             android:key="enable_hshpen"
             android:summary="@string/enable_hshpen_summary_head"
             android:title="@string/enable_hshpen_title_head" />
+        <!-- HsHpEn Mode -->
+        <CheckBoxPreference
+            android:key="enable_hpassfilter"
+            android:summary="@string/enable_hpassfilter_summary_head"
+            android:title="@string/enable_hpassfilter_title_head" />
         
         <!-- ClassDDithWGain -->
         <CheckBoxPreference
             android:key="enable_classdwg"
             android:summary="@string/enable_classdwg_summary_head"
             android:title="@string/enable_classdwg_title_head" />
+        <!-- ClassDDithWGain Control -->
+        <com.teamcanjica.settings.device.MasterSeekBarDialogPreference
+           android:defaultValue="10"
+           android:dialogMessage="@string/classdwg_control_dialog_message"
+           android:max="10"
+           teamcanjica:min="0"
+           android:key="classdwg_control"
+           android:title="@string/classdwg_control_title_head"
+           android:summary="@string/gain1_control_summary_head" />
     </PreferenceCategory>
 
 </PreferenceScreen>

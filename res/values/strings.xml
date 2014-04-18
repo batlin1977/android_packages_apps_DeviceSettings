@@ -102,6 +102,9 @@
     <!-- SUBCATEGORY: Headset Gain -->
     <string name="headsetgain_subcat_title">Headset Gain</string>
     
+    <string name="gain_control_summary_head">Adjust the amount of gain, the lower the value, the greater the gain.</string>
+    <string name="gain1_control_summary_head">Adjust the amount of gain, the greater the value, the greater the gain.</string>
+    
     <string name="enable_anagain3_title_head">AnaGain3</string>
     <string name="enable_anagain3_summary_head">Enable headset analog gain path.</string>
     
@@ -111,8 +114,14 @@
     <string name="enable_hsldiggain_title_head">HsLDigGain</string>
     <string name="enable_hsldiggain_summary_head">Enable headset left digital path gain.</string>
     
+    <string name="hsldiggain_control_title_head">HsLDigGain Gain Control</string>
+    <string name="hsldiggain_control_dialog_message">Select the amount of volume gain for HsLDigGain.</string>
+    
     <string name="enable_hsrdiggain_title_head">HsRDigGain</string>
     <string name="enable_hsrdiggain_summary_head">Enable headset right digital path gain.</string>
+    
+    <string name="hsrdiggain_control_title_head">HsRDigGain Gain Control</string>
+    <string name="hsrdiggain_control_dialog_message">Select the amount of volume gain for HsRDigGain.</string>
         
     <!-- SUBCATEGORY: Misc Gain -->
     <string name="miscgain_subcat_title">Misc Gain</string>
@@ -120,29 +129,47 @@
     <string name="enable_classdhpg_title_head">ClassDHPG</string>
     <string name="enable_classdhpg_summary_head">Enable ClassD amplifier high-pass gain.</string>
     
+    <string name="classdhpg_control_title_head">ClassDHPG Gain Control</string>
+    <string name="classdhpg_control_dialog_message">Select the amount of volume gain for ClassDHPG.</string>
+    
     <string name="enable_addiggain2_title_head">ADDigGain2</string>
     <string name="enable_addiggain2_summary_head">Enable phone microphone digital path gain.</string>
     
+    <string name="addiggain2_control_title_head">ADDigGain2 Gain Control</string>
+    <string name="addiggain2_control_dialog_message">Select the amount of volume gain for ADDigGain2.</string>
+    
     <string name="enable_eardiggain_title_head">EarDigGain</string>
     <string name="enable_eardiggain_summary_head">Enable earpiece digital path gain.</string>
+    
+    <string name="eardiggain_control_title_head">EarDigGain Gain Control</string>
+    <string name="eardiggain_control_dialog_message">Select the amount of volume gain for EarDigGain.</string>
     
     <!-- SUBCATEGORY: Power Modes -->
     <string name="powermodes_subcat_title">Power Modes</string>
 
     <string name="enable_hslowpow_title_head">HsLowPow</string>
     <string name="enable_hslowpow_summary_head">Enable headset driver low power mode.</string>
+    <string name="enable_hslpmode_title_head">Enable HsLowPow LP mode</string>
+    <string name="enable_hslpmode_summary_head">Enable the Hs low powered mode to use less power but have lower quality audio.</string>
     
     <string name="enable_hsdaclowpow_title_head">HsDacLowPow</string>
     <string name="enable_hsdaclowpow_summary_head">Enable headset digital-to-analog converter low power mode.</string>
+    <string name="enable_hsdaclpmode_title_head">Enable HsDacLowPow LP mode</string>
+    <string name="enable_hsdaclpmode_summary_head">Enable the HsDac low powered mode to use less power but have lower quality audio.</string>
 
     <!-- SUBCATEGORY: Miscellaneous -->
     <string name="miscellaneous_subcat_title">Miscellaneous</string>
     
     <string name="enable_hshpen_title_head">HsHpEn</string>
     <string name="enable_hshpen_summary_head">Enable headset high pass filter.</string>
+    <string name="enable_hpassfilter_title_head">Enable HsHpEn HighPass Filter</string>
+    <string name="enable_hpassfilter_summary_head">Enable the HsHpEn high pass filter to reduce sub-noise.</string>
     
     <string name="enable_classdwg_title_head">ClassDDithWGain</string>
     <string name="enable_classdwg_summary_head">Enable control for the white component of dithering filter.</string>
+    
+    <string name="classdwg_control_title_head">ClassDDithWGain Gain Control</string>
+    <string name="classdwg_control_dialog_message">Select the amount of volume gain for ClassDDithWGain.</string>
 
     <!-- CATEGORY: SCREEN -->
     <string name="screen_name">Screen</string>

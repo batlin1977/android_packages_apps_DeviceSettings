@@ -44,6 +44,8 @@ public class AudioFragmentActivity extends PreferenceFragment {
 	public static final String FILE_CLASSDWG = "/sys/kernel/abb-codec/classdwg";
 	public static final String FILE_ADDIGGAIN2 = "/sys/kernel/abb-codec/addiggain2";
 	public static final String FILE_EARDIGGAIN = "/sys/kernel/abb-codec/eardiggain";
+	public static final String FILE_LPA_MODE = "/sys/kernel/abb-codec/lpa_mode";
+	public static final String FILE_CHARGEPUMP = "/sys/kernel/abb-codec/chargepump";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -143,6 +145,12 @@ public class AudioFragmentActivity extends PreferenceFragment {
 		} else if (key.equals(DeviceSettings.KEY_ENABLE_HSDACLPMODE)) {
 			Utils.writeValue(FILE_HSDACLOWPOW, "mode=" + (((CheckBoxPreference) preference).
 					isChecked() ? "1" : "0"));
+		} else if (key.equals(DeviceSettings.KEY_ENABLE_LPA_MODE)) {
+			Utils.writeValue(FILE_LPA_MODE, (((CheckBoxPreference) preference).
+					isChecked() ? "on" : "off"));
+		} else if (key.equals(DeviceSettings.KEY_USE_CHARGEPUMP)) {
+			Utils.writeValue(FILE_CHARGEPUMP, ((CheckBoxPreference) preference).
+					isChecked());
 		}
 
 		return true;
@@ -157,19 +165,19 @@ public class AudioFragmentActivity extends PreferenceFragment {
 
 		Utils.writeValue(FILE_HSLDIGGAIN, sharedPrefs.getBoolean(
 				DeviceSettings.KEY_ENABLE_HSLDIGGAIN, false) ? "on" : "off");
-		
+
 		Utils.writeValue(FILE_HSRDIGGAIN, sharedPrefs.getBoolean(
 				DeviceSettings.KEY_ENABLE_HSRDIGGAIN, false) ? "on" : "off");
 
 		Utils.writeValue(FILE_HSLOWPOW, sharedPrefs.getBoolean(
 				DeviceSettings.KEY_ENABLE_HSLOWPOW, false) ? "on" : "off");
-		
+
 		Utils.writeValue(FILE_HSLOWPOW, "mode=" + String.valueOf(sharedPrefs.getBoolean(
 				DeviceSettings.KEY_ENABLE_HSLPMODE, false) ? "1" : "0"));
 
 		Utils.writeValue(FILE_HSDACLOWPOW, sharedPrefs.getBoolean(
 				DeviceSettings.KEY_ENABLE_HSDACLOWPOW, false) ? "on" : "off");
-		
+
 		Utils.writeValue(FILE_HSDACLOWPOW, "mode=" + String.valueOf(sharedPrefs.getBoolean(
 				DeviceSettings.KEY_ENABLE_HSDACLPMODE, false) ? "1" : "0"));
 
@@ -181,12 +189,18 @@ public class AudioFragmentActivity extends PreferenceFragment {
 
 		Utils.writeValue(FILE_CLASSDWG, sharedPrefs.getBoolean(
 				DeviceSettings.KEY_ENABLE_CLASSDWG, false) ? "on" : "off");
-		
+
 		Utils.writeValue(FILE_ADDIGGAIN2, sharedPrefs.getBoolean(
 				DeviceSettings.KEY_ENABLE_ADDIGGAIN2, false) ? "on" : "off");
 
 		Utils.writeValue(FILE_EARDIGGAIN, sharedPrefs.getBoolean(
 				DeviceSettings.KEY_ENABLE_EARDIGGAIN, false) ? "on" : "off");
+
+		Utils.writeValue(FILE_LPA_MODE, sharedPrefs.getBoolean(
+				DeviceSettings.KEY_ENABLE_LPA_MODE, false) ? "on" : "off");
+
+		Utils.writeValue(FILE_CHARGEPUMP, sharedPrefs.getBoolean(
+				DeviceSettings.KEY_USE_CHARGEPUMP, false) ? "1" : "0");
 	}
 
 }

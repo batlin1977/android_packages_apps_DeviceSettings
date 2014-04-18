@@ -97,6 +97,18 @@
     </PreferenceCategory>
         
     <PreferenceCategory android:title="@string/powermodes_subcat_title" >
+        <!-- LPA Mode -->
+        <CheckBoxPreference
+            android:key="enable_lpa_mode"
+            android:summary="@string/enable_lpa_mode_summary_head"
+            android:title="@string/enable_lpa_mode_title_head" />
+
+        <!-- Chargepump -->
+        <CheckBoxPreference
+            android:key="use_chargepump"
+            android:summary="@string/use_chargepump_summary_head"
+            android:title="@string/use_chargepump_title_head" />
+
         <!-- HsLowPow -->
         <CheckBoxPreference
             android:key="enable_hslowpow"

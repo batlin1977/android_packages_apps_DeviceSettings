@@ -276,12 +276,35 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 	public boolean onPreferenceChange(Preference preference, Object newValue) {
 
 		String key = preference.getKey();
+		
 
+		// ReadAheadKB
 		if (key.equals(DeviceSettings.KEY_READAHEADKB)) {
 			Utils.writeValue(FILE_READAHEADKB, String.valueOf((Integer) newValue));
-		} else if (key.equals(DeviceSettings.KEY_ANAGAIN3_CONTROL)) {
-			Utils.writeValue(AudioFragmentActivity.FILE_ANAGAIN3, "gain=" + String.valueOf((Integer) newValue));
-		} else if (key.equals(DeviceSettings.KEY_DISCHARGING_THRESHOLD)) {
+		}	
+		
+		// CPU Voltage
+		else if (key.equals(DeviceSettings.KEY_CPU_VOLTAGE)) {
+			int i;
+			for (i = 0; voltSteps[i] != (Integer) (Math.round((Integer) newValue / 12) * 12); ++i) {
+			}
+			for (int j = 0; j <= defaultCPUVoltValues.length - 1; ++j) {
+			    Utils.writeValue(FILE_CPU_VOLTAGE + String.valueOf(j), "varm=0x" + Integer.toHexString(defaultCPUVoltValues[j] - i));
+			}
+		}
+		
+		// GPU Voltage
+		else if (key.equals(DeviceSettings.KEY_GPU_VOLTAGE)) {
+			int i;
+			for (i = 0; voltSteps[i] != (Integer) (Math.round((Integer) newValue / 12) * 12); ++i) {
+			}
+			for (int j = 0; j <= defaultGPUVoltValues.length - 1; ++j) {
+			    Utils.writeValue(FILE_GPU_VOLTAGE, j + " vape=0x" + Integer.toHexString(defaultGPUVoltValues[j] - i));
+			}
+		}	
+		
+		// Discharging Threshold
+		else if (key.equals(DeviceSettings.KEY_DISCHARGING_THRESHOLD)) {
 			// Check if discharging threshold value is less than or equal to recharging threshold
 			if ((Integer) newValue <= PreferenceManager.getDefaultSharedPreferences(mCtx).
 					getInt(DeviceSettings.KEY_RECHARGING_THRESHOLD, 5)) {
@@ -289,7 +312,10 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 				return true;
 			}
 			Utils.writeValue(FILE_CYCLE_CHARGING, "dischar=" + String.valueOf((Integer) newValue));
-		} else if (key.equals(DeviceSettings.KEY_RECHARGING_THRESHOLD)) {
+		}
+		
+		// Recharging Threshold
+		else if (key.equals(DeviceSettings.KEY_RECHARGING_THRESHOLD)) {
 			// Check if recharging threshold value is greater than or equal to discharging threshold
 			if ((Integer) newValue >= PreferenceManager.getDefaultSharedPreferences(mCtx).
 					getInt(DeviceSettings.KEY_DISCHARGING_THRESHOLD, 100)) {
@@ -297,28 +323,41 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 				return true;
 			}
 			Utils.writeValue(FILE_CYCLE_CHARGING, "rechar=" + String.valueOf((Integer) newValue));
-		} else if (key.equals(DeviceSettings.KEY_CPU_VOLTAGE)) {
-			int i;
-			for (i = 0; voltSteps[i] != (Integer) (Math.round((Integer) newValue / 12) * 12); ++i) {
-			}
-			for (int j = 0; j <= defaultCPUVoltValues.length - 1; ++j) {
-			    Utils.writeValue(FILE_CPU_VOLTAGE + String.valueOf(j), "varm=0x" + Integer.toHexString(defaultCPUVoltValues[j] - i));
-			}
-		} else if (key.equals(DeviceSettings.KEY_GPU_VOLTAGE)) {
-			int i;
-			for (i = 0; voltSteps[i] != (Integer) (Math.round((Integer) newValue / 12) * 12); ++i) {
-			}
-			for (int j = 0; j <= defaultGPUVoltValues.length - 1; ++j) {
-			    Utils.writeValue(FILE_GPU_VOLTAGE, j + " vape=0x" + Integer.toHexString(defaultGPUVoltValues[j] - i));
-			}
-		} else if (key.equals(DeviceSettings.KEY_HSLDIGGAIN_CONTROL)) {
-			Utils.writeValue(AudioFragmentActivity.FILE_HSLDIGGAIN, "gain=" + String.valueOf((Integer) newValue));
-		} else if (key.equals(DeviceSettings.KEY_HSRDIGGAIN_CONTROL)) {
-			Utils.writeValue(AudioFragmentActivity.FILE_HSRDIGGAIN, "gain=" + String.valueOf((Integer) newValue));
-		} else if (key.equals(DeviceSettings.KEY_CLASSDHPG_CONTROL)) {
+		}
+		
+		// ABBamp Audio - ADDigGain2 Control
+		else if (key.equals(DeviceSettings.KEY_ADDIGGAIN2_CONTROL)) {
+			Utils.writeValue(AudioFragmentActivity.FILE_ADDIGGAIN2, "gain=" + String.valueOf((Integer) newValue));
+	    }
+		
+		// ABBamp Audio - Anagain3 Control
+		else if (key.equals(DeviceSettings.KEY_ANAGAIN3_CONTROL)) {
+			Utils.writeValue(AudioFragmentActivity.FILE_ANAGAIN3, "gain=" + String.valueOf((Integer) newValue));
+	    }
+		
+		// ABBamp Audio - ClassDHPG Control
+		else if (key.equals(DeviceSettings.KEY_CLASSDHPG_CONTROL)) {
 			Utils.writeValue(AudioFragmentActivity.FILE_CLASSDHPG, "gain=" + String.valueOf((Integer) newValue));
-		} else if (key.equals(DeviceSettings.KEY_CLASSDWG_CONTROL)) {
+		}
+		
+		// ABBamp Audio - ClassDWG Control
+		else if (key.equals(DeviceSettings.KEY_CLASSDWG_CONTROL)) {
 			Utils.writeValue(AudioFragmentActivity.FILE_CLASSDWG, "gain=" + String.valueOf((Integer) newValue));
+		}
+		
+		// ABBamp Audio - EarDigGain Control
+		else if (key.equals(DeviceSettings.KEY_EARDIGGAIN_CONTROL)) {
+			Utils.writeValue(AudioFragmentActivity.FILE_EARDIGGAIN, "gain=" + String.valueOf((Integer) newValue));
+		}
+		
+		// ABBamp Audio - HsLDigGain Control
+		else if (key.equals(DeviceSettings.KEY_HSLDIGGAIN_CONTROL)) {
+			Utils.writeValue(AudioFragmentActivity.FILE_HSLDIGGAIN, "gain=" + String.valueOf((Integer) newValue));
+		}
+		
+		// ABBamp Audio - HsRDigGain Control
+		else if (key.equals(DeviceSettings.KEY_HSRDIGGAIN_CONTROL)) {
+			Utils.writeValue(AudioFragmentActivity.FILE_HSRDIGGAIN, "gain=" + String.valueOf((Integer) newValue));
 		}
 
 		return true;
@@ -334,41 +373,55 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 				String.valueOf(sharedPrefs.
 						getInt(DeviceSettings.KEY_READAHEADKB, 512)));
 
-		// ABBamp Audio - Anagain3 Control
-		Utils.writeValue(AudioFragmentActivity.FILE_ANAGAIN3,
-				"gain=" + sharedPrefs.
-						getInt(DeviceSettings.KEY_ANAGAIN3_CONTROL, 0));
-		
-		// ABBamp Audio - HsLDigGain Control
-		Utils.writeValue(AudioFragmentActivity.FILE_HSLDIGGAIN,
-				"gain=" + sharedPrefs.
-						getInt(DeviceSettings.KEY_HSRDIGGAIN_CONTROL, 4));
-				
-		// ABBamp Audio - HsRDigGain Control
-		Utils.writeValue(AudioFragmentActivity.FILE_HSRDIGGAIN,
-				"gain=" + sharedPrefs.
-						getInt(DeviceSettings.KEY_HSRDIGGAIN_CONTROL, 4));
-		
-		// ABBamp Audio - ClassDHPG Control
-		Utils.writeValue(AudioFragmentActivity.FILE_CLASSDHPG,
-				"gain=" + sharedPrefs.
-						getInt(DeviceSettings.KEY_CLASSDHPG_CONTROL, 10));
-		
-		// ABBamp Audio - ClassDWG Control
-		Utils.writeValue(AudioFragmentActivity.FILE_CLASSDWG,
-			"gain=" + sharedPrefs.
-					getInt(DeviceSettings.KEY_CLASSDWG_CONTROL, 10));
-		
 		// ABBamp Audio - ADDigGain2 Control
+		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_ADDIGGAIN2, false) == true) {
 		Utils.writeValue(AudioFragmentActivity.FILE_ADDIGGAIN2,
 			"gain=" + sharedPrefs.
 					getInt(DeviceSettings.KEY_ADDIGGAIN2_CONTROL, 25));
+		}
+		
+		// ABBamp Audio - Anagain3 Control
+		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_ANAGAIN3, false) == true) {
+			Utils.writeValue(AudioFragmentActivity.FILE_ANAGAIN3,
+					"gain=" + sharedPrefs.
+							getInt(DeviceSettings.KEY_ANAGAIN3_CONTROL, 0));
+		}
+		
+		// ABBamp Audio - ClassDHPG Control
+		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_CLASSDHPG, false) == true) {
+		Utils.writeValue(AudioFragmentActivity.FILE_CLASSDHPG,
+				"gain=" + sharedPrefs.
+						getInt(DeviceSettings.KEY_CLASSDHPG_CONTROL, 10));
+		}
+		
+		// ABBamp Audio - ClassDWG Control
+		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_CLASSDWG, false) == true) {
+		Utils.writeValue(AudioFragmentActivity.FILE_CLASSDWG,
+			"gain=" + sharedPrefs.
+					getInt(DeviceSettings.KEY_CLASSDWG_CONTROL, 10));
+		}
 		
 		// ABBamp Audio - EarDigGain Control
+		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_EARDIGGAIN, false) == true) {
 		Utils.writeValue(AudioFragmentActivity.FILE_EARDIGGAIN,
 			"gain=" + sharedPrefs.
 					getInt(DeviceSettings.KEY_EARDIGGAIN_CONTROL, 4));
-
+		}
+		
+		// ABBamp Audio - HsLDigGain Control
+		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_HSLDIGGAIN, false) == true) {
+		Utils.writeValue(AudioFragmentActivity.FILE_HSLDIGGAIN,
+				"gain=" + sharedPrefs.
+						getInt(DeviceSettings.KEY_HSLDIGGAIN_CONTROL, 4));
+		}		
+		
+		// ABBamp Audio - HsRDigGain Control
+		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_HSRDIGGAIN, false) == true) {
+		Utils.writeValue(AudioFragmentActivity.FILE_HSRDIGGAIN,
+				"gain=" + sharedPrefs.
+						getInt(DeviceSettings.KEY_HSRDIGGAIN_CONTROL, 4));
+		}
+		
 		// Cycle Charging - Discharging threshold
 		Utils.writeValue(FILE_CYCLE_CHARGING, 
 				"dischar=" + sharedPrefs.

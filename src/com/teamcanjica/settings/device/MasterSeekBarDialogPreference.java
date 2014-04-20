@@ -328,12 +328,12 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 		// ABBamp Audio - ADDigGain2 Control
 		else if (key.equals(DeviceSettings.KEY_ADDIGGAIN2_CONTROL)) {
 			Utils.writeValue(AudioFragmentActivity.FILE_ADDIGGAIN2, "gain=" + String.valueOf((Integer) newValue));
-	    }
+		}
 		
 		// ABBamp Audio - Anagain3 Control
 		else if (key.equals(DeviceSettings.KEY_ANAGAIN3_CONTROL)) {
 			Utils.writeValue(AudioFragmentActivity.FILE_ANAGAIN3, "gain=" + String.valueOf((Integer) newValue));
-	    }
+		}
 		
 		// ABBamp Audio - ClassDHPG Control
 		else if (key.equals(DeviceSettings.KEY_CLASSDHPG_CONTROL)) {

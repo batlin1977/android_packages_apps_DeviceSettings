@@ -153,23 +153,17 @@
     <string name="use_chargepump_title_head">Headset Charge Pump</string>
     <string name="use_chargepump_summary_head">Enable charge pump to use dynamic voltage supply, lower power cost.\nLeave disabled if you want to use fixed 1.8V supply.</string>
 
-    <string name="enable_hslowpow_title_head">HsLowPow</string>
-    <string name="enable_hslowpow_summary_head">Enable headset driver low power mode.</string>
-    <string name="enable_hslpmode_title_head">Enable HsLowPow LP mode</string>
-    <string name="enable_hslpmode_summary_head">Enable the Hs low powered mode to use less power but have lower quality audio.</string>
+    <string name="enable_hslowpow_title_head">Enable HsLowPow</string>
+    <string name="enable_hslowpow_summary_head">Enable the Hs low powered mode to use less power but have lower quality audio.</string>
     
-    <string name="enable_hsdaclowpow_title_head">HsDacLowPow</string>
-    <string name="enable_hsdaclowpow_summary_head">Enable headset digital-to-analog converter low power mode.</string>
-    <string name="enable_hsdaclpmode_title_head">Enable HsDacLowPow LP mode</string>
-    <string name="enable_hsdaclpmode_summary_head">Enable the HsDac low powered mode to use less power but have lower quality audio.</string>
+    <string name="enable_hsdaclowpow_title_head">Enable HsDacLowPow</string>
+    <string name="enable_hsdaclowpow_summary_head">Enable the HsDac low powered mode to use less power but have lower quality audio.</string>
 
     <!-- SUBCATEGORY: Miscellaneous -->
     <string name="miscellaneous_subcat_title">Miscellaneous</string>
     
-    <string name="enable_hshpen_title_head">HsHpEn</string>
-    <string name="enable_hshpen_summary_head">Enable headset high pass filter.</string>
-    <string name="enable_hpassfilter_title_head">Enable HsHpEn HighPass Filter</string>
-    <string name="enable_hpassfilter_summary_head">Enable the HsHpEn high pass filter to reduce sub-noise.</string>
+    <string name="enable_hshpen_title_head">Enable HsHpEn</string>
+    <string name="enable_hshpen_summary_head">Enable the HsHpEn high pass filter to reduce sub-noise.</string>
     
     <string name="enable_classdwg_title_head">ClassDDithWGain</string>
     <string name="enable_classdwg_summary_head">Enable control for the white component of dithering filter.</string>

@@ -69,11 +69,8 @@ public class DeviceSettings extends Activity implements OnItemClickListener{
 	public static final String KEY_ENABLE_HSRDIGGAIN = "enable_hsrdiggain";
 	public static final String KEY_HSRDIGGAIN_CONTROL = "hsrdiggain_control";
 	public static final String KEY_ENABLE_HSLOWPOW = "enable_hslowpow";
-	public static final String KEY_ENABLE_HSLPMODE = "enable_hslpmode";
 	public static final String KEY_ENABLE_HSDACLOWPOW = "enable_hsdaclowpow";
-	public static final String KEY_ENABLE_HSDACLPMODE = "enable_hsdaclpmode";
 	public static final String KEY_ENABLE_HSHPEN = "enable_hshpen";
-	public static final String KEY_ENABLE_HPASSFILTER = "enable_hpassfilter";
 	public static final String KEY_ENABLE_CLASSDHPG = "enable_classdhpg";
 	public static final String KEY_CLASSDHPG_CONTROL = "classdhpg_control";
 	public static final String KEY_ENABLE_CLASSDWG = "enable_classdwg";

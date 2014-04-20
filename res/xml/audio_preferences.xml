@@ -114,22 +114,12 @@
             android:key="enable_hslowpow"
             android:summary="@string/enable_hslowpow_summary_head"
             android:title="@string/enable_hslowpow_title_head" />
-        <!-- HsLowPow Mode -->
-        <CheckBoxPreference
-            android:key="enable_hslpmode"
-            android:summary="@string/enable_hslpmode_summary_head"
-            android:title="@string/enable_hslpmode_title_head" />
         
         <!-- HsDacLowPow -->
         <CheckBoxPreference
             android:key="enable_hsdaclowpow"
             android:summary="@string/enable_hsdaclowpow_summary_head"
             android:title="@string/enable_hsdaclowpow_title_head" />
-        <!-- HsDacLowPow Mode -->
-        <CheckBoxPreference
-            android:key="enable_hsdaclpmode"
-            android:summary="@string/enable_hsdaclpmode_summary_head"
-            android:title="@string/enable_hsdaclpmode_title_head" />
     </PreferenceCategory>
         
     <PreferenceCategory android:title="@string/miscellaneous_subcat_title" >
@@ -138,11 +128,6 @@
             android:key="enable_hshpen"
             android:summary="@string/enable_hshpen_summary_head"
             android:title="@string/enable_hshpen_title_head" />
-        <!-- HsHpEn Mode -->
-        <CheckBoxPreference
-            android:key="enable_hpassfilter"
-            android:summary="@string/enable_hpassfilter_summary_head"
-            android:title="@string/enable_hpassfilter_title_head" />
         
         <!-- ClassDDithWGain -->
         <CheckBoxPreference

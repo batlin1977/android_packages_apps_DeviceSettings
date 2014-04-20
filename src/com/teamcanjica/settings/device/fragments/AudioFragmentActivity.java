@@ -67,12 +67,6 @@ public class AudioFragmentActivity extends PreferenceFragment {
 				((CheckBoxPreference) findPreference(DeviceSettings.KEY_ENABLE_CLASSDHPG)).isChecked());
 		getPreferenceScreen().findPreference(DeviceSettings.KEY_CLASSDWG_CONTROL).setEnabled(
 				((CheckBoxPreference) findPreference(DeviceSettings.KEY_ENABLE_CLASSDWG)).isChecked());
-		getPreferenceScreen().findPreference(DeviceSettings.KEY_ENABLE_HSLPMODE).setEnabled(
-				((CheckBoxPreference) findPreference(DeviceSettings.KEY_ENABLE_HSLOWPOW)).isChecked());
-		getPreferenceScreen().findPreference(DeviceSettings.KEY_ENABLE_HSDACLPMODE).setEnabled(
-				((CheckBoxPreference) findPreference(DeviceSettings.KEY_ENABLE_HSDACLOWPOW)).isChecked());
-		getPreferenceScreen().findPreference(DeviceSettings.KEY_ENABLE_HPASSFILTER).setEnabled(
-				((CheckBoxPreference) findPreference(DeviceSettings.KEY_ENABLE_HSHPEN)).isChecked());
 
 		getActivity().getActionBar().setTitle(getResources().getString(R.string.audio_name));
 		getActivity().getActionBar().setIcon(getResources().getDrawable(R.drawable.audio_icon));
@@ -102,23 +96,20 @@ public class AudioFragmentActivity extends PreferenceFragment {
 			getPreferenceScreen().findPreference(DeviceSettings.KEY_HSRDIGGAIN_CONTROL).setEnabled(
 					((CheckBoxPreference) preference).isChecked());
 		} else if (key.equals(DeviceSettings.KEY_ENABLE_HSLOWPOW)) {
+			Utils.writeValue(FILE_HSLOWPOW, "mode=" + (((CheckBoxPreference) preference).
+					isChecked() ? "1" : "0"));
 			Utils.writeValue(FILE_HSLOWPOW, (((CheckBoxPreference) preference).
 					isChecked() ? "on" : "off"));
-			getPreferenceScreen().findPreference(DeviceSettings.KEY_ENABLE_HSLPMODE).setEnabled(
-					((CheckBoxPreference) preference).isChecked());
 		} else if (key.equals(DeviceSettings.KEY_ENABLE_HSDACLOWPOW)) {
+			Utils.writeValue(FILE_HSDACLOWPOW, "mode=" + (((CheckBoxPreference) preference).
+					isChecked() ? "1" : "0"));
 			Utils.writeValue(FILE_HSDACLOWPOW, (((CheckBoxPreference) preference).
 					isChecked() ? "on" : "off"));
-			getPreferenceScreen().findPreference(DeviceSettings.KEY_ENABLE_HSDACLPMODE).setEnabled(
-					((CheckBoxPreference) preference).isChecked());
 		} else if (key.equals(DeviceSettings.KEY_ENABLE_HSHPEN)) {
-			Utils.writeValue(FILE_HSHPEN, (((CheckBoxPreference) preference).
-					isChecked() ? "on" : "off"));
-			getPreferenceScreen().findPreference(DeviceSettings.KEY_ENABLE_HPASSFILTER).setEnabled(
-					((CheckBoxPreference) preference).isChecked());
-		} else if (key.equals(DeviceSettings.KEY_ENABLE_HPASSFILTER)) {
 			Utils.writeValue(FILE_HSHPEN, "mode=" + (((CheckBoxPreference) preference).
 					isChecked() ? "1" : "0"));
+			Utils.writeValue(FILE_HSHPEN, (((CheckBoxPreference) preference).
+					isChecked() ? "on" : "off"));
 		} else if (key.equals(DeviceSettings.KEY_ENABLE_CLASSDHPG)) {
 			Utils.writeValue(FILE_CLASSDHPG, (((CheckBoxPreference) preference).
 					isChecked() ? "on" : "off"));
@@ -139,12 +130,6 @@ public class AudioFragmentActivity extends PreferenceFragment {
 					isChecked() ? "on" : "off"));
 			getPreferenceScreen().findPreference(DeviceSettings.KEY_EARDIGGAIN_CONTROL).setEnabled(
 					((CheckBoxPreference) preference).isChecked());
-		} else if (key.equals(DeviceSettings.KEY_ENABLE_HSLPMODE)) {
-			Utils.writeValue(FILE_HSLOWPOW, "mode=" + (((CheckBoxPreference) preference).
-					isChecked() ? "1" : "0"));
-		} else if (key.equals(DeviceSettings.KEY_ENABLE_HSDACLPMODE)) {
-			Utils.writeValue(FILE_HSDACLOWPOW, "mode=" + (((CheckBoxPreference) preference).
-					isChecked() ? "1" : "0"));
 		} else if (key.equals(DeviceSettings.KEY_ENABLE_LPA_MODE)) {
 			Utils.writeValue(FILE_LPA_MODE, (((CheckBoxPreference) preference).
 					isChecked() ? "on" : "off"));
@@ -169,17 +154,20 @@ public class AudioFragmentActivity extends PreferenceFragment {
 		Utils.writeValue(FILE_HSRDIGGAIN, sharedPrefs.getBoolean(
 				DeviceSettings.KEY_ENABLE_HSRDIGGAIN, false) ? "on" : "off");
 
+		Utils.writeValue(FILE_HSLOWPOW, "mode=" + String.valueOf(sharedPrefs.getBoolean(
+				DeviceSettings.KEY_ENABLE_HSLOWPOW, false) ? "1" : "0"));
+
 		Utils.writeValue(FILE_HSLOWPOW, sharedPrefs.getBoolean(
 				DeviceSettings.KEY_ENABLE_HSLOWPOW, false) ? "on" : "off");
 
-		Utils.writeValue(FILE_HSLOWPOW, "mode=" + String.valueOf(sharedPrefs.getBoolean(
-				DeviceSettings.KEY_ENABLE_HSLPMODE, false) ? "1" : "0"));
-
+		Utils.writeValue(FILE_HSDACLOWPOW, "mode=" + String.valueOf(sharedPrefs.getBoolean(
+				DeviceSettings.KEY_ENABLE_HSDACLOWPOW, false) ? "1" : "0"));
+		
 		Utils.writeValue(FILE_HSDACLOWPOW, sharedPrefs.getBoolean(
 				DeviceSettings.KEY_ENABLE_HSDACLOWPOW, false) ? "on" : "off");
 
-		Utils.writeValue(FILE_HSDACLOWPOW, "mode=" + String.valueOf(sharedPrefs.getBoolean(
-				DeviceSettings.KEY_ENABLE_HSDACLPMODE, false) ? "1" : "0"));
+		Utils.writeValue(FILE_HSHPEN, "mode=" + String.valueOf(sharedPrefs.getBoolean(
+				DeviceSettings.KEY_ENABLE_HSHPEN, false) ? "1" : "0"));
 
 		Utils.writeValue(FILE_HSHPEN, sharedPrefs.getBoolean(
 				DeviceSettings.KEY_ENABLE_HSHPEN, false) ? "on" : "off");

@@ -102,6 +102,16 @@
             android:key="enable_lpa_mode"
             android:summary="@string/enable_lpa_mode_summary_head"
             android:title="@string/enable_lpa_mode_title_head" />
+        
+        <!-- LPA Mode Control -->
+        <com.teamcanjica.settings.device.MasterSeekBarDialogPreference
+           android:defaultValue="16"
+           android:dialogMessage="@string/lpa_mode_control_dialog_message"
+           android:max="35"
+           teamcanjica:min="0"
+           android:key="lpa_mode_control"
+           android:title="@string/lpa_mode_control_title_head"
+           android:summary="@string/lpa_mode_control_summary_head" />
 
         <!-- Chargepump -->
         <CheckBoxPreference

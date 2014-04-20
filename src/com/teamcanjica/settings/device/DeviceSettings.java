@@ -80,6 +80,7 @@ public class DeviceSettings extends Activity implements OnItemClickListener{
 	public static final String KEY_ENABLE_EARDIGGAIN = "enable_eardiggain";
 	public static final String KEY_EARDIGGAIN_CONTROL = "eardiggain_control";
 	public static final String KEY_ENABLE_LPA_MODE = "enable_lpa_mode";
+	public static final String KEY_LPA_MODE_CONTROL = "lpa_mode_control";
 	public static final String KEY_USE_CHARGEPUMP = "enable_chargepump";
 
 	// Screen

@@ -67,6 +67,8 @@ public class AudioFragmentActivity extends PreferenceFragment {
 				((CheckBoxPreference) findPreference(DeviceSettings.KEY_ENABLE_CLASSDHPG)).isChecked());
 		getPreferenceScreen().findPreference(DeviceSettings.KEY_CLASSDWG_CONTROL).setEnabled(
 				((CheckBoxPreference) findPreference(DeviceSettings.KEY_ENABLE_CLASSDWG)).isChecked());
+		getPreferenceScreen().findPreference(DeviceSettings.KEY_LPA_MODE_CONTROL).setEnabled(
+				((CheckBoxPreference) findPreference(DeviceSettings.KEY_ENABLE_LPA_MODE)).isChecked());
 
 		getActivity().getActionBar().setTitle(getResources().getString(R.string.audio_name));
 		getActivity().getActionBar().setIcon(getResources().getDrawable(R.drawable.audio_icon));
@@ -133,6 +135,8 @@ public class AudioFragmentActivity extends PreferenceFragment {
 		} else if (key.equals(DeviceSettings.KEY_ENABLE_LPA_MODE)) {
 			Utils.writeValue(FILE_LPA_MODE, (((CheckBoxPreference) preference).
 					isChecked() ? "on" : "off"));
+			getPreferenceScreen().findPreference(DeviceSettings.KEY_LPA_MODE_CONTROL).setEnabled(
+					((CheckBoxPreference) preference).isChecked());
 		} else if (key.equals(DeviceSettings.KEY_USE_CHARGEPUMP)) {
 			Utils.writeValue(FILE_CHARGEPUMP, ((CheckBoxPreference) preference).
 					isChecked());

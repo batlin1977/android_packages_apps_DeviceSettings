@@ -359,6 +359,11 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 		else if (key.equals(DeviceSettings.KEY_HSRDIGGAIN_CONTROL)) {
 			Utils.writeValue(AudioFragmentActivity.FILE_HSRDIGGAIN, "gain=" + String.valueOf((Integer) newValue));
 		}
+		
+		// ABBamp Audio - LPA Mode Control
+		else if (key.equals(DeviceSettings.KEY_LPA_MODE_CONTROL)) {
+			Utils.writeValue(AudioFragmentActivity.FILE_LPA_MODE, "vape=0x" + String.valueOf((Integer) newValue));
+		}
 
 		return true;
 	}
@@ -375,51 +380,58 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 
 		// ABBamp Audio - ADDigGain2 Control
 		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_ADDIGGAIN2, false) == true) {
-		Utils.writeValue(AudioFragmentActivity.FILE_ADDIGGAIN2,
-			"gain=" + sharedPrefs.
+			Utils.writeValue(AudioFragmentActivity.FILE_ADDIGGAIN2,
+				"gain=" + sharedPrefs.
 					getInt(DeviceSettings.KEY_ADDIGGAIN2_CONTROL, 25));
 		}
 		
 		// ABBamp Audio - Anagain3 Control
 		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_ANAGAIN3, false) == true) {
 			Utils.writeValue(AudioFragmentActivity.FILE_ANAGAIN3,
-					"gain=" + sharedPrefs.
-							getInt(DeviceSettings.KEY_ANAGAIN3_CONTROL, 0));
+				"gain=" + sharedPrefs.
+					getInt(DeviceSettings.KEY_ANAGAIN3_CONTROL, 0));
 		}
 		
 		// ABBamp Audio - ClassDHPG Control
 		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_CLASSDHPG, false) == true) {
-		Utils.writeValue(AudioFragmentActivity.FILE_CLASSDHPG,
+			Utils.writeValue(AudioFragmentActivity.FILE_CLASSDHPG,
 				"gain=" + sharedPrefs.
-						getInt(DeviceSettings.KEY_CLASSDHPG_CONTROL, 10));
+					getInt(DeviceSettings.KEY_CLASSDHPG_CONTROL, 10));
 		}
 		
 		// ABBamp Audio - ClassDWG Control
 		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_CLASSDWG, false) == true) {
-		Utils.writeValue(AudioFragmentActivity.FILE_CLASSDWG,
-			"gain=" + sharedPrefs.
+			Utils.writeValue(AudioFragmentActivity.FILE_CLASSDWG,
+				"gain=" + sharedPrefs.
 					getInt(DeviceSettings.KEY_CLASSDWG_CONTROL, 10));
 		}
 		
 		// ABBamp Audio - EarDigGain Control
 		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_EARDIGGAIN, false) == true) {
-		Utils.writeValue(AudioFragmentActivity.FILE_EARDIGGAIN,
-			"gain=" + sharedPrefs.
+			Utils.writeValue(AudioFragmentActivity.FILE_EARDIGGAIN,
+				"gain=" + sharedPrefs.
 					getInt(DeviceSettings.KEY_EARDIGGAIN_CONTROL, 4));
 		}
 		
 		// ABBamp Audio - HsLDigGain Control
 		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_HSLDIGGAIN, false) == true) {
-		Utils.writeValue(AudioFragmentActivity.FILE_HSLDIGGAIN,
+			Utils.writeValue(AudioFragmentActivity.FILE_HSLDIGGAIN,
 				"gain=" + sharedPrefs.
-						getInt(DeviceSettings.KEY_HSLDIGGAIN_CONTROL, 4));
+					getInt(DeviceSettings.KEY_HSLDIGGAIN_CONTROL, 4));
 		}		
 		
 		// ABBamp Audio - HsRDigGain Control
 		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_HSRDIGGAIN, false) == true) {
-		Utils.writeValue(AudioFragmentActivity.FILE_HSRDIGGAIN,
+			Utils.writeValue(AudioFragmentActivity.FILE_HSRDIGGAIN,
 				"gain=" + sharedPrefs.
 						getInt(DeviceSettings.KEY_HSRDIGGAIN_CONTROL, 4));
+		}
+		
+		// ABBamp Audio - LPA Mode Control
+		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_LPA_MODE, false) == true) {
+			Utils.writeValue(AudioFragmentActivity.FILE_LPA_MODE,
+				"vape=0x" + sharedPrefs.
+					getInt(DeviceSettings.KEY_LPA_MODE_CONTROL, 16));
 		}
 		
 		// Cycle Charging - Discharging threshold

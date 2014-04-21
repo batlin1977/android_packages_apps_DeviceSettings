@@ -226,6 +226,10 @@
     <string name="boost_highthresh_title_head">Mali High Threshold</string>
     <string name="boost_lowthresh_title_head">Mali Low Threshold</string>
     <string name="boost_lowthresh_summary_head">Adjust the threshold at which GPU clock decreases.</string>
+    <string name="set_high_clock_title_head">High Load Clock Speed</string>
+    <string name="set_high_clock_summary_head">Set high load GPU clock speed</string>
+    <string name="set_low_clock_title_head">Low Load Clock Speed</string>
+    <string name="set_low_clock_summary_head">Set low load GPU clock speed</string>
 
     <!-- SUBCATEGORY: GPU MISC -->
     <string name="gpu_misc_subcat_title">Miscellaneous</string>

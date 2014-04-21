@@ -32,8 +32,24 @@
             android:digits="0123456789"
             android:inputType="number"
             android:defaultValue="500" />
-        
+
         <!-- Adjust mali boost high clock -->
+        <com.teamcanjica.settings.device.MasterEditTextPreference
+            android:key="boost_highthresh"
+            android:summary="@string/boost_highthresh_summary_head"
+            android:title="@string/boost_highthresh_title_head"
+            android:digits="0123456789"
+            android:inputType="number"
+            android:defaultValue="233" />
+
+        <!-- Adjust mali boost low clock -->
+        <com.teamcanjica.settings.device.MasterEditTextPreference
+            android:key="boost_lowthresh"
+            android:summary="@string/boost_lowthresh_summary_head"
+            android:title="@string/boost_lowthresh_title_head"
+            android:digits="0123456789"
+            android:inputType="number"
+            android:defaultValue="64" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/gpu_misc_subcat_title">

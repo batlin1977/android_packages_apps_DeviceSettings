@@ -118,7 +118,7 @@ OnPreferenceChangeListener {
 				DeviceSettings.KEY_MALI_PAM, "50331648"));
 		
 		Utils.writeValue(FILE_SCHED_MC, sharedPrefs.getString(
-				DeviceSettings.KEY_SCHED_MC, "0"));
+				DeviceSettings.KEY_SCHED_MC, "2"));
 
 		Utils.writeValue(FILE_PANEL_GAMMA, sharedPrefs.getString(
 				DeviceSettings.KEY_PANEL_GAMMA, "0"));

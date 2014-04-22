@@ -57,7 +57,7 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
     private static final int defaultGPUVoltValues[] = {0x26, 0x26, 0x26, 0x26, 0x26, 0x26, 0x26, 0x29, 0x2a, 0x2b, 
     	0x2c, 0x2d, 0x2f, 0x30, 0x32, 0x33, 0x34, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f};
     private static final int defaultCPUVoltValues[] = {0x18, 0x1a, 0x20, 0x24, 0x2f, 0x32, 0x3f, 0x3f, 0x3f, 0x3f};
-    private static final int voltSteps[] = {0, -12, -24, -36, -48, -72, -60, -84, -96};
+    private static final double voltSteps[] = {0, -12.5, -25, -37.5, -50, -62.5, -75, -87.5, -100};
 
     public MasterSeekBarDialogPreference(Context context) {
         this(context, null);
@@ -123,9 +123,9 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
                 // Update text that displays the current SeekBar progress value
                 // Note: This does not persist the progress value. that is only ever done in setProgress()
             	String progressStr;
-            	int mStepSize = stepSize;
+            	double mStepSize = stepSize;
             	if (isFloat) {
-            		mStepSize = stepSize / 10;
+            		mStepSize = (double) stepSize / 10;
             	}
             	if (mStepSize >= 1) {
             		progressStr = String.valueOf(Math.round((progress + mMinProgress) / mStepSize) * mStepSize);
@@ -164,13 +164,13 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 
     public void setProgress(int progress) {
         progress = Math.max(Math.min(progress, mMaxProgress), mMinProgress);
-        int mStepSize = stepSize;
+        double mStepSize = stepSize;
         if (isFloat) {
-        	mStepSize = stepSize / 10;
+        	mStepSize = (double) stepSize / 10;
         }
         if (progress != mProgress) {
         	if (mStepSize >= 1) {
-        		progress = Math.round(progress / mStepSize) * mStepSize;
+        		progress = (int) (Math.round(progress / mStepSize) * mStepSize);
         	}
         	mProgress = progress;
         	persistInt(progress);
@@ -286,7 +286,7 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 		// CPU Voltage
 		else if (key.equals(DeviceSettings.KEY_CPU_VOLTAGE)) {
 			int i;
-			for (i = 0; voltSteps[i] != (Integer) (Math.round((Integer) newValue / 12) * 12); ++i) {
+			for (i = 0; voltSteps[i] !=  Math.round((Integer) newValue / 12.5) * 12.5; ++i) {
 			}
 			for (int j = 0; j <= defaultCPUVoltValues.length - 1; ++j) {
 			    Utils.writeValue(FILE_CPU_VOLTAGE + String.valueOf(j), "varm=0x" + Integer.toHexString(defaultCPUVoltValues[j] - i));
@@ -296,7 +296,7 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 		// GPU Voltage
 		else if (key.equals(DeviceSettings.KEY_GPU_VOLTAGE)) {
 			int i;
-			for (i = 0; voltSteps[i] != (Integer) (Math.round((Integer) newValue / 12) * 12); ++i) {
+			for (i = 0; voltSteps[i] != Math.round((Integer) newValue / 12.5) * 12.5; ++i) {
 			}
 			for (int j = 0; j <= defaultGPUVoltValues.length - 1; ++j) {
 			    Utils.writeValue(FILE_GPU_VOLTAGE, j + " vape=0x" + Integer.toHexString(defaultGPUVoltValues[j] - i));
@@ -379,56 +379,56 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 						getInt(DeviceSettings.KEY_READAHEADKB, 512)));
 
 		// ABBamp Audio - ADDigGain2 Control
-		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_ADDIGGAIN2, false) == true) {
+		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_ADDIGGAIN2, false)) {
 			Utils.writeValue(AudioFragmentActivity.FILE_ADDIGGAIN2,
 				"gain=" + sharedPrefs.
 					getInt(DeviceSettings.KEY_ADDIGGAIN2_CONTROL, 25));
 		}
 		
 		// ABBamp Audio - Anagain3 Control
-		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_ANAGAIN3, false) == true) {
+		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_ANAGAIN3, false)) {
 			Utils.writeValue(AudioFragmentActivity.FILE_ANAGAIN3,
 				"gain=" + sharedPrefs.
 					getInt(DeviceSettings.KEY_ANAGAIN3_CONTROL, 0));
 		}
 		
 		// ABBamp Audio - ClassDHPG Control
-		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_CLASSDHPG, false) == true) {
+		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_CLASSDHPG, false)) {
 			Utils.writeValue(AudioFragmentActivity.FILE_CLASSDHPG,
 				"gain=" + sharedPrefs.
 					getInt(DeviceSettings.KEY_CLASSDHPG_CONTROL, 10));
 		}
 		
 		// ABBamp Audio - ClassDWG Control
-		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_CLASSDWG, false) == true) {
+		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_CLASSDWG, false)) {
 			Utils.writeValue(AudioFragmentActivity.FILE_CLASSDWG,
 				"gain=" + sharedPrefs.
 					getInt(DeviceSettings.KEY_CLASSDWG_CONTROL, 10));
 		}
 		
 		// ABBamp Audio - EarDigGain Control
-		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_EARDIGGAIN, false) == true) {
+		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_EARDIGGAIN, false)) {
 			Utils.writeValue(AudioFragmentActivity.FILE_EARDIGGAIN,
 				"gain=" + sharedPrefs.
 					getInt(DeviceSettings.KEY_EARDIGGAIN_CONTROL, 4));
 		}
 		
 		// ABBamp Audio - HsLDigGain Control
-		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_HSLDIGGAIN, false) == true) {
+		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_HSLDIGGAIN, false)) {
 			Utils.writeValue(AudioFragmentActivity.FILE_HSLDIGGAIN,
 				"gain=" + sharedPrefs.
 					getInt(DeviceSettings.KEY_HSLDIGGAIN_CONTROL, 4));
 		}		
 		
 		// ABBamp Audio - HsRDigGain Control
-		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_HSRDIGGAIN, false) == true) {
+		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_HSRDIGGAIN, false)) {
 			Utils.writeValue(AudioFragmentActivity.FILE_HSRDIGGAIN,
 				"gain=" + sharedPrefs.
 						getInt(DeviceSettings.KEY_HSRDIGGAIN_CONTROL, 4));
 		}
 		
 		// ABBamp Audio - LPA Mode Control
-		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_LPA_MODE, false) == true) {
+		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_LPA_MODE, false)) {
 			Utils.writeValue(AudioFragmentActivity.FILE_LPA_MODE,
 				"vape=0x" + sharedPrefs.
 					getInt(DeviceSettings.KEY_LPA_MODE_CONTROL, 16));
@@ -446,16 +446,16 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 
 		// CPU Voltage
 		int i;
-		for (i = 0; voltSteps[i] != sharedPrefs.
-				getInt(DeviceSettings.KEY_CPU_VOLTAGE, voltSteps[0]); ++i) {
+		for (i = 0; voltSteps[i] != Math.round(sharedPrefs.
+				getInt(DeviceSettings.KEY_CPU_VOLTAGE, 0) / 12.5) * 12.5; ++i) {
 		}
 		for (int j = 0; j <= defaultCPUVoltValues.length - 1; ++j) {
 		    Utils.writeValue(FILE_CPU_VOLTAGE + String.valueOf(j), "varm=0x" + Integer.toHexString(defaultCPUVoltValues[j] - i));
 		}
 
 		// GPU Voltage
-		for (i = 0; voltSteps[i] != sharedPrefs.
-				getInt(DeviceSettings.KEY_GPU_VOLTAGE, voltSteps[0]); ++i) {
+		for (i = 0; voltSteps[i] != Math.round(sharedPrefs.
+				getInt(DeviceSettings.KEY_GPU_VOLTAGE, 0) / 12.5) * 12.5; ++i) {
 		}
 		for (int j = 0; j <= defaultGPUVoltValues.length - 1; ++j) {
 		    Utils.writeValue(FILE_GPU_VOLTAGE, j + " vape=0x" + Integer.toHexString(defaultGPUVoltValues[j] - i));

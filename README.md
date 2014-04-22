@@ -6,7 +6,6 @@ NovaThor Settings for U8500 Devices
 TODO:
 =======
 
-	- Add More GPU OC settings
 	- Make mcde freq tweakable
 
 Devices supported :

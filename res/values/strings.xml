@@ -15,13 +15,13 @@
     <!-- ACTIONBAR: About -->
     <string name="about_title">TeamCanjica\nNovaThor Settings</string>
     <string name="about_developers_title">Developers</string>
-    <string name="about_developers_summary">Rox\nzwliew\nfrapeti</string>
+    <string name="about_developers_summary">Rox\nzwliew\nfrapeti\nt4n017</string>
     <string name="about_translators_title">Translators</string>
     <string name="about_translators_summary">/</string>
     <string name="about_version_title">Version Number</string>
-    <string name="about_version_summary">1.1</string>
-    <string name="about_copyright1">Copyright © 2013 Cyanogenmod</string>
-    <string name="about_copyright2">2014 TeamCanjica</string>
+    <string name="about_version_summary">1.2</string>
+    <string name="about_copyright1">Copyright © 2014 TeamCanjica</string>
+    <string name="about_copyright2">2013 Cyanogenmod</string>
 
     <!-- CATEGORY: Settings -->
     <string name="settings_name">Settings</string>

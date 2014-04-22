@@ -92,8 +92,8 @@
             android:title="@string/mali_l2_mr_title_head" />
 
         <!-- Adjust Mali pam -->
-		<com.teamcanjica.settings.device.MasterListPreference
-            android:defaultValue="50331648"
+        <com.teamcanjica.settings.device.MasterListPreference
+            android:defaultValue="16777216"
             android:entries="@array/mali_pam_entries"
             android:entryValues="@array/mali_pam_entries_values"
             android:key="mali_pam"

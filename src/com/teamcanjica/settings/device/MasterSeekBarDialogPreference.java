@@ -54,10 +54,10 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
     private static final String FILE_CPU_VOLTAGE = "/sys/kernel/liveopp/arm_step";
     private static final String FILE_CYCLE_CHARGING = "/sys/kernel/abb-fg/fg_cyc";
     private static final String FILE_GPU_VOLTAGE = "/sys/kernel/mali/mali_dvfs_config";
-    private static final int defaultGPUVoltValues[] = {0x26, 0x26, 0x26, 0x26, 0x26, 0x26, 0x26, 0x29, 0x2a, 0x2b, 
+    private static final int defaultGPUVoltValues[] = {0x26, 0x26, 0x26, 0x26, 0x26, 0x26, 0x26, 0x26, 0x29, 0x2a, 0x2b, 
     	0x2c, 0x2d, 0x2f, 0x30, 0x32, 0x33, 0x34, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f};
     private static final int defaultCPUVoltValues[] = {0x18, 0x1a, 0x20, 0x24, 0x2f, 0x32, 0x3f, 0x3f, 0x3f, 0x3f};
-    private static final double voltSteps[] = {0, -12.5, -25, -37.5, -50, -62.5, -75, -87.5, -100};
+    private static final double voltSteps[] = {0, 12.5, 25, 37.5, 50, 62.5, 75, 87.5, 100};
 
     public MasterSeekBarDialogPreference(Context context) {
         this(context, null);
@@ -285,20 +285,24 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 		
 		// CPU Voltage
 		else if (key.equals(DeviceSettings.KEY_CPU_VOLTAGE)) {
+			double currentVolt = Math.round((Integer) newValue / 12.5) * 12.5;
 			int i;
-			for (i = 0; voltSteps[i] !=  Math.round((Integer) newValue / 12.5) * 12.5; ++i) {
+			for (i = 0; voltSteps[i] != Math.abs(currentVolt); i++) {
 			}
-			for (int j = 0; j <= defaultCPUVoltValues.length - 1; ++j) {
-			    Utils.writeValue(FILE_CPU_VOLTAGE + String.valueOf(j), "varm=0x" + Integer.toHexString(defaultCPUVoltValues[j] - i));
+			if (currentVolt < 0) {
+				i *= -1;
+			}
+			for (int j = 0; j <= defaultCPUVoltValues.length - 1; j++) {
+			    Utils.writeValue(FILE_CPU_VOLTAGE + String.valueOf(j), "varm=0x" + Integer.toHexString(defaultCPUVoltValues[j] + i));
 			}
 		}
 		
 		// GPU Voltage
 		else if (key.equals(DeviceSettings.KEY_GPU_VOLTAGE)) {
 			int i;
-			for (i = 0; voltSteps[i] != Math.round((Integer) newValue / 12.5) * 12.5; ++i) {
+			for (i = 0; voltSteps[i] != Math.round((Integer) newValue / 12.5) * 12.5; i++) {
 			}
-			for (int j = 0; j <= defaultGPUVoltValues.length - 1; ++j) {
+			for (int j = 0; j <= defaultGPUVoltValues.length - 1; j++) {
 			    Utils.writeValue(FILE_GPU_VOLTAGE, j + " vape=0x" + Integer.toHexString(defaultGPUVoltValues[j] - i));
 			}
 		}	
@@ -446,18 +450,22 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 
 		// CPU Voltage
 		int i;
-		for (i = 0; voltSteps[i] != Math.round(sharedPrefs.
-				getInt(DeviceSettings.KEY_CPU_VOLTAGE, 0) / 12.5) * 12.5; ++i) {
+		double currentVolt = Math.round(sharedPrefs.
+				getInt(DeviceSettings.KEY_CPU_VOLTAGE, 0) / 12.5) * 12.5;
+		for (i = 0; voltSteps[i] != Math.abs(currentVolt); i++) {
 		}
-		for (int j = 0; j <= defaultCPUVoltValues.length - 1; ++j) {
-		    Utils.writeValue(FILE_CPU_VOLTAGE + String.valueOf(j), "varm=0x" + Integer.toHexString(defaultCPUVoltValues[j] - i));
+		if (currentVolt < 0) {
+			i *= -1;
+		}
+		for (int j = 0; j <= defaultCPUVoltValues.length - 1; j++) {
+		    Utils.writeValue(FILE_CPU_VOLTAGE + String.valueOf(j), "varm=0x" + Integer.toHexString(defaultCPUVoltValues[j] + i));
 		}
 
 		// GPU Voltage
 		for (i = 0; voltSteps[i] != Math.round(sharedPrefs.
-				getInt(DeviceSettings.KEY_GPU_VOLTAGE, 0) / 12.5) * 12.5; ++i) {
+				getInt(DeviceSettings.KEY_GPU_VOLTAGE, 0) / 12.5) * 12.5; i++) {
 		}
-		for (int j = 0; j <= defaultGPUVoltValues.length - 1; ++j) {
+		for (int j = 0; j <= defaultGPUVoltValues.length - 1; j++) {
 		    Utils.writeValue(FILE_GPU_VOLTAGE, j + " vape=0x" + Integer.toHexString(defaultGPUVoltValues[j] - i));
 		}
 	}

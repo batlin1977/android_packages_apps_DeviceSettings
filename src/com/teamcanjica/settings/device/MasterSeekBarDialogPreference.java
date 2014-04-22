@@ -129,6 +129,9 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
             	}
             	if (mStepSize >= 1) {
             		progressStr = String.valueOf(Math.round((progress + mMinProgress) / mStepSize) * mStepSize);
+            		if (!isFloat) {
+            			progressStr = progressStr.substring(0, progressStr.length()-2);
+            		}
         		} else {
         			progressStr = String.valueOf(progress + mMinProgress);
         		}

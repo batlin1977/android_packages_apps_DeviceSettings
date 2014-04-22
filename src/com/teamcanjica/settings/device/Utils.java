@@ -149,16 +149,20 @@ public class Utils {
 			alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
 					new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
-					Process reboot;
-					try {
-						reboot = Runtime.getRuntime().exec(new String[] {
-								"su", "-c", "reboot"});
-						reboot.waitFor();
-					} catch (IOException e) {
-						e.printStackTrace();
-					} catch (InterruptedException e) {
-					e.printStackTrace();
-					}
+						new Thread(new Runnable() {
+						    @Override
+						    public void run() {
+						    	// Reboot
+						    	try {
+									Runtime.getRuntime().exec(new String[] {
+											"su", "-c", "reboot"}).waitFor();
+								} catch (IOException e) {
+									e.printStackTrace();
+								} catch (InterruptedException e) {
+									e.printStackTrace();
+								}
+						    }
+						}).start();
 				}
 			});
 			alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel",

@@ -75,10 +75,10 @@
     <string name="use_ccc_summary_head">Enables Cycle Charging Control</string>
     <string name="dt_title_head">Discharging threshold</string>
     <string name="dt_summary_head">After this level is reached phone will start discharging.</string>
-	<string name="dt_dialog_message">Select end battery level of charging</string>
+    <string name="dt_dialog_message">Select end battery level of charging</string>
     <string name="rt_title_head">Recharging threshold</string>
     <string name="rt_summary_head">After this level is reached phone will start charging again. <b>Note: Recharging threshold must be lower than discharging threshold!</b> </string>
-	<string name="rt_dialog_message">Select recherging battery level</string>
+    <string name="rt_dialog_message">Select recherging battery level</string>
 
     <!-- SUBCATEGORY: Charge Status -->
     <string name="eoc_subcat_title">Charge status</string>
@@ -181,7 +181,7 @@
     <!-- SUBCATEGORY: TouchScreen -->
     <string name="touchscreen_subcat_title">Touchscreen</string>
     <string name="use_sweep2wake_title_head">Sweep2Wake</string>
-    <string name="use_sweep2wake_summary_head">Unlock device with a swipe</string>
+    <string name="use_sweep2wake_summary_head">Unlock device with a swipe.\nSet x and y axis threshold to 0 for enabling Touch2Wake.</string>
     <string name="x_sweep2wake_title_head">S2W Threshold X</string>
     <string name="x_sweep2wake_summary_head">Tweak the x-axis threshold value of swiping. Default:120</string>
     <string name="y_sweep2wake_title_head">S2W Threshold Y</string>
@@ -287,9 +287,9 @@
     <string name="voltages_subcat_title">Voltages</string>
     <string name="cpu_voltage_title_head">CPU Voltages</string>
     <string name="cpu_voltage_summary_head">Adjust the universal CPU voltages. <b>BEWARE! Too HIGH or too LOW voltages may cause reboots!</b></string>
-	<string name="cpu_voltage_dialog_message">Adjust the voltage change.</string>
-	<string name="enable_voltage_title_head">Voltage on more steps</string>
-	<string name="enable_voltage_summary_head">Enable setting voltage for step3 and step4 on janice and step3 on codina. BEWARE! These steps may be unstable.</string>
+    <string name="cpu_voltage_dialog_message">Adjust the voltage change.</string>
+    <string name="enable_voltage_title_head">Voltage on more steps</string>
+    <string name="enable_voltage_summary_head">Enable setting voltage for step3 and step4 on janice and step3 on codina. BEWARE! These steps may be unstable.</string>
 
     <!-- SUBCATEGORY: Accelerometer -->
     <string name="accelerometer_subcat_title">Accelerometer</string>

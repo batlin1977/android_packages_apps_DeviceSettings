@@ -300,7 +300,7 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 		// GPU Voltage
 		else if (key.equals(DeviceSettings.KEY_GPU_VOLTAGE)) {
 			int i;
-			for (i = 0; voltSteps[i] != Math.round((Integer) newValue / 12.5) * 12.5; i++) {
+			for (i = 0; voltSteps[i] != Math.abs(Math.round((Integer) newValue / 12.5) * 12.5); i++) {
 			}
 			for (int j = 0; j <= defaultGPUVoltValues.length - 1; j++) {
 			    Utils.writeValue(FILE_GPU_VOLTAGE, j + " vape=0x" + Integer.toHexString(defaultGPUVoltValues[j] - i));

@@ -135,7 +135,8 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
         		} else {
         			progressStr = String.valueOf(progress + mMinProgress);
         		}
-            	mProgressText.setText(mProgressTextSuffix == null ? progressStr : progressStr.concat(mProgressTextSuffix.toString()));
+            	mProgressText.setText(mProgressTextSuffix == null ? progressStr : 
+            			progressStr.concat(mProgressTextSuffix.toString()));
             }
         });
         mSeekBar.setMax(mMaxProgress - mMinProgress);
@@ -288,25 +289,28 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 		
 		// CPU Voltage
 		else if (key.equals(DeviceSettings.KEY_CPU_VOLTAGE)) {
-			double currentVolt = Math.round((Integer) newValue / 12.5) * 12.5;
+			double currentCPUVolt = Math.round((Integer) newValue / 12.5) * 12.5;
 			int i;
-			for (i = 0; voltSteps[i] != Math.abs(currentVolt); i++) {
+			for (i = 0; voltSteps[i] != Math.abs(currentCPUVolt); i++) {
 			}
-			if (currentVolt < 0) {
+			if (currentCPUVolt < 0) {
 				i *= -1;
 			}
 			for (int j = 0; j <= defaultCPUVoltValues.length - 1; j++) {
-			    Utils.writeValue(FILE_CPU_VOLTAGE + String.valueOf(j), "varm=0x" + Integer.toHexString(defaultCPUVoltValues[j] + i));
+			    Utils.writeValue(FILE_CPU_VOLTAGE + String.valueOf(j), 
+			    		"varm=0x" + Integer.toHexString(defaultCPUVoltValues[j] + i));
 			}
 		}
 		
 		// GPU Voltage
 		else if (key.equals(DeviceSettings.KEY_GPU_VOLTAGE)) {
+			double currentGPUVolt = Math.round((Integer) newValue / 12.5) * 12.5;
 			int i;
-			for (i = 0; voltSteps[i] != Math.abs(Math.round((Integer) newValue / 12.5) * 12.5); i++) {
+			for (i = 0; voltSteps[i] != Math.abs(currentGPUVolt); i++) {
 			}
 			for (int j = 0; j <= defaultGPUVoltValues.length - 1; j++) {
-			    Utils.writeValue(FILE_GPU_VOLTAGE, j + " vape=0x" + Integer.toHexString(defaultGPUVoltValues[j] - i));
+			    Utils.writeValue(FILE_GPU_VOLTAGE, 
+			    		j + " vape=0x" + Integer.toHexString(defaultGPUVoltValues[j] - i));
 			}
 		}	
 		
@@ -453,23 +457,26 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 
 		// CPU Voltage
 		int i;
-		double currentVolt = Math.round(sharedPrefs.
+		double currentCPUVolt = Math.round(sharedPrefs.
 				getInt(DeviceSettings.KEY_CPU_VOLTAGE, 0) / 12.5) * 12.5;
-		for (i = 0; voltSteps[i] != Math.abs(currentVolt); i++) {
+		for (i = 0; voltSteps[i] != Math.abs(currentCPUVolt); i++) {
 		}
-		if (currentVolt < 0) {
+		if (currentCPUVolt < 0) {
 			i *= -1;
 		}
 		for (int j = 0; j <= defaultCPUVoltValues.length - 1; j++) {
-		    Utils.writeValue(FILE_CPU_VOLTAGE + String.valueOf(j), "varm=0x" + Integer.toHexString(defaultCPUVoltValues[j] + i));
+		    Utils.writeValue(FILE_CPU_VOLTAGE + String.valueOf(j), 
+		    		"varm=0x" + Integer.toHexString(defaultCPUVoltValues[j] + i));
 		}
 
 		// GPU Voltage
-		for (i = 0; voltSteps[i] != Math.round(sharedPrefs.
-				getInt(DeviceSettings.KEY_GPU_VOLTAGE, 0) / 12.5) * 12.5; i++) {
+		double currentGPUVolt = Math.round(sharedPrefs.
+				getInt(DeviceSettings.KEY_GPU_VOLTAGE, 0) / 12.5) * 12.5;
+		for (i = 0; voltSteps[i] != Math.abs(currentGPUVolt); i++) {
 		}
 		for (int j = 0; j <= defaultGPUVoltValues.length - 1; j++) {
-		    Utils.writeValue(FILE_GPU_VOLTAGE, j + " vape=0x" + Integer.toHexString(defaultGPUVoltValues[j] - i));
+		    Utils.writeValue(FILE_GPU_VOLTAGE, 
+		    		j + " vape=0x" + Integer.toHexString(defaultGPUVoltValues[j] - i));
 		}
 	}
 }

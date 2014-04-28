@@ -127,9 +127,9 @@
 
     <!-- Scheduler -->
     <string-array name="sched_mc_entries">
-        <item>Disabled</item>
+        <item>Disabled (default)</item>
         <item>Mild</item>
-        <item>Aggressive (default)</item>
+        <item>Aggressive</item>
     </string-array>
     <string-array name="sched_mc_entries_values" translatable="false">
         <item>0</item>

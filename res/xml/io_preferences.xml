@@ -13,7 +13,7 @@
     <PreferenceCategory android:title="@string/scheduler_subcat_title" >
         <!-- Sched MC -->
         <com.teamcanjica.settings.device.MasterListPreference
-            android:defaultValue="2"
+            android:defaultValue="0"
             android:entries="@array/sched_mc_entries"
             android:entryValues="@array/sched_mc_entries_values"
             android:key="sched_mc"

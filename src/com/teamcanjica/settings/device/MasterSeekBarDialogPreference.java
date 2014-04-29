@@ -284,7 +284,7 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 
 		// ReadAheadKB
 		if (key.equals(DeviceSettings.KEY_READAHEADKB)) {
-			Utils.writeValue(FILE_READAHEADKB, String.valueOf((Integer) newValue));
+			Utils.writeValue(FILE_READAHEADKB, String.valueOf((Integer) (Math.round((Integer) newValue / 128 + 1) * 128)));
 		}	
 		
 		// CPU Voltage
@@ -386,8 +386,8 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 
 		// Readahead kB control
 		Utils.writeValue(FILE_READAHEADKB,
-				String.valueOf(sharedPrefs.
-						getInt(DeviceSettings.KEY_READAHEADKB, 512)));
+				String.valueOf((Math.round(sharedPrefs.
+						getInt(DeviceSettings.KEY_READAHEADKB, 512) / 128) + 1) * 128));
 
 		// ABBamp Audio - ADDigGain2 Control
 		if (sharedPrefs.getBoolean(DeviceSettings.KEY_ENABLE_ADDIGGAIN2, false)) {

@@ -6,7 +6,7 @@ NovaThor Settings for U8500 Devices
 TODO:
 =======
 
-	- Make mcde freq tweakable
+	- None for now
 
 Devices supported :
 ===================

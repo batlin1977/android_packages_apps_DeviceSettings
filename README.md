@@ -3,6 +3,14 @@ TeamCanjica
 
 NovaThor Settings for U8500 Devices
 
+Translations:
+============
+Please visit the following website to translate:
+
+http://goo.gl/bn5e0s
+	
+ALL translation pull requests will be ignored.
+
 TODO:
 =======
 

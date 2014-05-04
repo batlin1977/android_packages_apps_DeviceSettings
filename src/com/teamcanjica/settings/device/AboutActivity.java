@@ -18,11 +18,15 @@ package com.teamcanjica.settings.device;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 public class AboutActivity extends Activity {
 	
@@ -31,6 +35,17 @@ public class AboutActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_about);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Button thanksSumm = (Button) findViewById(R.id.about_thanks_summary);
+        thanksSumm.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent("android.intent.action.VIEW",
+						Uri.parse("https://crowdin.net/project/novathor-settings")));
+
+			}
+		});
 	}
 
 	@Override

@@ -3,6 +3,11 @@
 
     <PreferenceCategory android:title="@string/touchscreen_subcat_title"
         android:key="touchscreen" >
+        <!-- Enable 2Tap2Wake -->
+        <CheckBoxPreference
+            android:key="use_2tap2wake"
+            android:summary="@string/use_2tap2wake_summary_head"
+            android:title="@string/use_2tap2wake_title_head" />
         <!-- Enable Sweep2Wake -->
         <CheckBoxPreference
             android:key="use_sweep2wake"

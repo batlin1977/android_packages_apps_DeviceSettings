@@ -36,6 +36,7 @@ public class ScreenFragmentActivity extends PreferenceFragment {
 
 	private static final String TAG = "NovaThor_Settings_Screen";
 
+	private static final String FILE_2TAP2WAKE_CODINA = "/sys/kernel/bt404/doubletap2wake"
 	private static final String FILE_SWEEP2WAKE_CODINA = "/sys/kernel/bt404/sweep2wake";
 	private static final String FILE_SWEEP2WAKE_JANICE = "/sys/kernel/mxt224e/sweep2wake";
 	private static final String FILE_EMULATOR = "/sys/kernel/abb-ponkey/emulator";
@@ -50,10 +51,13 @@ public class ScreenFragmentActivity extends PreferenceFragment {
 		getActivity().getActionBar().setIcon(getResources().getDrawable(R.drawable.screen_icon));
 
 		// Compatibility check for codina (Panel Gamma & Touchscreen Sensitivity)
+		PreferenceCategory touchscreenCategory = (PreferenceCategory) findPreference(DeviceSettings.KEY_TOUCHSCREEN);
+
 		if(Utils.isCodina()) {
 			getPreferenceScreen().removePreference(findPreference(DeviceSettings.KEY_SCREEN_COLOURS));
-			PreferenceCategory touchscreenCategory = (PreferenceCategory) findPreference(DeviceSettings.KEY_TOUCHSCREEN);
 			touchscreenCategory.removePreference(getPreferenceScreen().findPreference(DeviceSettings.KEY_TOUCHSCREEN_SENSITIVITY));
+		} else if(Utils.isJanice()) {
+			touchscreenCategory.removePreference(getPreferenceScreen().findPreference(DeviceSettings.KEY_USE_2TAP2WAKE));
 		}
 	}
 
@@ -65,7 +69,12 @@ public class ScreenFragmentActivity extends PreferenceFragment {
 
 		Log.w(TAG, "key: " + key);
 
-		if (key.equals(DeviceSettings.KEY_USE_SWEEP2WAKE)) {
+		if (key.equals(DeviceSettings.KEY_USE_2TAP2WAKE)) {
+			if (Utils.isCodina()) {
+				Utils.writeValue(FILE_2TAP2WAKE_CODINA, (((CheckBoxPreference) preference).
+						isChecked() ? "on" : "off"));
+			}
+		} else if (key.equals(DeviceSettings.KEY_USE_SWEEP2WAKE)) {
 			if (Utils.isJanice()) {
 				Utils.writeValue(FILE_SWEEP2WAKE_JANICE, (((CheckBoxPreference) preference).
 						isChecked() ? "on" : "off"));
@@ -91,6 +100,8 @@ public class ScreenFragmentActivity extends PreferenceFragment {
 			Utils.writeValue(FILE_SWEEP2WAKE_JANICE, sharedPrefs.getBoolean(
 					DeviceSettings.KEY_USE_SWEEP2WAKE, false) ? "on" : "off");
 		} else if (Utils.isCodina()) {
+			Utils.writeValue(FILE_2TAP2WAKE_CODINA, sharedPrefs.getBoolean(
+					DeviceSettings.KEY_USE_2TAP2WAKE, false) ? "on" : "off");
 			Utils.writeValue(FILE_SWEEP2WAKE_CODINA, sharedPrefs.getBoolean(
 					DeviceSettings.KEY_USE_SWEEP2WAKE, false) ? "on" : "off");
 		}

@@ -84,6 +84,7 @@ public class DeviceSettings extends Activity implements OnItemClickListener{
 	public static final String KEY_USE_CHARGEPUMP = "enable_chargepump";
 
 	// Screen
+	public static final String KEY_USE_2TAP2WAKE = "use_2tap2wake";
 	public static final String KEY_USE_SWEEP2WAKE = "use_sweep2wake";
 	public static final String KEY_X_SWEEP2WAKE = "x_sweep2wake";
 	public static final String KEY_Y_SWEEP2WAKE = "y_sweep2wake";

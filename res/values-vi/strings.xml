@@ -154,7 +154,7 @@
   <string name="io_name">I/O</string>
   <string name="mmc_subcat_title">MMC</string>
   <string name="use_spi_crc_title_head">Vô hiệu hoá SPI CRC</string>
-  <string name="use_spi_crc_summary_head">Vô hiệu hóa SPI CRC có thể cải thiện hiệu suất mmc (10% – 30%) nhưng điện thoại có thể đóng băng một cách ngẫu nhiên</string>
+  <string name="use_spi_crc_summary_head" formatted="false">Vô hiệu hóa SPI CRC có thể cải thiện hiệu suất mmc (10% – 30%) nhưng điện thoại có thể đóng băng một cách ngẫu nhiên</string>
   <string name="scheduler_subcat_title">Scheduler</string>
   <string name="sched_mc_title_head">Tiết kiệm năng lượng đa lõi</string>
   <string name="sched_mc_summary_head">Cố gắng để nhóm nhiệm vụ vào lõi ít nhất có thể có giống như hotplug powersavings.</string>

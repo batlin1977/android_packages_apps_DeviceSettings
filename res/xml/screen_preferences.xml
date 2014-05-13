@@ -8,6 +8,14 @@
             android:key="use_2tap2wake"
             android:summary="@string/use_2tap2wake_summary_head"
             android:title="@string/use_2tap2wake_title_head" />
+        <!-- 2Tap2Wake timeout -->
+        <com.teamcanjica.settings.device.MasterEditTextPreference
+            android:key="2t2w_timeout"
+            android:summary="@string/2t2w_timeout_summary_head"
+            android:title="@string/2t2w_timeout_title_head"
+            android:digits="0123456789"
+            android:inputType="number"
+            android:defaultValue="250" />
         <!-- Enable Sweep2Wake -->
         <CheckBoxPreference
             android:key="use_sweep2wake"

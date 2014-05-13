@@ -25,7 +25,8 @@ import android.preference.Preference.OnPreferenceChangeListener;
 import android.util.AttributeSet;
 
 public class MasterEditTextPreference extends EditTextPreference implements OnPreferenceChangeListener {
-	
+
+	private static final String FILE_2T2W_TIMEOUT = "/sys/kernel/bt404/doubletap2wake";
 	private static final String FILE_S2WTHRESH_CODINA = "/sys/kernel/bt404/sweep2wake";
 	private static final String FILE_S2WTHRESH_JANICE = "/sys/kernel/mxt224e/sweep2wake";
 	private static final String FILE_BOOST_DELAY = "/sys/kernel/mali/mali_boost_delay";
@@ -42,8 +43,10 @@ public class MasterEditTextPreference extends EditTextPreference implements OnPr
 	public boolean onPreferenceChange(Preference preference, Object newValue) {
 
 		String key = preference.getKey();
-		
-		if (key.equals(DeviceSettings.KEY_X_SWEEP2WAKE)) {
+
+		if (key.equals(DeviceSettings.KEY_2T2W_TIMEOUT)) {
+			Utils.writeValue(FILE_2T2W_TIMEOUT, "timeout=" + (String) newValue);
+		} else if (key.equals(DeviceSettings.KEY_X_SWEEP2WAKE)) {
 			Utils.writeValue((Utils.isCodina() ?
 					FILE_S2WTHRESH_CODINA : FILE_S2WTHRESH_JANICE), "threshold_x=" + newValue);
 		} else if (key.equals(DeviceSettings.KEY_Y_SWEEP2WAKE)) {
@@ -68,6 +71,10 @@ public class MasterEditTextPreference extends EditTextPreference implements OnPr
 
 		SharedPreferences sharedPrefs = PreferenceManager
 				.getDefaultSharedPreferences(context);
+
+		// 2Tap2Wake timeout
+		Utils.writeValue(FILE_2T2W_TIMEOUT, sharedPrefs.getString(
+				DeviceSettings.KEY_2T2W_TIMEOUT, "250"));
 
 		// Sweep2wake x and y threshold
 		if (Utils.isCodina()) {

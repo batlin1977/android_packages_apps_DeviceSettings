@@ -182,6 +182,8 @@
     <string name="touchscreen_subcat_title">Touchscreen</string>
     <string name="use_2tap2wake_title_head">2Tap2Wake</string>
     <string name="use_2tap2wake_summary_head">Wake device with double tap on screen.</string>
+    <string name="2t2w_timeout_title_head">2Tap2Wake Timeout</string>
+    <string name="2t2w_timeout_summary_head">Set maximum delay between 2 taps to unlock device in ms</string>
     <string name="use_sweep2wake_title_head">Sweep2Wake</string>
     <string name="use_sweep2wake_summary_head">Unlock device with a swipe.\nSet x and y axis threshold to 0 for enabling Touch2Wake.</string>
     <string name="x_sweep2wake_title_head">S2W Threshold X</string>

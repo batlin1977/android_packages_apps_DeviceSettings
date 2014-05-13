@@ -29,9 +29,9 @@ import android.util.AttributeSet;
 
 public class MasterListPreference extends ListPreference implements
 OnPreferenceChangeListener {
-	
+
 	private static final String FILE_MALI_GPU_CLOCK = "/sys/kernel/mali/mali_gpu_clock";
-	private static final String FILE_FSYNC_MODE = "/sys/kernel/fsync/mode";
+	public static final String FILE_FSYNC_MODE = "/sys/kernel/fsync/mode";
 	private static final String FILE_CHARGER_CURR = "/sys/kernel/abb-charger/charger_curr";
 	private static final String FILE_DEEPEST_SLEEP_STATE = "/sys/kernel/debug/cpuidle/deepest_state";
 	private static final String FILE_MALIL2_MAX_READS = "/sys/module/mali/parameters/mali_l2_max_reads";

@@ -51,7 +51,8 @@
             android:title="@string/panel_gamma_title_head" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/fsync_subcat_title" >
+    <PreferenceCategory android:title="@string/fsync_subcat_title"
+        android:key="fsync_cat" >
         <!-- Switch fsync mode -->
         <com.teamcanjica.settings.device.MasterListPreference
             android:defaultValue="0"

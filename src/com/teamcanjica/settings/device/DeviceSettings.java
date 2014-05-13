@@ -92,6 +92,7 @@ public class DeviceSettings extends Activity implements OnItemClickListener{
 	public static final String KEY_TOUCHSCREEN_SENSITIVITY = "touchscreen_sensitivity";
 	public static final String KEY_SCREEN_COLOURS = "screen_colours";
 	public static final String KEY_PANEL_GAMMA = "panel_gamma";
+	public static final String KEY_FSYNC_CAT = "fsync_cat";
 	public static final String KEY_FSYNC_MODE = "fsync_mode";
 	public static final String KEY_SCREEN_OFF = "screen_off";
 	public static final String KEY_POWER_MENU = "power_menu";

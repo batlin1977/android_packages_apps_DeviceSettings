@@ -29,6 +29,7 @@ import android.preference.PreferenceScreen;
 import android.util.Log;
 
 import com.teamcanjica.settings.device.DeviceSettings;
+import com.teamcanjica.settings.device.MasterListPreference;
 import com.teamcanjica.settings.device.R;
 import com.teamcanjica.settings.device.Utils;
 
@@ -56,9 +57,11 @@ public class ScreenFragmentActivity extends PreferenceFragment {
 		if(Utils.isCodina()) {
 			getPreferenceScreen().removePreference(findPreference(DeviceSettings.KEY_SCREEN_COLOURS));
 			touchscreenCategory.removePreference(getPreferenceScreen().findPreference(DeviceSettings.KEY_TOUCHSCREEN_SENSITIVITY));
-		} else if(Utils.isJanice()) {
+		} else if (Utils.isJanice())
 			touchscreenCategory.removePreference(getPreferenceScreen().findPreference(DeviceSettings.KEY_USE_2TAP2WAKE));
-		}
+
+		if (!Utils.fileExists(MasterListPreference.FILE_FSYNC_MODE))
+			getPreferenceScreen().removePreference(findPreference(DeviceSettings.KEY_FSYNC_CAT));
 	}
 
 	@Override

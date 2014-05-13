@@ -59,7 +59,7 @@ public class ScreenFragmentActivity extends PreferenceFragment {
 		// Compatibility check for janice (2Tap2Wake)
 		} else if (Utils.isJanice())
 			touchscreenCategory.removePreference(getPreferenceScreen().findPreference(DeviceSettings.KEY_USE_2TAP2WAKE));
-			touchscreenCategory.removePreference(getPreferenceScreen().findPreference(DeviceSettings.KEY_2T2W_TIMEOUT));
+			touchscreenCategory.removePreference(getPreferenceScreen().findPreference(DeviceSettings.KEY_DT2W_TIMEOUT));
 		if (!Utils.fileExists(MasterListPreference.FILE_FSYNC_MODE))
 			getPreferenceScreen().removePreference(findPreference(DeviceSettings.KEY_FSYNC_CAT));
 	}

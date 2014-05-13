@@ -96,12 +96,16 @@ public class AdvancedFragmentActivity extends PreferenceFragment {
 					.isChecked());
 			getPreferenceScreen().findPreference(DeviceSettings.KEY_DISABLE_BLN_BLINK).setEnabled(
 					!((CheckBoxPreference) preference).isChecked());
-			getPreferenceScreen().findPreference(DeviceSettings.KEY_BLN_DELAY).setEnabled(
+			getPreferenceScreen().findPreference(DeviceSettings.KEY_BLN_ONDELAY).setEnabled(
+					!((CheckBoxPreference) preference).isChecked());
+			getPreferenceScreen().findPreference(DeviceSettings.KEY_BLN_OFFDELAY).setEnabled(
 					!((CheckBoxPreference) preference).isChecked());
 		} else if (key.equals(DeviceSettings.KEY_DISABLE_BLN_BLINK)) {
 			Utils.writeValue(FILE_BLN_BLINK, (((CheckBoxPreference) preference)
 					.isChecked() ? "off" : "on"));
-			getPreferenceScreen().findPreference(DeviceSettings.KEY_BLN_DELAY).setEnabled(
+			getPreferenceScreen().findPreference(DeviceSettings.KEY_BLN_ONDELAY).setEnabled(
+					!((CheckBoxPreference) preference).isChecked());
+			getPreferenceScreen().findPreference(DeviceSettings.KEY_BLN_OFFDELAY).setEnabled(
 					!((CheckBoxPreference) preference).isChecked());
 		} else if (key.equals(DeviceSettings.KEY_BURNING_LED)) {
 			Utils.writeValue(FILE_BURNING_LED, ((CheckBoxPreference) preference)

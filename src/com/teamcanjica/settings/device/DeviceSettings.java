@@ -121,7 +121,8 @@ public class DeviceSettings extends Activity implements OnItemClickListener{
 	public static final String KEY_BACKLIGHT = "backlight";
 	public static final String KEY_DISABLE_BLN = "disable_bln";
 	public static final String KEY_DISABLE_BLN_BLINK = "disable_bln_blink";
-	public static final String KEY_BLN_DELAY = "bln_delay";
+	public static final String KEY_BLN_ONDELAY = "bln_ondelay";
+	public static final String KEY_BLN_OFFDELAY = "bln_offdelay";
 	public static final String KEY_BURNING_LED = "burning_led";
 	public static final String KEY_ENABLE_VOLTAGE = "enable_voltage";
 	public static final String KEY_CPU_VOLTAGE = "cpu_voltage";

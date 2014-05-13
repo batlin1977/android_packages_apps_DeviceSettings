@@ -55,8 +55,10 @@ public class MasterEditTextPreference extends EditTextPreference implements OnPr
 			Utils.writeValue(FILE_BOOST_HIGH, "threshold=" + (String) newValue);
 		} else if (key.equals(DeviceSettings.KEY_BOOST_LOWTHRESH)) {
 			Utils.writeValue(FILE_BOOST_LOW, "threshold=" + (String) newValue);
-		} else if (key.equals(DeviceSettings.KEY_BLN_DELAY)) {
-			Utils.writeValue(FILE_BLN_DELAY, "delay=" + (String) newValue);
+		} else if (key.equals(DeviceSettings.KEY_BLN_ONDELAY)) {
+			Utils.writeValue(FILE_BLN_DELAY, "ondelay=" + (String) newValue);
+		} else if (key.equals(DeviceSettings.KEY_BLN_OFFDELAY)) {
+			Utils.writeValue(FILE_BLN_DELAY, "offdelay=" + (String) newValue);
 		}
 
 		return true;
@@ -95,8 +97,11 @@ public class MasterEditTextPreference extends EditTextPreference implements OnPr
 				DeviceSettings.KEY_BOOST_LOWTHRESH, "64"));
 
 		// BLN Delay
-		Utils.writeValue(FILE_BLN_DELAY, "delay=" + sharedPrefs.getString(
-				DeviceSettings.KEY_BLN_DELAY, "1000"));
+		Utils.writeValue(FILE_BLN_DELAY, "ondelay=" + sharedPrefs.getString(
+				DeviceSettings.KEY_BLN_ONDELAY, "1000"));
+
+		Utils.writeValue(FILE_BLN_DELAY, "offdelay=" + sharedPrefs.getString(
+				DeviceSettings.KEY_BLN_OFFDELAY, "1000"));
 
 	}
 

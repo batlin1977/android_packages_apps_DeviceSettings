@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:teamcanjica="http://schemas.android.com/apk/res/com.teamcanjica.settings.device" >
 
     <PreferenceCategory android:title="@string/touchscreen_subcat_title"
         android:key="touchscreen" >
@@ -47,8 +48,8 @@
             android:title="@string/touchscreen_sensitivity_title_head" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/screen_colours_subcat_title"
-        android:key="screen_colours" >
+    <PreferenceCategory android:title="@string/screen_visual_subcat_title"
+        android:key="screen_visual" >
         <!-- Adjust panel gamma -->
         <com.teamcanjica.settings.device.MasterListPreference
             android:defaultValue="0"
@@ -57,6 +58,15 @@
             android:key="panel_gamma"
             android:summary="@string/panel_gamma_summary_head"
             android:title="@string/panel_gamma_title_head" />
+        <!-- Minimum Brightness -->
+        <com.teamcanjica.settings.device.MasterSeekBarDialogPreference
+            android:key="min_brightness"
+            android:title="@string/min_brightness_title_head"
+            android:summary="@string/min_brightness_summary_head"
+            android:dialogMessage="@string/min_brightness_dialog_message"
+            android:defaultValue="1"
+            android:max="10"
+            teamcanjica:min="1" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/fsync_subcat_title"

@@ -54,12 +54,13 @@ public class ScreenFragmentActivity extends PreferenceFragment {
 		PreferenceCategory touchscreenCategory = (PreferenceCategory) findPreference(DeviceSettings.KEY_TOUCHSCREEN);
 		// Compatibility check for codina (Panel Gamma & Touchscreen Sensitivity)
 		if (Utils.isCodina()) {
-			getPreferenceScreen().removePreference(findPreference(DeviceSettings.KEY_SCREEN_COLOURS));
+			getPreferenceScreen().removePreference(findPreference(DeviceSettings.KEY_SCREEN_VISUAL));
 			touchscreenCategory.removePreference(getPreferenceScreen().findPreference(DeviceSettings.KEY_TOUCHSCREEN_SENSITIVITY));
 		// Compatibility check for janice (2Tap2Wake)
 		} else if (Utils.isJanice())
 			touchscreenCategory.removePreference(getPreferenceScreen().findPreference(DeviceSettings.KEY_USE_2TAP2WAKE));
 			touchscreenCategory.removePreference(getPreferenceScreen().findPreference(DeviceSettings.KEY_DT2W_TIMEOUT));
+			touchscreenCategory.removePreference(getPreferenceScreen().findPreference(DeviceSettings.KEY_MIN_BRIGHTNESS));
 		if (!Utils.fileExists(MasterListPreference.FILE_FSYNC_MODE))
 			getPreferenceScreen().removePreference(findPreference(DeviceSettings.KEY_FSYNC_CAT));
 	}

@@ -54,6 +54,8 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
     private static final String FILE_CPU_VOLTAGE = "/sys/kernel/liveopp/arm_step";
     private static final String FILE_CYCLE_CHARGING = "/sys/kernel/abb-fg/fg_cyc";
     private static final String FILE_GPU_VOLTAGE = "/sys/kernel/mali/mali_dvfs_config";
+    private static final String FILE_MIN_BRIGHTNESS = "/sys/module/parameters/ktd259/min_brightness";
+
     private static final int defaultGPUVoltValues[] = {0x26, 0x26, 0x26, 0x26, 0x26, 0x26, 0x26, 0x26, 0x29, 0x2a, 0x2b, 
     	0x2c, 0x2d, 0x2f, 0x30, 0x32, 0x33, 0x34, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f};
     private static final int defaultCPUVoltValues[] = {0x18, 0x1a, 0x20, 0x24, 0x2f, 0x32, 0x3f, 0x3f, 0x3f, 0x3f};
@@ -281,14 +283,8 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 
 		String key = preference.getKey();
 		
-
-		// ReadAheadKB
-		if (key.equals(DeviceSettings.KEY_READAHEADKB)) {
-			Utils.writeValue(FILE_READAHEADKB, String.valueOf((Integer) (Math.round((Integer) newValue / 128 + 1) * 128)));
-		}	
-		
 		// CPU Voltage
-		else if (key.equals(DeviceSettings.KEY_CPU_VOLTAGE)) {
+		if (key.equals(DeviceSettings.KEY_CPU_VOLTAGE)) {
 			double currentCPUVolt = Math.round((Integer) newValue / 12.5) * 12.5;
 			int i;
 			for (i = 0; voltSteps[i] != Math.abs(currentCPUVolt); i++) {
@@ -335,46 +331,46 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 			}
 			Utils.writeValue(FILE_CYCLE_CHARGING, "rechar=" + String.valueOf((Integer) newValue));
 		}
-		
+
+		// ReadAheadKB
+		if (key.equals(DeviceSettings.KEY_READAHEADKB))
+			Utils.writeValue(FILE_READAHEADKB, String.valueOf((Integer) (Math.round((Integer) newValue / 128 + 1) * 128)));
+
 		// ABBamp Audio - ADDigGain2 Control
-		else if (key.equals(DeviceSettings.KEY_ADDIGGAIN2_CONTROL)) {
+		else if (key.equals(DeviceSettings.KEY_ADDIGGAIN2_CONTROL))
 			Utils.writeValue(AudioFragmentActivity.FILE_ADDIGGAIN2, "gain=" + String.valueOf((Integer) newValue));
-		}
 		
 		// ABBamp Audio - Anagain3 Control
-		else if (key.equals(DeviceSettings.KEY_ANAGAIN3_CONTROL)) {
+		else if (key.equals(DeviceSettings.KEY_ANAGAIN3_CONTROL))
 			Utils.writeValue(AudioFragmentActivity.FILE_ANAGAIN3, "gain=" + String.valueOf((Integer) newValue));
-		}
 		
 		// ABBamp Audio - ClassDHPG Control
-		else if (key.equals(DeviceSettings.KEY_CLASSDHPG_CONTROL)) {
+		else if (key.equals(DeviceSettings.KEY_CLASSDHPG_CONTROL))
 			Utils.writeValue(AudioFragmentActivity.FILE_CLASSDHPG, "gain=" + String.valueOf((Integer) newValue));
-		}
 		
 		// ABBamp Audio - ClassDWG Control
-		else if (key.equals(DeviceSettings.KEY_CLASSDWG_CONTROL)) {
+		else if (key.equals(DeviceSettings.KEY_CLASSDWG_CONTROL))
 			Utils.writeValue(AudioFragmentActivity.FILE_CLASSDWG, "gain=" + String.valueOf((Integer) newValue));
-		}
 		
 		// ABBamp Audio - EarDigGain Control
-		else if (key.equals(DeviceSettings.KEY_EARDIGGAIN_CONTROL)) {
+		else if (key.equals(DeviceSettings.KEY_EARDIGGAIN_CONTROL))
 			Utils.writeValue(AudioFragmentActivity.FILE_EARDIGGAIN, "gain=" + String.valueOf((Integer) newValue));
-		}
 		
 		// ABBamp Audio - HsLDigGain Control
-		else if (key.equals(DeviceSettings.KEY_HSLDIGGAIN_CONTROL)) {
+		else if (key.equals(DeviceSettings.KEY_HSLDIGGAIN_CONTROL))
 			Utils.writeValue(AudioFragmentActivity.FILE_HSLDIGGAIN, "gain=" + String.valueOf((Integer) newValue));
-		}
 		
 		// ABBamp Audio - HsRDigGain Control
-		else if (key.equals(DeviceSettings.KEY_HSRDIGGAIN_CONTROL)) {
+		else if (key.equals(DeviceSettings.KEY_HSRDIGGAIN_CONTROL))
 			Utils.writeValue(AudioFragmentActivity.FILE_HSRDIGGAIN, "gain=" + String.valueOf((Integer) newValue));
-		}
 		
 		// ABBamp Audio - LPA Mode Control
-		else if (key.equals(DeviceSettings.KEY_LPA_MODE_CONTROL)) {
+		else if (key.equals(DeviceSettings.KEY_LPA_MODE_CONTROL))
 			Utils.writeValue(AudioFragmentActivity.FILE_LPA_MODE, "vape=0x" + Integer.toHexString((Integer) newValue));
-		}
+
+		// Min Brightness
+		else if (key.equals(DeviceSettings.KEY_MIN_BRIGHTNESS))
+			Utils.writeValue(FILE_MIN_BRIGHTNESS, String.valueOf((Integer) newValue));
 
 		return true;
 	}
@@ -438,6 +434,11 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 		Utils.writeValue(FILE_CYCLE_CHARGING,
 				"rechar=" + sharedPrefs.
 						getInt(DeviceSettings.KEY_RECHARGING_THRESHOLD, 5));
+
+		// Min Brightness
+		Utils.writeValue(FILE_MIN_BRIGHTNESS,
+				String.valueOf(sharedPrefs
+						.getInt(DeviceSettings.KEY_MIN_BRIGHTNESS, 1)));
 
 		// CPU Voltage
 		int i;

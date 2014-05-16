@@ -193,10 +193,13 @@
     <string name="touchscreen_sensitivity_title_head">Touch sensitivity</string>
     <string name="touchscreen_sensitivity_summary_head">Set touch panel sensitivity</string>
 
-    <!-- SUBCATEGORY: Screen Colours -->
-    <string name="screen_colours_subcat_title">Colors</string>
+    <!-- SUBCATEGORY: Screen Visual -->
+    <string name="screen_visual_subcat_title">Visual</string>
     <string name="panel_gamma_title_head">Screen Gamma</string>
     <string name="panel_gamma_summary_head">Set screen gamma value</string>
+    <string name="min_brightness_title_head">Minimum Brightness</string>
+    <string name="min_brightness_summary_head">Adjust the minimum brightness of the brightness slider.</string>
+    <string name="min_brightness_dialog_message">Adjust the minimum brightness.</string>
 
     <!-- SUBCATEGORY: FSync -->
     <string name="fsync_subcat_title">FSync</string>
@@ -238,7 +241,7 @@
     <!-- SUBCATEGORY: GPU MISC -->
     <string name="gpu_misc_subcat_title">Miscellaneous</string>
     <string name="gpu_voltage_title_head">GPU Undervolting</string>
-    <string name="gpu_voltage_summary_head">BEWARE! HIGHLY RECOMMENDED TO DISABLE RESTORE ON REBOOT IN SETTINGS! These voltages also supply other engines like <b>Video, Image, Audio engine</b>, not only GPU! UNDERVOLT AT YOUR OWN RISK!</string>
+    <string name="gpu_voltage_summary_head">These voltages also supply other engines like <b>Video, Image, Audio engine</b>, not only GPU! UNDERVOLT AT YOUR OWN RISK!</string>
     <string name="gpu_voltage_dialog_message">Adjust your GPU voltage change.</string>
     <string name="mali_l2_mr_title_head">Mali L2 Max Reads</string>
     <string name="mali_l2_mr_summary_head">Increasing it may improve graphics performance.</string>

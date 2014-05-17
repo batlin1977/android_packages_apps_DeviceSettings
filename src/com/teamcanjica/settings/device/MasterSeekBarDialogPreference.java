@@ -54,7 +54,7 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
     private static final String FILE_CPU_VOLTAGE = "/sys/kernel/liveopp/arm_step";
     private static final String FILE_CYCLE_CHARGING = "/sys/kernel/abb-fg/fg_cyc";
     private static final String FILE_GPU_VOLTAGE = "/sys/kernel/mali/mali_dvfs_config";
-    private static final String FILE_MIN_BRIGHTNESS = "/sys/module/parameters/ktd259/min_brightness";
+    private static final String FILE_MIN_BRIGHTNESS = "/sys/module/ktd259_bl/parameters/min_brightness";
 
     private static final int defaultGPUVoltValues[] = {0x26, 0x26, 0x26, 0x26, 0x26, 0x26, 0x26, 0x26, 0x29, 0x2a, 0x2b, 
     	0x2c, 0x2d, 0x2f, 0x30, 0x32, 0x33, 0x34, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f};

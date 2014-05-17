@@ -143,6 +143,13 @@ public class AdvancedFragmentActivity extends PreferenceFragment {
 		if (!accelerometerCalib)
 			Utils.writeValue(FILE_ACCELEROMETER_CALIB, "0");
 
+		Utils.writeValue(FILE_VOLTAGE1, "set_volt=" + (sharedPrefs.getBoolean(
+				DeviceSettings.KEY_ENABLE_VOLTAGE, false) ? "1" : "0"));
+
+		if (Utils.isJanice())
+			Utils.writeValue(FILE_VOLTAGE2, "set_volt=" + (sharedPrefs.getBoolean(
+					DeviceSettings.KEY_ENABLE_VOLTAGE, false) ? "1" : "0"));
+
 	}
 
 }

@@ -58,10 +58,12 @@ public class ScreenFragmentActivity extends PreferenceFragment {
 			visualCategory.removePreference(getPreferenceScreen().findPreference(DeviceSettings.KEY_PANEL_GAMMA));
 			touchscreenCategory.removePreference(getPreferenceScreen().findPreference(DeviceSettings.KEY_TOUCHSCREEN_SENSITIVITY));
 		// Compatibility check for janice (2Tap2Wake)
-		} else if (Utils.isJanice())
+		} else if (Utils.isJanice()) {
 			visualCategory.removePreference(getPreferenceScreen().findPreference(DeviceSettings.KEY_MIN_BRIGHTNESS));
 			touchscreenCategory.removePreference(getPreferenceScreen().findPreference(DeviceSettings.KEY_USE_2TAP2WAKE));
 			touchscreenCategory.removePreference(getPreferenceScreen().findPreference(DeviceSettings.KEY_DT2W_TIMEOUT));
+		}
+
 		if (!Utils.fileExists(MasterListPreference.FILE_FSYNC_MODE))
 			getPreferenceScreen().removePreference(findPreference(DeviceSettings.KEY_FSYNC_CAT));
 	}

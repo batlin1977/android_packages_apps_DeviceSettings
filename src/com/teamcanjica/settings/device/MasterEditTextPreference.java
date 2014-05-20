@@ -32,7 +32,7 @@ public class MasterEditTextPreference extends EditTextPreference implements OnPr
 	private static final String FILE_BOOST_DELAY = "/sys/kernel/mali/mali_boost_delay";
 	private static final String FILE_BOOST_HIGH = "/sys/kernel/mali/mali_boost_high";
 	private static final String FILE_BOOST_LOW = "/sys/kernel/mali/mali_boost_low";
-	private static final String FILE_BLN_DELAY = "/sys/kernel/bln/bln_blink_mode";
+	private static final String FILE_BLN_DELAY = "/sys/kernel/bln/blink_mode";
 	
 	public MasterEditTextPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);

@@ -38,7 +38,7 @@ public class AdvancedFragmentActivity extends PreferenceFragment {
 
 	private static final String FILE_ACCELEROMETER_CALIB = "/sys/class/sensors/accelerometer_sensor/calibration";
 	private static final String FILE_BLN = "/sys/class/misc/backlightnotification/enabled";
-	private static final String FILE_BLN_BLINK = "/sys/kernel/bln/bln_blink_mode";
+	private static final String FILE_BLN_BLINK = "/sys/kernel/bln/blink_mode";
 	private static final String FILE_BURNING_LED = "/sys/class/camera/flash/burning_led";
 	private static final String FILE_VOLTAGE1 = "/sys/kernel/liveopp/arm_step3";
 	private static final String FILE_VOLTAGE2 = "/sys/kernel/liveopp/arm_step4";

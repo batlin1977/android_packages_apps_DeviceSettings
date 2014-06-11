@@ -382,8 +382,8 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 
 		// Readahead kB control
 		Utils.writeValue(FILE_READAHEADKB,
-				String.valueOf((Math.round(sharedPrefs.
-						getInt(DeviceSettings.KEY_READAHEADKB, 512) / 128) + 1) * 128));
+				String.valueOf(sharedPrefs.
+					getInt(DeviceSettings.KEY_READAHEADKB, 512)));
 
 		// ABBamp Audio - ADDigGain2 Control
 			Utils.writeValue(AudioFragmentActivity.FILE_ADDIGGAIN2,

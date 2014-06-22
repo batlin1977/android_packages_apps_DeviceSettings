@@ -51,6 +51,10 @@ public class AdvancedFragmentActivity extends PreferenceFragment {
 		getPreferenceScreen().findPreference(DeviceSettings.KEY_CALIBRATE_ACCELEROMETER).setEnabled(
 				((CheckBoxPreference) findPreference("use_accelerometer_calibration")).isChecked());
 
+		getPreferenceScreen().findPreference(DeviceSettings.KEY_ENABLE_VOLTAGE).setEnabled(false);
+
+		getPreferenceScreen().findPreference(DeviceSettings.KEY_CPU_VOLTAGE).setEnabled(false);
+
 		getActivity().getActionBar().setTitle(getResources().getString(R.string.advanced_name));
 		getActivity().getActionBar().setIcon(getResources().getDrawable(R.drawable.advanced_icon));
 
@@ -125,10 +129,10 @@ public class AdvancedFragmentActivity extends PreferenceFragment {
 				DeviceSettings.KEY_USE_ACCELEROMETER_CALIBRATION, true);
 		if (!accelerometerCalib)
 			Utils.writeValue(FILE_ACCELEROMETER_CALIB, "0");
-
+/*
 		Utils.writeValue(FILE_VOLTAGE1, "set_volt=" + (sharedPrefs.getBoolean(
 				DeviceSettings.KEY_ENABLE_VOLTAGE, false) ? "1" : "0"));
-
+*/
 		if (Utils.isJanice())
 			Utils.writeValue(FILE_VOLTAGE2, "set_volt=" + (sharedPrefs.getBoolean(
 					DeviceSettings.KEY_ENABLE_VOLTAGE, false) ? "1" : "0"));

@@ -440,7 +440,7 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 				String.valueOf(sharedPrefs
 						.getInt(DeviceSettings.KEY_MIN_BRIGHTNESS, 1)));
 
-		// CPU Voltage
+		/* CPU Voltage
 		int i;
 		double currentCPUVolt = Math.round(sharedPrefs.
 				getInt(DeviceSettings.KEY_CPU_VOLTAGE, 0) / 12.5) * 12.5;
@@ -452,7 +452,7 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 		for (int j = 0; j <= defaultCPUVoltValues.length - 1; j++) {
 		    Utils.writeValue(FILE_CPU_VOLTAGE + String.valueOf(j), 
 		    		"varm=0x" + Integer.toHexString(defaultCPUVoltValues[j] + i));
-		}
+		} */
 
 		// GPU Voltage
 		double currentGPUVolt = Math.round(sharedPrefs.

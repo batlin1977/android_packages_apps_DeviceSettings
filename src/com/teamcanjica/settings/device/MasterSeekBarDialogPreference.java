@@ -440,8 +440,9 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 				String.valueOf(sharedPrefs
 						.getInt(DeviceSettings.KEY_MIN_BRIGHTNESS, 1)));
 
-		/* CPU Voltage
+		
 		int i;
+		/* CPU Voltage
 		double currentCPUVolt = Math.round(sharedPrefs.
 				getInt(DeviceSettings.KEY_CPU_VOLTAGE, 0) / 12.5) * 12.5;
 		for (i = 0; voltSteps[i] != Math.abs(currentCPUVolt); i++) {

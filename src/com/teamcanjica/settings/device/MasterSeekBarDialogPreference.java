@@ -58,7 +58,7 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 
     private static final int defaultGPUVoltValues[] = {0x26, 0x26, 0x26, 0x26, 0x26, 0x26, 0x26, 0x26, 0x29, 0x2a, 0x2b, 
     	0x2c, 0x2d, 0x2f, 0x30, 0x32, 0x33, 0x34, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f};
-    private static final int defaultCPUVoltValues[] = {0x18, 0x1a, 0x20, 0x24, 0x2f, 0x32, 0x3f, 0x3f, 0x3f, 0x3f};
+    private static final int defaultCPUVoltValues[] = {0x18, 0x18, 0x18, 0x18, 0x20, 0x20, 0x24, 0x24, 0x2f, 0x2f, 0x32, 0x36, 0x36, 0x39, 0x39};
     private static final double voltSteps[] = {0, 12.5, 25, 37.5, 50, 62.5, 75, 87.5, 100};
 
     public MasterSeekBarDialogPreference(Context context) {
@@ -293,7 +293,7 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 				i *= -1;
 			}
 			for (int j = 0; j <= defaultCPUVoltValues.length - 1; j++) {
-			    Utils.writeValue(FILE_CPU_VOLTAGE + String.valueOf(j), 
+			    Utils.writeValue(FILE_CPU_VOLTAGE + (j < 10 ? "0" + String.valueOf(j) : String.valueOf(j)), 
 			    		"varm=0x" + Integer.toHexString(defaultCPUVoltValues[j] + i));
 			}
 		}
@@ -451,7 +451,7 @@ public class MasterSeekBarDialogPreference extends DialogPreference implements O
 			i *= -1;
 		}
 		for (int j = 0; j <= defaultCPUVoltValues.length - 1; j++) {
-		    Utils.writeValue(FILE_CPU_VOLTAGE + String.valueOf(j), 
+		    Utils.writeValue(FILE_CPU_VOLTAGE + (j < 10 ? "0" + String.valueOf(j) : String.valueOf(j)), 
 		    		"varm=0x" + Integer.toHexString(defaultCPUVoltValues[j] + i));
 		} */
 

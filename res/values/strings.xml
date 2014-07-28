@@ -296,7 +296,7 @@
     <string name="cpu_voltage_summary_head">Adjust the universal CPU voltages. <b>BEWARE! Too HIGH or too LOW voltages may cause reboots!</b></string>
     <string name="cpu_voltage_dialog_message">Adjust the voltage change.</string>
     <string name="enable_voltage_title_head">Voltage on more steps</string>
-    <string name="enable_voltage_summary_head">Enable setting voltage for step3 and step4 on janice and step3 on codina. BEWARE! These steps may be unstable.</string>
+    <string name="enable_voltage_summary_head">Enable setting voltage for step04 and step05 on janice and step04 on codina. BEWARE! These steps may be unstable.</string>
 
     <!-- SUBCATEGORY: Accelerometer -->
     <string name="accelerometer_subcat_title">Accelerometer</string>

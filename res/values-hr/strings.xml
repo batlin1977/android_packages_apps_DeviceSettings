@@ -182,7 +182,7 @@
   <string name="cpu_voltage_summary_head">Podesi univerzalne CPU napone. OPREZ! PREVISOKI ili PRENISKI naponi mogu uzrokovati ponovna pokretanja.</string>
   <string name="cpu_voltage_dialog_message">Podesi promjenu napona.</string>
   <string name="enable_voltage_title_head">Naponi na više koraka</string>
-  <string name="enable_voltage_summary_head">Omogući postavljanje napona na 3 i 4 korake za janice i 3 korak na codina uređajima. OPREZ! Ovi koraci mogu biti nestabilni.</string>
+  <string name="enable_voltage_summary_head">Omogući postavljanje napona na korake 4 i 5 za janice i korak 4 na codina uređajima. OPREZ! Ovi koraci mogu biti nestabilni.</string>
   <string name="accelerometer_subcat_title">Acelerometar</string>
   <string name="use_accelerometer_calibration_title_head">Koristi podatke kalibracije</string>
   <string name="use_accelerometer_calibration_summary_head">Koristi vrijednosti kalibracije acelerometra. Kalibriraj nakon ovog odabira!</string>
